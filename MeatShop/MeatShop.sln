@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeatShop.Desktop", "MeatShop.Desktop\MeatShop.Desktop.csproj", "{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3364CF6-A106-4AE9-9BE8-85A36EE7E0EC}
+	EndGlobalSection
+EndGlobal
