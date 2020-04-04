@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeatShop.Desktop", "MeatShop.Desktop\MeatShop.Desktop.csproj", "{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeatShop.Database", "MeatShop.Database\MeatShop.Database.csproj", "{B8B1EE45-DC9D-421B-AA39-932C4A86FF81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F078F5E-465C-4E20-8B0C-FCEE632D7AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8B1EE45-DC9D-421B-AA39-932C4A86FF81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8B1EE45-DC9D-421B-AA39-932C4A86FF81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8B1EE45-DC9D-421B-AA39-932C4A86FF81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8B1EE45-DC9D-421B-AA39-932C4A86FF81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
