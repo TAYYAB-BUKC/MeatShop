@@ -318,11 +318,11 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = global::MeatShop.Desktop.Properties.Resources.icon;
+			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
 			this.pictureBox1.ImageLocation = "23,15";
 			this.pictureBox1.Location = new System.Drawing.Point(36, 15);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(159, 60);
+			this.pictureBox1.Size = new System.Drawing.Size(159, 71);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
@@ -405,6 +405,7 @@
 			this.button6.Text = "Manage Category";
 			this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click_2);
 			// 
 			// button7
 			// 

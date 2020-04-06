@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace MeatShop
 {
-    public partial class Add_Category : Form
+    public partial class AddCategory : Form
     {
         Category category = new Category();
-        public Add_Category()
+        public AddCategory()
         {
             InitializeComponent();
         }

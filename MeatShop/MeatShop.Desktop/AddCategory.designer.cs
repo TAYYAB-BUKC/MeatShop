@@ -1,7 +1,7 @@
 ﻿namespace MeatShop
 {
-    partial class Add_Category
-    {
+    partial class AddCategory
+	{
         /// <summary>
         /// Required designer variable.
         /// </summary>

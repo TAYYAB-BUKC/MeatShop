@@ -69,17 +69,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Add_Category.cs">
+    <Compile Include="AddCategory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Add_Category.designer.cs">
-      <DependentUpon>Add_Category.cs</DependentUpon>
+    <Compile Include="AddCategory.designer.cs">
+      <DependentUpon>AddCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddUser.designer.cs">
       <DependentUpon>AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageCategory.designer.cs">
+      <DependentUpon>ManageCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="ManageUser.cs">
       <SubType>Form</SubType>
@@ -101,11 +107,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Add_Category.resx">
-      <DependentUpon>Add_Category.cs</DependentUpon>
+    <EmbeddedResource Include="AddCategory.resx">
+      <DependentUpon>AddCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageCategory.resx">
+      <DependentUpon>ManageCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageUser.resx">
       <DependentUpon>ManageUser.cs</DependentUpon>

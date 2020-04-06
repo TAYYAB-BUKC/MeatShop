@@ -15,8 +15,6 @@ namespace MeatShop
 		private bool Check;
         public Home(bool check)
         {
-		
-
 			InitializeComponent();
             hideSubMenu();
 			if (check)
@@ -60,20 +58,20 @@ namespace MeatShop
         #region MediaSubMenu
         private void button2_Click(object sender, EventArgs e)
         {
-            openChildForm(new Add_Category());
+            openChildForm(new AddCategory());
            
             hideSubMenu();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openChildForm(new Add_Category());
+            openChildForm(new AddCategory());
             hideSubMenu();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            openChildForm(new Add_Category());
+            openChildForm(new AddCategory());
 
            hideSubMenu();
         }
@@ -130,13 +128,13 @@ namespace MeatShop
         #region ToolsSubMenu
         private void button13_Click(object sender, EventArgs e)
         {
-            openChildForm(new Add_Category());
+            openChildForm(new AddCategory());
             hideSubMenu();
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-            openChildForm(new Add_Category());
+            openChildForm(new AddCategory());
             hideSubMenu();
         }
 
@@ -153,7 +151,7 @@ namespace MeatShop
 
         private void btnEqualizer_Click(object sender, EventArgs e)
         {
-            openChildForm(new Add_Category());
+            openChildForm(new AddCategory());
            
             hideSubMenu();
         }
@@ -188,26 +186,26 @@ namespace MeatShop
 
         private void button9_Click_1(object sender, EventArgs e)
         {
-            openChildForm(new Add_Category());
+            openChildForm(new AddCategory());
             hideSubMenu();
         }
 
 		private void button5_Click_1(object sender, EventArgs e)
 		{
-			openChildForm(new Add_Category());
+			openChildForm(new AddCategory());
 			hideSubMenu();
 		}
 
 		private void button6_Click_1(object sender, EventArgs e)
 		{
-			openChildForm(new Add_Category());
+			openChildForm(new AddCategory());
             hideSubMenu();
 
         }
 
 		private void button1_Click_1(object sender, EventArgs e)
 		{
-			openChildForm(new Add_Category());
+			openChildForm(new AddCategory());
 			hideSubMenu();
 		}
 
@@ -237,7 +235,7 @@ namespace MeatShop
 
 		private void btnEqualizer_Click_1(object sender, EventArgs e)
 		{
-			openChildForm(new Add_Category());
+			openChildForm(new AddCategory());
 			hideSubMenu();
 
 
@@ -245,25 +243,25 @@ namespace MeatShop
 
 		private void button7_Click_2(object sender, EventArgs e)
 		{
-			openChildForm(new ManageUser());
+			openChildForm(new ManageCategory());
 			hideSubMenu();
 		}
 
 		private void button13_Click_1(object sender, EventArgs e)
 		{
-			openChildForm(new Add_Category());
+			openChildForm(new AddCategory());
 			hideSubMenu();
 		}
 
 		private void button12_Click_1(object sender, EventArgs e)
 		{
-			openChildForm(new Add_Category());
+			openChildForm(new AddCategory());
 			hideSubMenu();
 		}
 
 		private void button1_Click_2(object sender, EventArgs e)
 		{
-			openChildForm(new Add_Category());
+			openChildForm(new AddCategory());
 			hideSubMenu();
 		}
 
@@ -296,7 +294,13 @@ namespace MeatShop
 
         private void button7_Click_3(object sender, EventArgs e)
         {
-            openChildForm(new Add_Category());
+            openChildForm(new AddCategory());
+            hideSubMenu();
+        }
+
+        private void button6_Click_2(object sender, EventArgs e)
+        {
+            openChildForm(new ManageCategory());
             hideSubMenu();
         }
     }
