@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.label10 = new System.Windows.Forms.Label();
 			this.Delete_Button = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -123,8 +123,6 @@
 			this.User_Password.Name = "User_Password";
 			this.User_Password.Size = new System.Drawing.Size(240, 31);
 			this.User_Password.TabIndex = 77;
-			this.User_Password.Click += new System.EventHandler(this.Business_Email_Click);
-			this.User_Password.Leave += new System.EventHandler(this.Business_Email_Leave);
 			// 
 			// label3
 			// 
@@ -195,20 +193,20 @@
 			// 
 			this.Grd_User.AllowUserToAddRows = false;
 			this.Grd_User.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_User.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_User.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.Grd_User.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_User.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_User.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_User.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle6.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_User.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_User.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.Grd_User.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_User.DoubleBuffered = true;
 			this.Grd_User.EnableHeadersVisualStyles = false;
@@ -220,7 +218,7 @@
 			this.Grd_User.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
 			this.Grd_User.Size = new System.Drawing.Size(676, 214);
 			this.Grd_User.TabIndex = 89;
-			this.Grd_User.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Appointment_CellClick);
+			this.Grd_User.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_User_CellClick);
 			// 
 			// User_Name
 			// 
@@ -246,17 +244,15 @@
 			this.User_Username.Name = "User_Username";
 			this.User_Username.Size = new System.Drawing.Size(240, 31);
 			this.User_Username.TabIndex = 96;
-			this.User_Username.Click += new System.EventHandler(this.Business_Phone_Click);
-			this.User_Username.Leave += new System.EventHandler(this.Business_Phone_Leave);
 			// 
 			// User_Search
 			// 
 			this.User_Search.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.User_Search.Location = new System.Drawing.Point(659, 81);
+			this.User_Search.Location = new System.Drawing.Point(657, 81);
 			this.User_Search.Name = "User_Search";
 			this.User_Search.Size = new System.Drawing.Size(502, 31);
 			this.User_Search.TabIndex = 99;
-			this.User_Search.TextChanged += new System.EventHandler(this.Business_Search_TextChanged);
+			this.User_Search.TextChanged += new System.EventHandler(this.User_Search_TextChanged);
 			// 
 			// label8
 			// 

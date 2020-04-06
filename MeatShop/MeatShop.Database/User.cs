@@ -14,7 +14,7 @@ namespace MeatShop.Database
 	public class User
 	{
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
-
+		bool isError = false;
 		public bool Login(string username, string password)
 		{
 			SQLiteConnection sql = new SQLiteConnection(con);
@@ -76,6 +76,94 @@ namespace MeatShop.Database
 				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-	}
 
+		public void SearchUser(BunifuCustomDataGrid dataGrid, string name)
+		{
+			if (name.Length > 0)
+			{
+				if (Checking(dataGrid, name))
+				{
+				}
+				else
+				{
+					if (!isError)
+					{
+						MessageBox.Show("No Record Found For this Name", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						isError = true;
+					}
+				}
+
+			}
+			else if (name.Length == 0)
+			{
+				GetData(dataGrid,"select * from Users");
+			}
+		}
+
+		private bool Checking(BunifuCustomDataGrid dataGrid, string name)
+		{
+			SQLiteConnection sql = new SQLiteConnection(con);
+			sql.Open();
+			SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Users where Name like '" + name + "%'", sql);
+			//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
+			DataTable dt = new DataTable();
+			if (da != null)
+			{
+				da.Fill(dt);
+			}
+			if (dt.Rows.Count > 0)
+			{
+				dataGrid.DataSource = dt;
+				sql.Close();
+
+				return true;
+
+			}
+			else
+			{
+				sql.Close();
+				return false;
+			}
+		}
+		public void UpdateUser(int id,string name, string username, string password, int role)
+		{
+			try
+			{
+				SQLiteConnection sql = new SQLiteConnection(con);
+				sql.Open();
+				SQLiteCommand cmd = new SQLiteCommand("update Users set Name=@Name,Username=@Username,Password=@Password,Role=@Role where Id=@Id", sql);
+				cmd.Parameters.AddWithValue("@Name", name);
+				cmd.Parameters.AddWithValue("@Username", username);
+				cmd.Parameters.AddWithValue("@Password", password);
+				cmd.Parameters.AddWithValue("@Role", role);
+				cmd.Parameters.AddWithValue("@Id", id);
+				cmd.ExecuteNonQuery();
+				MessageBox.Show("User Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				sql.Close();
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		public void DeleteUser(int id)
+		{
+			try
+			{
+				SQLiteConnection sql = new SQLiteConnection(con);
+				sql.Open();
+				SQLiteCommand cmd = new SQLiteCommand("delete from Users where Id = @Id", sql);
+				cmd.Parameters.AddWithValue("@Id", id);
+				cmd.ExecuteNonQuery();
+				MessageBox.Show("User Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+			}
+		}
+	}
 }
+	
