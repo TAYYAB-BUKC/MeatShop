@@ -33,7 +33,7 @@ namespace MeatShop
 			}
 			else
 			{
-				MessageBox.Show("Invalid credentials please try again later", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("Invalid credentials please try again later", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			
 		}

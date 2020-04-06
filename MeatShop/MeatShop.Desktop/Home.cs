@@ -26,8 +26,8 @@ namespace MeatShop
 				//button5.Hide();
 				//button6.Hide();
 				btnTools.Hide();
-				btnEqualizer.Hide();
-				button7.Hide();
+				//btnEqualizer.Hide();
+				//button7.Hide();
 			}
 		}
 
@@ -36,6 +36,7 @@ namespace MeatShop
             panelMediaSubMenu.Visible = false;
            // panelPlaylistSubMenu.Visible = false;
             panelToolsSubMenu.Visible = false;
+            User_Panel.Visible = false;
 			
         }
 
@@ -243,7 +244,7 @@ namespace MeatShop
 
 		private void button7_Click_2(object sender, EventArgs e)
 		{
-			openChildForm(new Add_Category());
+			openChildForm(new ManageUser());
 			hideSubMenu();
 		}
 
@@ -264,5 +265,27 @@ namespace MeatShop
 			openChildForm(new Add_Category());
 			hideSubMenu();
 		}
-	}
+
+        private void btnTools_Click_2(object sender, EventArgs e)
+        {
+            showSubMenu(panelToolsSubMenu);
+        }
+
+        private void User_Click(object sender, EventArgs e)
+        {
+            showSubMenu(User_Panel);
+        }
+
+        private void button5_Click_2(object sender, EventArgs e)
+        {
+            openChildForm(new AddUser());
+            hideSubMenu();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            openChildForm(new ManageUser());
+            hideSubMenu();
+        }
+    }
 }

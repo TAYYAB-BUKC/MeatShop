@@ -30,8 +30,10 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
 			this.panelSideMenu = new System.Windows.Forms.Panel();
-			this.button7 = new System.Windows.Forms.Button();
-			this.btnEqualizer = new System.Windows.Forms.Button();
+			this.User_Panel = new System.Windows.Forms.Panel();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.User = new System.Windows.Forms.Button();
 			this.panelToolsSubMenu = new System.Windows.Forms.Panel();
 			this.button12 = new System.Windows.Forms.Button();
 			this.button13 = new System.Windows.Forms.Button();
@@ -47,6 +49,7 @@
 			this.panelChildForm = new System.Windows.Forms.Panel();
 			this.pictureBox9 = new System.Windows.Forms.PictureBox();
 			this.panelSideMenu.SuspendLayout();
+			this.User_Panel.SuspendLayout();
 			this.panelToolsSubMenu.SuspendLayout();
 			this.panelMediaSubMenu.SuspendLayout();
 			this.panelLogo.SuspendLayout();
@@ -59,8 +62,8 @@
 			// 
 			this.panelSideMenu.AutoScroll = true;
 			this.panelSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
-			this.panelSideMenu.Controls.Add(this.button7);
-			this.panelSideMenu.Controls.Add(this.btnEqualizer);
+			this.panelSideMenu.Controls.Add(this.User_Panel);
+			this.panelSideMenu.Controls.Add(this.User);
 			this.panelSideMenu.Controls.Add(this.panelToolsSubMenu);
 			this.panelSideMenu.Controls.Add(this.btnTools);
 			this.panelSideMenu.Controls.Add(this.btnExit);
@@ -73,47 +76,73 @@
 			this.panelSideMenu.Size = new System.Drawing.Size(250, 803);
 			this.panelSideMenu.TabIndex = 0;
 			// 
-			// button7
+			// User_Panel
 			// 
-			this.button7.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button7.FlatAppearance.BorderSize = 0;
-			this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button7.ForeColor = System.Drawing.Color.Silver;
-			this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-			this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button7.Location = new System.Drawing.Point(0, 472);
-			this.button7.Name = "button7";
-			this.button7.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.button7.Size = new System.Drawing.Size(250, 53);
-			this.button7.TabIndex = 14;
-			this.button7.Text = "   Users";
-			this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.button7.UseVisualStyleBackColor = true;
-			this.button7.Click += new System.EventHandler(this.button7_Click_2);
+			this.User_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+			this.User_Panel.Controls.Add(this.button4);
+			this.User_Panel.Controls.Add(this.button5);
+			this.User_Panel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.User_Panel.Location = new System.Drawing.Point(0, 472);
+			this.User_Panel.Name = "User_Panel";
+			this.User_Panel.Size = new System.Drawing.Size(250, 110);
+			this.User_Panel.TabIndex = 15;
 			// 
-			// btnEqualizer
+			// button4
 			// 
-			this.btnEqualizer.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnEqualizer.FlatAppearance.BorderSize = 0;
-			this.btnEqualizer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.btnEqualizer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.btnEqualizer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnEqualizer.ForeColor = System.Drawing.Color.Silver;
-			this.btnEqualizer.Image = ((System.Drawing.Image)(resources.GetObject("btnEqualizer.Image")));
-			this.btnEqualizer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnEqualizer.Location = new System.Drawing.Point(0, 427);
-			this.btnEqualizer.Name = "btnEqualizer";
-			this.btnEqualizer.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.btnEqualizer.Size = new System.Drawing.Size(250, 45);
-			this.btnEqualizer.TabIndex = 13;
-			this.btnEqualizer.Text = "   Units";
-			this.btnEqualizer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnEqualizer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnEqualizer.UseVisualStyleBackColor = true;
-			this.btnEqualizer.Click += new System.EventHandler(this.btnEqualizer_Click_1);
+			this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button4.FlatAppearance.BorderSize = 0;
+			this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button4.ForeColor = System.Drawing.Color.Silver;
+			this.button4.Location = new System.Drawing.Point(0, 40);
+			this.button4.Name = "button4";
+			this.button4.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.button4.Size = new System.Drawing.Size(250, 47);
+			this.button4.TabIndex = 1;
+			this.button4.Text = "Manage Users";
+			this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click_1);
+			// 
+			// button5
+			// 
+			this.button5.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button5.FlatAppearance.BorderSize = 0;
+			this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button5.ForeColor = System.Drawing.Color.Silver;
+			this.button5.Location = new System.Drawing.Point(0, 0);
+			this.button5.Name = "button5";
+			this.button5.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.button5.Size = new System.Drawing.Size(250, 40);
+			this.button5.TabIndex = 0;
+			this.button5.Text = "Add User";
+			this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click_2);
+			// 
+			// User
+			// 
+			this.User.Dock = System.Windows.Forms.DockStyle.Top;
+			this.User.FlatAppearance.BorderSize = 0;
+			this.User.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.User.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.User.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.User.ForeColor = System.Drawing.Color.Silver;
+			this.User.Image = ((System.Drawing.Image)(resources.GetObject("User.Image")));
+			this.User.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.User.Location = new System.Drawing.Point(0, 427);
+			this.User.Name = "User";
+			this.User.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.User.Size = new System.Drawing.Size(250, 45);
+			this.User.TabIndex = 15;
+			this.User.Text = "   User";
+			this.User.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.User.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.User.UseVisualStyleBackColor = true;
+			this.User.Click += new System.EventHandler(this.User_Click);
 			// 
 			// panelToolsSubMenu
 			// 
@@ -124,7 +153,7 @@
 			this.panelToolsSubMenu.Location = new System.Drawing.Point(0, 317);
 			this.panelToolsSubMenu.Name = "panelToolsSubMenu";
 			this.panelToolsSubMenu.Size = new System.Drawing.Size(250, 110);
-			this.panelToolsSubMenu.TabIndex = 12;
+			this.panelToolsSubMenu.TabIndex = 14;
 			// 
 			// button12
 			// 
@@ -142,7 +171,6 @@
 			this.button12.Text = "Manage Stock";
 			this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.button12.UseVisualStyleBackColor = true;
-			this.button12.Click += new System.EventHandler(this.button12_Click_1);
 			// 
 			// button13
 			// 
@@ -160,7 +188,6 @@
 			this.button13.Text = "Add Stock";
 			this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.button13.UseVisualStyleBackColor = true;
-			this.button13.Click += new System.EventHandler(this.button13_Click_1);
 			// 
 			// btnTools
 			// 
@@ -176,12 +203,12 @@
 			this.btnTools.Name = "btnTools";
 			this.btnTools.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.btnTools.Size = new System.Drawing.Size(250, 45);
-			this.btnTools.TabIndex = 11;
+			this.btnTools.TabIndex = 13;
 			this.btnTools.Text = "   Stock";
 			this.btnTools.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnTools.UseVisualStyleBackColor = true;
-			this.btnTools.Click += new System.EventHandler(this.btnTools_Click_1);
+			this.btnTools.Click += new System.EventHandler(this.btnTools_Click_2);
 			// 
 			// btnExit
 			// 
@@ -284,7 +311,6 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = global::MeatShop.Desktop.Properties.Resources.icon;
 			this.pictureBox1.ImageLocation = "23,15";
 			this.pictureBox1.Location = new System.Drawing.Point(36, 15);
 			this.pictureBox1.Name = "pictureBox1";
@@ -340,6 +366,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.panelSideMenu.ResumeLayout(false);
+			this.User_Panel.ResumeLayout(false);
 			this.panelToolsSubMenu.ResumeLayout(false);
 			this.panelMediaSubMenu.ResumeLayout(false);
 			this.panelLogo.ResumeLayout(false);
@@ -363,12 +390,14 @@
         private System.Windows.Forms.Panel panelPlayer;
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.PictureBox pictureBox9;
-		private System.Windows.Forms.Button btnTools;
 		private System.Windows.Forms.Panel panelToolsSubMenu;
 		private System.Windows.Forms.Button button12;
 		private System.Windows.Forms.Button button13;
-		private System.Windows.Forms.Button button7;
-		private System.Windows.Forms.Button btnEqualizer;
+		private System.Windows.Forms.Button btnTools;
+		private System.Windows.Forms.Panel User_Panel;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button User;
 	}
 }
 
