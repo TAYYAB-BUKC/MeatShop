@@ -48,6 +48,10 @@
 			this.panelPlayer = new System.Windows.Forms.Panel();
 			this.panelChildForm = new System.Windows.Forms.Panel();
 			this.pictureBox9 = new System.Windows.Forms.PictureBox();
+			this.Category = new System.Windows.Forms.Button();
+			this.Category_Panel = new System.Windows.Forms.Panel();
+			this.button6 = new System.Windows.Forms.Button();
+			this.button7 = new System.Windows.Forms.Button();
 			this.panelSideMenu.SuspendLayout();
 			this.User_Panel.SuspendLayout();
 			this.panelToolsSubMenu.SuspendLayout();
@@ -56,12 +60,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panelChildForm.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+			this.Category_Panel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelSideMenu
 			// 
 			this.panelSideMenu.AutoScroll = true;
 			this.panelSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+			this.panelSideMenu.Controls.Add(this.Category_Panel);
+			this.panelSideMenu.Controls.Add(this.Category);
 			this.panelSideMenu.Controls.Add(this.User_Panel);
 			this.panelSideMenu.Controls.Add(this.User);
 			this.panelSideMenu.Controls.Add(this.panelToolsSubMenu);
@@ -311,6 +318,7 @@
 			// 
 			// pictureBox1
 			// 
+			this.pictureBox1.Image = global::MeatShop.Desktop.Properties.Resources.icon;
 			this.pictureBox1.ImageLocation = "23,15";
 			this.pictureBox1.Location = new System.Drawing.Point(36, 15);
 			this.pictureBox1.Name = "pictureBox1";
@@ -349,6 +357,73 @@
 			this.pictureBox9.TabIndex = 2;
 			this.pictureBox9.TabStop = false;
 			// 
+			// Category
+			// 
+			this.Category.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Category.FlatAppearance.BorderSize = 0;
+			this.Category.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.Category.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.Category.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.Category.ForeColor = System.Drawing.Color.Silver;
+			this.Category.Image = ((System.Drawing.Image)(resources.GetObject("Category.Image")));
+			this.Category.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Category.Location = new System.Drawing.Point(0, 582);
+			this.Category.Name = "Category";
+			this.Category.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.Category.Size = new System.Drawing.Size(250, 45);
+			this.Category.TabIndex = 16;
+			this.Category.Text = "   Category";
+			this.Category.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Category.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.Category.UseVisualStyleBackColor = true;
+			this.Category.Click += new System.EventHandler(this.button1_Click_3);
+			// 
+			// Category_Panel
+			// 
+			this.Category_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+			this.Category_Panel.Controls.Add(this.button6);
+			this.Category_Panel.Controls.Add(this.button7);
+			this.Category_Panel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Category_Panel.Location = new System.Drawing.Point(0, 627);
+			this.Category_Panel.Name = "Category_Panel";
+			this.Category_Panel.Size = new System.Drawing.Size(250, 110);
+			this.Category_Panel.TabIndex = 16;
+			// 
+			// button6
+			// 
+			this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button6.FlatAppearance.BorderSize = 0;
+			this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button6.ForeColor = System.Drawing.Color.Silver;
+			this.button6.Location = new System.Drawing.Point(0, 40);
+			this.button6.Name = "button6";
+			this.button6.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.button6.Size = new System.Drawing.Size(250, 47);
+			this.button6.TabIndex = 1;
+			this.button6.Text = "Manage Category";
+			this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button6.UseVisualStyleBackColor = true;
+			// 
+			// button7
+			// 
+			this.button7.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button7.FlatAppearance.BorderSize = 0;
+			this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button7.ForeColor = System.Drawing.Color.Silver;
+			this.button7.Location = new System.Drawing.Point(0, 0);
+			this.button7.Name = "button7";
+			this.button7.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.button7.Size = new System.Drawing.Size(250, 40);
+			this.button7.TabIndex = 0;
+			this.button7.Text = "Add Category";
+			this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click_3);
+			// 
 			// Home
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -373,6 +448,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.panelChildForm.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+			this.Category_Panel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -398,6 +474,10 @@
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button User;
+		private System.Windows.Forms.Panel Category_Panel;
+		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.Button button7;
+		private System.Windows.Forms.Button Category;
 	}
 }
 

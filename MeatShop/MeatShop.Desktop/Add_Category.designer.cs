@@ -40,17 +40,17 @@
 			// panel2
 			// 
 			this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.panel2.Location = new System.Drawing.Point(69, 190);
+			this.panel2.Location = new System.Drawing.Point(69, 185);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1002, 5);
+			this.panel2.Size = new System.Drawing.Size(907, 5);
 			this.panel2.TabIndex = 69;
 			// 
 			// Category_Name
 			// 
 			this.Category_Name.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.Category_Name.Location = new System.Drawing.Point(316, 128);
+			this.Category_Name.Location = new System.Drawing.Point(278, 127);
 			this.Category_Name.Name = "Category_Name";
-			this.Category_Name.Size = new System.Drawing.Size(207, 31);
+			this.Category_Name.Size = new System.Drawing.Size(275, 31);
 			this.Category_Name.TabIndex = 71;
 			// 
 			// label1
@@ -72,7 +72,7 @@
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
 			this.panel1.Location = new System.Drawing.Point(69, 90);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1002, 5);
+			this.panel1.Size = new System.Drawing.Size(907, 5);
 			this.panel1.TabIndex = 68;
 			// 
 			// label2
@@ -83,7 +83,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.White;
-			this.label2.Location = new System.Drawing.Point(132, 131);
+			this.label2.Location = new System.Drawing.Point(94, 130);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(160, 22);
 			this.label2.TabIndex = 67;
@@ -111,7 +111,7 @@
 			this.Save_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.Save_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Save_Button.ForeColor = System.Drawing.Color.LightGray;
-			this.Save_Button.Location = new System.Drawing.Point(399, 227);
+			this.Save_Button.Location = new System.Drawing.Point(336, 206);
 			this.Save_Button.Name = "Save_Button";
 			this.Save_Button.Size = new System.Drawing.Size(150, 40);
 			this.Save_Button.TabIndex = 81;
@@ -119,12 +119,12 @@
 			this.Save_Button.UseVisualStyleBackColor = false;
 			this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
 			// 
-			// Clinic
+			// Add_Category
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-			this.ClientSize = new System.Drawing.Size(995, 570);
+			this.ClientSize = new System.Drawing.Size(995, 270);
 			this.Controls.Add(this.Save_Button);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.Category_Name);
@@ -132,9 +132,8 @@
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.button5);
-			this.Name = "Clinic";
-			this.Text = "Form5";
-			this.Load += new System.EventHandler(this.Clinic_Load);
+			this.Name = "Add_Category";
+			this.Text = "Add Category";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
