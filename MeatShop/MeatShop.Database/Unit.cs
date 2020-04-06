@@ -1,26 +1,31 @@
 ﻿using Bunifu.Framework.UI;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MeatShop.Database
 {
-	public class Category
+	public class Unit
 	{
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		bool isError = false;
-		public void AddCategory(string name)
+		public void AddUnit(string name,string prefix)
 		{
 			try
 			{
 				SQLiteConnection sql = new SQLiteConnection(con);
 				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("insert into Categories(Name) values(@Name)", sql);
+				SQLiteCommand cmd = new SQLiteCommand("insert into Units(Name,Unit_prefix) values(@Name,@Unit_prefix)", sql);
 				cmd.Parameters.AddWithValue("@Name", name);
+				cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
 				cmd.ExecuteNonQuery();
-				MessageBox.Show("Category Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("Unit Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				sql.Close();
 			}
 			catch (Exception)
@@ -49,7 +54,7 @@ namespace MeatShop.Database
 			}
 		}
 
-		public void SearchCategory(BunifuCustomDataGrid dataGrid, string name)
+		public void SearchUnit(BunifuCustomDataGrid dataGrid, string name)
 		{
 			if (name.Length > 0)
 			{
@@ -68,7 +73,7 @@ namespace MeatShop.Database
 			}
 			else if (name.Length == 0)
 			{
-				GetData(dataGrid, "select * from Categories");
+				GetData(dataGrid, "select * from Units");
 			}
 		}
 
@@ -76,7 +81,7 @@ namespace MeatShop.Database
 		{
 			SQLiteConnection sql = new SQLiteConnection(con);
 			sql.Open();
-			SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Categories where Name like '" + name + "%'", sql);
+			SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Units where Name like '" + name + "%'", sql);
 			//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
 			DataTable dt = new DataTable();
 			if (da != null)
@@ -97,17 +102,18 @@ namespace MeatShop.Database
 				return false;
 			}
 		}
-		public void UpdateCategory(int id, string name)
+		public void UpdateUnit(int id, string name,string prefix)
 		{
 			try
 			{
 				SQLiteConnection sql = new SQLiteConnection(con);
 				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("update Categories set Name=@Name where Id=@Id", sql);
+				SQLiteCommand cmd = new SQLiteCommand("update Units set Name=@Name,Unit_Prefix=@Unit_Prefix where Id=@Id", sql);
 				cmd.Parameters.AddWithValue("@Name", name);
+				cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
 				cmd.Parameters.AddWithValue("@Id", id);
 				cmd.ExecuteNonQuery();
-				MessageBox.Show("Category Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("Unit Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				sql.Close();
 			}
 			catch (Exception)
@@ -116,16 +122,16 @@ namespace MeatShop.Database
 			}
 		}
 
-		public void DeleteCategory(int id)
+		public void DeleteUnit(int id)
 		{
 			try
 			{
 				SQLiteConnection sql = new SQLiteConnection(con);
 				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("delete from Categories where Id = @Id", sql);
+				SQLiteCommand cmd = new SQLiteCommand("delete from Units where Id = @Id", sql);
 				cmd.Parameters.AddWithValue("@Id", id);
 				cmd.ExecuteNonQuery();
-				MessageBox.Show("Category Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("Unit Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (Exception ex)
 			{

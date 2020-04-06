@@ -33,9 +33,16 @@ namespace MeatShop
 	
 		private void Update_Button_Click(object sender, EventArgs e)
 		{
-			category.UpdateCategory(Convert.ToInt32(Category_ID.Text), Category_Name.Text);
-			ClearData();
-			category.GetData(Grd_Category, "select * from Categories");
+			if (Category_ID.Text == String.Empty)
+			{
+				MessageBox.Show("Please select the category first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				category.UpdateCategory(Convert.ToInt32(Category_ID.Text), Category_Name.Text);
+				ClearData();
+				category.GetData(Grd_Category, "select * from Categories");
+			}
 		}
 
 		private void User_Search_TextChanged(object sender, EventArgs e)
@@ -76,10 +83,10 @@ namespace MeatShop
 		{
 			if (Category_ID.Text == String.Empty)
 			{
-				MessageBox.Show("Please select the user first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Please select the category first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			}
-			else if (MessageBox.Show("Are you sure you want to Delete this User?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			else if (MessageBox.Show("Are you sure you want to Delete this Category?", "Delete Category", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				category.DeleteCategory(Convert.ToInt32(Category_ID.Text));
 				ClearData();
