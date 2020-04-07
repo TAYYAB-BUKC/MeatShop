@@ -133,5 +133,33 @@ namespace MeatShop.Database
 
 			}
 		}
+
+		private DataTable GetData(string query)
+		{
+			DataTable dt = new DataTable();
+			try
+			{
+				SQLiteConnection sql = new SQLiteConnection(con);
+				sql.Open();
+				SQLiteCommand cmd = new SQLiteCommand(query, sql);
+				cmd.ExecuteNonQuery();
+				SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+				da.Fill(dt);
+				sql.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Exception Occurs " + ex.Message);
+			}
+			return dt;
+		}
+
+		public void FillCombo(ComboBox a)
+		{
+			DataTable dt = GetData("select Id,Name from Categories");
+			a.DataSource = dt;
+			a.DisplayMember = "Name";
+			a.ValueMember = "Id";
+		}
 	}
 }

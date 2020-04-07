@@ -37,7 +37,9 @@ namespace MeatShop
             User_Panel.Visible = false;
             Category_Panel.Visible = false;
             Units_Panel.Visible = false;
-			
+            Product_Panel.Visible = false;
+
+
         }
 
         private void showSubMenu(Panel subMenu)
@@ -319,6 +321,17 @@ namespace MeatShop
         private void button8_Click_1(object sender, EventArgs e)
         {
             openChildForm(new ManageUnit());
+            hideSubMenu();
+        }
+
+        private void Product_Click(object sender, EventArgs e)
+        {
+            showSubMenu(Product_Panel);
+        }
+
+        private void button11_Click_1(object sender, EventArgs e)
+        {
+            openChildForm(new AddProduct());
             hideSubMenu();
         }
     }
