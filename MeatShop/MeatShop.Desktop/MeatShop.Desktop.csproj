@@ -93,6 +93,12 @@
     <Compile Include="AddProduct.designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageProduct.designer.cs">
+      <DependentUpon>ManageProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageProduct.resx">
+      <DependentUpon>ManageProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageUnit.resx">
       <DependentUpon>ManageUnit.cs</DependentUpon>
@@ -190,6 +199,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ProductImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Default_Image_Thumbnail.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

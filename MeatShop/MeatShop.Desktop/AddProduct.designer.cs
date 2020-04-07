@@ -39,10 +39,10 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.Product_Image = new System.Windows.Forms.PictureBox();
 			this.Browse_Button = new System.Windows.Forms.Button();
 			this.Product_Category = new System.Windows.Forms.ComboBox();
 			this.Product_Unit = new System.Windows.Forms.ComboBox();
+			this.Product_Image = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.Product_Image)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -79,9 +79,9 @@
 			this.label1.ForeColor = System.Drawing.Color.White;
 			this.label1.Location = new System.Drawing.Point(24, 29);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(281, 32);
+			this.label1.Size = new System.Drawing.Size(179, 32);
 			this.label1.TabIndex = 143;
-			this.label1.Text = "Business Registration";
+			this.label1.Text = "Add Product";
 			// 
 			// panel1
 			// 
@@ -177,15 +177,6 @@
 			this.label2.TabIndex = 164;
 			this.label2.Text = "Image";
 			// 
-			// Product_Image
-			// 
-			this.Product_Image.Location = new System.Drawing.Point(407, 205);
-			this.Product_Image.Name = "Product_Image";
-			this.Product_Image.Size = new System.Drawing.Size(249, 200);
-			this.Product_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.Product_Image.TabIndex = 165;
-			this.Product_Image.TabStop = false;
-			// 
 			// Browse_Button
 			// 
 			this.Browse_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
@@ -225,6 +216,15 @@
 			this.Product_Unit.Size = new System.Drawing.Size(249, 30);
 			this.Product_Unit.TabIndex = 168;
 			// 
+			// Product_Image
+			// 
+			this.Product_Image.Location = new System.Drawing.Point(407, 205);
+			this.Product_Image.Name = "Product_Image";
+			this.Product_Image.Size = new System.Drawing.Size(249, 200);
+			this.Product_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.Product_Image.TabIndex = 165;
+			this.Product_Image.TabStop = false;
+			// 
 			// AddProduct
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,7 +248,7 @@
 			this.Controls.Add(this.panel1);
 			this.Name = "AddProduct";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Business_Registration";
+			this.Text = "Add Product";
 			((System.ComponentModel.ISupportInitialize)(this.Product_Image)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

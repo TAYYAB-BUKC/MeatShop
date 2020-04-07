@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,26 +21,32 @@ namespace MeatShop
 		Category category = new Category();
 		Unit unit = new Unit();
 		Product product = new Product();
+		string finalPath;
 		public AddProduct()
 		{
 			InitializeComponent();
 			unit.FillCombo(Product_Unit);
 			category.FillCombo(Product_Category);
+			string path = Path.GetDirectoryName(Application.StartupPath);
+			string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+			finalPath = newpath + "\\Resources\\Default_Image_Thumbnail.png";
+			Product_Image.Image = Image.FromFile(finalPath);
 		}
 		private void Save_Button_Click(object sender, EventArgs e)
 		{
 
 			try
 			{
-				//if (isImageSelected)
-				//{
+				if (isImageSelected)
+				{
 					product.AddProduct(Product_Name.Text, Convert.ToInt32(Product_Price.Text), imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue));
 					ClearData();
-				//}
-				//else
-				//{
-				//	MessageBox.Show("Please provide your product image", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				//}
+				}
+				else
+				{
+					product.AddProduct(Product_Name.Text, Convert.ToInt32(Product_Price.Text), finalPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue));
+					ClearData();
+				}
 
 
 			}
@@ -57,7 +64,10 @@ namespace MeatShop
 			Product_Price.Text = "";
 			Product_Category.Text = "";
 			Product_Unit.Text = "";
-			Product_Image.Image = null;
+			string path = Path.GetDirectoryName(Application.StartupPath);
+			string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+			string finalPath = newpath + "\\Resources\\Default_Image_Thumbnail.png";
+			Product_Image.Image = Image.FromFile(finalPath);
 			isImageSelected = false;
 			imageUrl = "";
 
