@@ -78,9 +78,13 @@ namespace MeatShop
 
 			if (opf.ShowDialog() == DialogResult.OK)
 			{
-				Product_Image.Image = Image.FromFile(opf.FileName);
-				isImageSelected = true;
-				imageUrl = opf.FileName;
+				using (var fs = new FileStream(opf.FileName, FileMode.Open))
+				{
+					var bmp = new Bitmap(fs);
+					Product_Image.Image = (Bitmap)bmp.Clone();
+					isImageSelected = true;
+					imageUrl = opf.FileName;
+				}
 			}
 		}
 	}

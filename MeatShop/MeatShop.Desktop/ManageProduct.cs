@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using MeatShop.Database;
+using System.IO;
 
 namespace MeatShop
 {
@@ -48,10 +49,11 @@ namespace MeatShop
 		{
 			try
 			{
-				if (MessageBox.Show("Are you sure you want to Delete this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+				if (MessageBox.Show("Are you sure you want to Delete this product?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
 					//businessData = business.DeleteData(businessData, Convert.ToInt32(Product_ID.Text));
-					product.DeleteProduct(Convert.ToInt32(Product_ID.Text),oldPath);
+					FileInfo fileInfo = new FileInfo(oldPath);
+					product.DeleteProduct(Convert.ToInt32(Product_ID.Text),fileInfo,oldPath);
 					ClearData();
 					product.GetData(Grd_Product, "select * from Products");
 				}
@@ -115,13 +117,18 @@ namespace MeatShop
 
 			if (opf.ShowDialog() == DialogResult.OK)
 			{
-				Product_Image.Image = Image.FromFile(opf.FileName);
-				isImageUpdated = true;
-				newPath = opf.FileName;
+				using (var fs = new FileStream(opf.FileName, FileMode.Open))
+				{
+					var bmp = new Bitmap(fs);
+					Product_Image.Image = (Bitmap)bmp.Clone();
+					isImageUpdated = true;
+					newPath = opf.FileName;
+				}
 			}
 			else
 			{
 				isImageUpdated = false;
+				newPath = "";
 			}   
 		}
 
@@ -159,8 +166,19 @@ namespace MeatShop
 					//}
 					//else
 					//{
-						Product_Image.Image = Image.FromFile(selectedRow.Cells[3].Value.ToString());
+					//using (var file = selectedRow.Cells[3].Value.ToString())
+					//{
+					//	Product_Image.Image = file;
+					//	oldPath = selectedRow.Cells[3].Value.ToString();
+					//}
+
+					using (var fs = new System.IO.FileStream(selectedRow.Cells[3].Value.ToString(), FileMode.Open))
+					{
+						var bmp = new Bitmap(fs);
+						Product_Image.Image = (Bitmap)bmp.Clone();
 						oldPath = selectedRow.Cells[3].Value.ToString();
+					}
+
 					//}
 				}
 			}

@@ -218,15 +218,20 @@ namespace MeatShop.Database
 			}
 		}
 
-		public void DeleteProduct(int id,string path)
+		public void DeleteProduct(int id,FileInfo path,string oldPath)
 		{
+			bool isFileDeleted = false;
 			try
 			{
-				if (File.Exists(path))
+				if (!IsFileLocked(path))
 				{
-					GC.Collect();
-					GC.WaitForPendingFinalizers();
-					File.Delete(path);
+					if (File.Exists(oldPath))
+					{
+						GC.Collect();
+						GC.WaitForPendingFinalizers();
+						File.Delete(oldPath);
+						isFileDeleted = true;
+					}
 				}
 			}
 			catch (Exception ex)
@@ -235,14 +240,52 @@ namespace MeatShop.Database
 			}
 			finally
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("delete from Products where Id = @Id", sql);
-				cmd.Parameters.AddWithValue("@Id", id);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("Product Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+				if (isFileDeleted)
+				{
+					SQLiteConnection sql = new SQLiteConnection(con);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("delete from Products where Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Product Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MessageBox.Show("Sorry file is used by another process so please try again later or try to close the application", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
+		}
+		private Boolean IsFileLocked(FileInfo file)
+		{
+			FileStream stream = null;
+
+			try
+			{
+				//Don't change FileAccess to ReadWrite, 
+				//because if a file is in readOnly, it fails.
+				stream = file.Open
+				(
+					FileMode.Open,
+					FileAccess.Read,
+					FileShare.None
+				);
+			}
+			catch (IOException)
+			{
+				//the file is unavailable because it is:
+				//still being written to
+				//or being processed by another thread
+				//or does not exist (has already been processed)
+				return true;
+			}
+			finally
+			{
+				if (stream != null)
+					stream.Close();
+			}
+
+			//file is not locked
+			return false;
 		}
 	}
 }
