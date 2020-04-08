@@ -30,47 +30,47 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
 			this.panelSideMenu = new System.Windows.Forms.Panel();
-			this.Units_Panel = new System.Windows.Forms.Panel();
-			this.button8 = new System.Windows.Forms.Button();
-			this.button9 = new System.Windows.Forms.Button();
-			this.Category_Panel = new System.Windows.Forms.Panel();
-			this.button6 = new System.Windows.Forms.Button();
-			this.button7 = new System.Windows.Forms.Button();
-			this.User_Panel = new System.Windows.Forms.Panel();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
-			this.panelToolsSubMenu = new System.Windows.Forms.Panel();
-			this.button12 = new System.Windows.Forms.Button();
-			this.button13 = new System.Windows.Forms.Button();
-			this.panelMediaSubMenu = new System.Windows.Forms.Panel();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.panelLogo = new System.Windows.Forms.Panel();
-			this.panelPlayer = new System.Windows.Forms.Panel();
-			this.panelChildForm = new System.Windows.Forms.Panel();
 			this.Product_Panel = new System.Windows.Forms.Panel();
 			this.button10 = new System.Windows.Forms.Button();
 			this.button11 = new System.Windows.Forms.Button();
-			this.pictureBox9 = new System.Windows.Forms.PictureBox();
-			this.Product = new System.Windows.Forms.Button();
+			this.Expense = new System.Windows.Forms.Button();
+			this.Units_Panel = new System.Windows.Forms.Panel();
+			this.button8 = new System.Windows.Forms.Button();
+			this.button9 = new System.Windows.Forms.Button();
 			this.Unit = new System.Windows.Forms.Button();
+			this.Category_Panel = new System.Windows.Forms.Panel();
+			this.button6 = new System.Windows.Forms.Button();
+			this.button7 = new System.Windows.Forms.Button();
 			this.Category = new System.Windows.Forms.Button();
+			this.User_Panel = new System.Windows.Forms.Panel();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
 			this.User = new System.Windows.Forms.Button();
+			this.panelToolsSubMenu = new System.Windows.Forms.Panel();
+			this.button12 = new System.Windows.Forms.Button();
+			this.button13 = new System.Windows.Forms.Button();
 			this.btnTools = new System.Windows.Forms.Button();
 			this.btnExit = new System.Windows.Forms.Button();
-			this.btnMedia = new System.Windows.Forms.Button();
+			this.panelMediaSubMenu = new System.Windows.Forms.Panel();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.Product = new System.Windows.Forms.Button();
+			this.panelLogo = new System.Windows.Forms.Panel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.panelPlayer = new System.Windows.Forms.Panel();
+			this.panelChildForm = new System.Windows.Forms.Panel();
+			this.pictureBox9 = new System.Windows.Forms.PictureBox();
 			this.panelSideMenu.SuspendLayout();
+			this.Product_Panel.SuspendLayout();
 			this.Units_Panel.SuspendLayout();
 			this.Category_Panel.SuspendLayout();
 			this.User_Panel.SuspendLayout();
 			this.panelToolsSubMenu.SuspendLayout();
 			this.panelMediaSubMenu.SuspendLayout();
 			this.panelLogo.SuspendLayout();
-			this.panelChildForm.SuspendLayout();
-			this.Product_Panel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.panelChildForm.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panelSideMenu
@@ -78,7 +78,7 @@
 			this.panelSideMenu.AutoScroll = true;
 			this.panelSideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
 			this.panelSideMenu.Controls.Add(this.Product_Panel);
-			this.panelSideMenu.Controls.Add(this.Product);
+			this.panelSideMenu.Controls.Add(this.Expense);
 			this.panelSideMenu.Controls.Add(this.Units_Panel);
 			this.panelSideMenu.Controls.Add(this.Unit);
 			this.panelSideMenu.Controls.Add(this.Category_Panel);
@@ -89,13 +89,81 @@
 			this.panelSideMenu.Controls.Add(this.btnTools);
 			this.panelSideMenu.Controls.Add(this.btnExit);
 			this.panelSideMenu.Controls.Add(this.panelMediaSubMenu);
-			this.panelSideMenu.Controls.Add(this.btnMedia);
+			this.panelSideMenu.Controls.Add(this.Product);
 			this.panelSideMenu.Controls.Add(this.panelLogo);
 			this.panelSideMenu.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panelSideMenu.Location = new System.Drawing.Point(0, 0);
 			this.panelSideMenu.Name = "panelSideMenu";
 			this.panelSideMenu.Size = new System.Drawing.Size(250, 803);
 			this.panelSideMenu.TabIndex = 0;
+			// 
+			// Product_Panel
+			// 
+			this.Product_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+			this.Product_Panel.Controls.Add(this.button10);
+			this.Product_Panel.Controls.Add(this.button11);
+			this.Product_Panel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Product_Panel.Location = new System.Drawing.Point(0, 931);
+			this.Product_Panel.Name = "Product_Panel";
+			this.Product_Panel.Size = new System.Drawing.Size(233, 110);
+			this.Product_Panel.TabIndex = 18;
+			// 
+			// button10
+			// 
+			this.button10.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button10.FlatAppearance.BorderSize = 0;
+			this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button10.ForeColor = System.Drawing.Color.Silver;
+			this.button10.Location = new System.Drawing.Point(0, 40);
+			this.button10.Name = "button10";
+			this.button10.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.button10.Size = new System.Drawing.Size(233, 47);
+			this.button10.TabIndex = 1;
+			this.button10.Text = "Manage Expense";
+			this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click_2);
+			// 
+			// button11
+			// 
+			this.button11.Dock = System.Windows.Forms.DockStyle.Top;
+			this.button11.FlatAppearance.BorderSize = 0;
+			this.button11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button11.ForeColor = System.Drawing.Color.Silver;
+			this.button11.Location = new System.Drawing.Point(0, 0);
+			this.button11.Name = "button11";
+			this.button11.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.button11.Size = new System.Drawing.Size(233, 40);
+			this.button11.TabIndex = 0;
+			this.button11.Text = "Add Expense";
+			this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click_1);
+			// 
+			// Expense
+			// 
+			this.Expense.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Expense.FlatAppearance.BorderSize = 0;
+			this.Expense.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.Expense.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.Expense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.Expense.ForeColor = System.Drawing.Color.Silver;
+			this.Expense.Image = ((System.Drawing.Image)(resources.GetObject("Expense.Image")));
+			this.Expense.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Expense.Location = new System.Drawing.Point(0, 886);
+			this.Expense.Name = "Expense";
+			this.Expense.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.Expense.Size = new System.Drawing.Size(233, 45);
+			this.Expense.TabIndex = 18;
+			this.Expense.Text = "   Expense";
+			this.Expense.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Expense.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.Expense.UseVisualStyleBackColor = true;
+			this.Expense.Click += new System.EventHandler(this.Product_Click);
 			// 
 			// Units_Panel
 			// 
@@ -144,6 +212,27 @@
 			this.button9.UseVisualStyleBackColor = true;
 			this.button9.Click += new System.EventHandler(this.button9_Click_2);
 			// 
+			// Unit
+			// 
+			this.Unit.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Unit.FlatAppearance.BorderSize = 0;
+			this.Unit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.Unit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.Unit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.Unit.ForeColor = System.Drawing.Color.Silver;
+			this.Unit.Image = ((System.Drawing.Image)(resources.GetObject("Unit.Image")));
+			this.Unit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Unit.Location = new System.Drawing.Point(0, 731);
+			this.Unit.Name = "Unit";
+			this.Unit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.Unit.Size = new System.Drawing.Size(233, 45);
+			this.Unit.TabIndex = 17;
+			this.Unit.Text = "   Unit";
+			this.Unit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Unit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.Unit.UseVisualStyleBackColor = true;
+			this.Unit.Click += new System.EventHandler(this.Unit_Click);
+			// 
 			// Category_Panel
 			// 
 			this.Category_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
@@ -190,6 +279,27 @@
 			this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.button7.UseVisualStyleBackColor = true;
 			this.button7.Click += new System.EventHandler(this.button7_Click_3);
+			// 
+			// Category
+			// 
+			this.Category.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Category.FlatAppearance.BorderSize = 0;
+			this.Category.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.Category.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.Category.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.Category.ForeColor = System.Drawing.Color.Silver;
+			this.Category.Image = ((System.Drawing.Image)(resources.GetObject("Category.Image")));
+			this.Category.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Category.Location = new System.Drawing.Point(0, 576);
+			this.Category.Name = "Category";
+			this.Category.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.Category.Size = new System.Drawing.Size(233, 45);
+			this.Category.TabIndex = 16;
+			this.Category.Text = "   Category";
+			this.Category.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Category.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.Category.UseVisualStyleBackColor = true;
+			this.Category.Click += new System.EventHandler(this.button1_Click_3);
 			// 
 			// User_Panel
 			// 
@@ -238,6 +348,27 @@
 			this.button5.UseVisualStyleBackColor = true;
 			this.button5.Click += new System.EventHandler(this.button5_Click_2);
 			// 
+			// User
+			// 
+			this.User.Dock = System.Windows.Forms.DockStyle.Top;
+			this.User.FlatAppearance.BorderSize = 0;
+			this.User.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.User.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.User.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.User.ForeColor = System.Drawing.Color.Silver;
+			this.User.Image = ((System.Drawing.Image)(resources.GetObject("User.Image")));
+			this.User.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.User.Location = new System.Drawing.Point(0, 421);
+			this.User.Name = "User";
+			this.User.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.User.Size = new System.Drawing.Size(233, 45);
+			this.User.TabIndex = 15;
+			this.User.Text = "   User";
+			this.User.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.User.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.User.UseVisualStyleBackColor = true;
+			this.User.Click += new System.EventHandler(this.User_Click);
+			// 
 			// panelToolsSubMenu
 			// 
 			this.panelToolsSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
@@ -282,6 +413,48 @@
 			this.button13.Text = "Add Stock";
 			this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.button13.UseVisualStyleBackColor = true;
+			// 
+			// btnTools
+			// 
+			this.btnTools.Dock = System.Windows.Forms.DockStyle.Top;
+			this.btnTools.FlatAppearance.BorderSize = 0;
+			this.btnTools.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.btnTools.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.btnTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTools.ForeColor = System.Drawing.Color.Silver;
+			this.btnTools.Image = ((System.Drawing.Image)(resources.GetObject("btnTools.Image")));
+			this.btnTools.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnTools.Location = new System.Drawing.Point(0, 266);
+			this.btnTools.Name = "btnTools";
+			this.btnTools.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.btnTools.Size = new System.Drawing.Size(233, 45);
+			this.btnTools.TabIndex = 13;
+			this.btnTools.Text = "   Stock";
+			this.btnTools.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnTools.UseVisualStyleBackColor = true;
+			this.btnTools.Click += new System.EventHandler(this.btnTools_Click_2);
+			// 
+			// btnExit
+			// 
+			this.btnExit.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.btnExit.FlatAppearance.BorderSize = 0;
+			this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnExit.ForeColor = System.Drawing.Color.Silver;
+			this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
+			this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnExit.Location = new System.Drawing.Point(0, 1041);
+			this.btnExit.Name = "btnExit";
+			this.btnExit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.btnExit.Size = new System.Drawing.Size(233, 45);
+			this.btnExit.TabIndex = 9;
+			this.btnExit.Text = "  Exit";
+			this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnExit.UseVisualStyleBackColor = true;
+			this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
 			// 
 			// panelMediaSubMenu
 			// 
@@ -331,6 +504,27 @@
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
+			// Product
+			// 
+			this.Product.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Product.FlatAppearance.BorderSize = 0;
+			this.Product.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.Product.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.Product.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.Product.ForeColor = System.Drawing.Color.Silver;
+			this.Product.Image = ((System.Drawing.Image)(resources.GetObject("Product.Image")));
+			this.Product.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Product.Location = new System.Drawing.Point(0, 92);
+			this.Product.Name = "Product";
+			this.Product.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.Product.Size = new System.Drawing.Size(233, 45);
+			this.Product.TabIndex = 1;
+			this.Product.Text = "   Product";
+			this.Product.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.Product.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.Product.UseVisualStyleBackColor = true;
+			this.Product.Click += new System.EventHandler(this.btnMedia_Click);
+			// 
 			// panelLogo
 			// 
 			this.panelLogo.Controls.Add(this.pictureBox1);
@@ -339,6 +533,16 @@
 			this.panelLogo.Name = "panelLogo";
 			this.panelLogo.Size = new System.Drawing.Size(233, 92);
 			this.panelLogo.TabIndex = 0;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.ImageLocation = "23,15";
+			this.pictureBox1.Location = new System.Drawing.Point(36, 15);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(159, 71);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
 			// 
 			// panelPlayer
 			// 
@@ -359,53 +563,6 @@
 			this.panelChildForm.Size = new System.Drawing.Size(684, 673);
 			this.panelChildForm.TabIndex = 2;
 			// 
-			// Product_Panel
-			// 
-			this.Product_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-			this.Product_Panel.Controls.Add(this.button10);
-			this.Product_Panel.Controls.Add(this.button11);
-			this.Product_Panel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Product_Panel.Location = new System.Drawing.Point(0, 931);
-			this.Product_Panel.Name = "Product_Panel";
-			this.Product_Panel.Size = new System.Drawing.Size(233, 110);
-			this.Product_Panel.TabIndex = 18;
-			// 
-			// button10
-			// 
-			this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button10.FlatAppearance.BorderSize = 0;
-			this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button10.ForeColor = System.Drawing.Color.Silver;
-			this.button10.Location = new System.Drawing.Point(0, 40);
-			this.button10.Name = "button10";
-			this.button10.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.button10.Size = new System.Drawing.Size(233, 47);
-			this.button10.TabIndex = 1;
-			this.button10.Text = "Manage Product";
-			this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button10.UseVisualStyleBackColor = true;
-			this.button10.Click += new System.EventHandler(this.button10_Click_2);
-			// 
-			// button11
-			// 
-			this.button11.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button11.FlatAppearance.BorderSize = 0;
-			this.button11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.button11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button11.ForeColor = System.Drawing.Color.Silver;
-			this.button11.Location = new System.Drawing.Point(0, 0);
-			this.button11.Name = "button11";
-			this.button11.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.button11.Size = new System.Drawing.Size(233, 40);
-			this.button11.TabIndex = 0;
-			this.button11.Text = "Add Product";
-			this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button11.UseVisualStyleBackColor = true;
-			this.button11.Click += new System.EventHandler(this.button11_Click_1);
-			// 
 			// pictureBox9
 			// 
 			this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -416,163 +573,6 @@
 			this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox9.TabIndex = 2;
 			this.pictureBox9.TabStop = false;
-			// 
-			// Product
-			// 
-			this.Product.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Product.FlatAppearance.BorderSize = 0;
-			this.Product.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.Product.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.Product.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.Product.ForeColor = System.Drawing.Color.Silver;
-			this.Product.Image = ((System.Drawing.Image)(resources.GetObject("Product.Image")));
-			this.Product.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Product.Location = new System.Drawing.Point(0, 886);
-			this.Product.Name = "Product";
-			this.Product.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.Product.Size = new System.Drawing.Size(233, 45);
-			this.Product.TabIndex = 18;
-			this.Product.Text = "   Product";
-			this.Product.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Product.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.Product.UseVisualStyleBackColor = true;
-			this.Product.Click += new System.EventHandler(this.Product_Click);
-			// 
-			// Unit
-			// 
-			this.Unit.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Unit.FlatAppearance.BorderSize = 0;
-			this.Unit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.Unit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.Unit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.Unit.ForeColor = System.Drawing.Color.Silver;
-			this.Unit.Image = ((System.Drawing.Image)(resources.GetObject("Unit.Image")));
-			this.Unit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Unit.Location = new System.Drawing.Point(0, 731);
-			this.Unit.Name = "Unit";
-			this.Unit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.Unit.Size = new System.Drawing.Size(233, 45);
-			this.Unit.TabIndex = 17;
-			this.Unit.Text = "   Unit";
-			this.Unit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Unit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.Unit.UseVisualStyleBackColor = true;
-			this.Unit.Click += new System.EventHandler(this.Unit_Click);
-			// 
-			// Category
-			// 
-			this.Category.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Category.FlatAppearance.BorderSize = 0;
-			this.Category.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.Category.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.Category.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.Category.ForeColor = System.Drawing.Color.Silver;
-			this.Category.Image = ((System.Drawing.Image)(resources.GetObject("Category.Image")));
-			this.Category.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Category.Location = new System.Drawing.Point(0, 576);
-			this.Category.Name = "Category";
-			this.Category.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.Category.Size = new System.Drawing.Size(233, 45);
-			this.Category.TabIndex = 16;
-			this.Category.Text = "   Category";
-			this.Category.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Category.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.Category.UseVisualStyleBackColor = true;
-			this.Category.Click += new System.EventHandler(this.button1_Click_3);
-			// 
-			// User
-			// 
-			this.User.Dock = System.Windows.Forms.DockStyle.Top;
-			this.User.FlatAppearance.BorderSize = 0;
-			this.User.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.User.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.User.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.User.ForeColor = System.Drawing.Color.Silver;
-			this.User.Image = ((System.Drawing.Image)(resources.GetObject("User.Image")));
-			this.User.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.User.Location = new System.Drawing.Point(0, 421);
-			this.User.Name = "User";
-			this.User.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.User.Size = new System.Drawing.Size(233, 45);
-			this.User.TabIndex = 15;
-			this.User.Text = "   User";
-			this.User.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.User.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.User.UseVisualStyleBackColor = true;
-			this.User.Click += new System.EventHandler(this.User_Click);
-			// 
-			// btnTools
-			// 
-			this.btnTools.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnTools.FlatAppearance.BorderSize = 0;
-			this.btnTools.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.btnTools.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.btnTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnTools.ForeColor = System.Drawing.Color.Silver;
-			this.btnTools.Image = ((System.Drawing.Image)(resources.GetObject("btnTools.Image")));
-			this.btnTools.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnTools.Location = new System.Drawing.Point(0, 266);
-			this.btnTools.Name = "btnTools";
-			this.btnTools.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.btnTools.Size = new System.Drawing.Size(233, 45);
-			this.btnTools.TabIndex = 13;
-			this.btnTools.Text = "   Stock";
-			this.btnTools.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnTools.UseVisualStyleBackColor = true;
-			this.btnTools.Click += new System.EventHandler(this.btnTools_Click_2);
-			// 
-			// btnExit
-			// 
-			this.btnExit.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.btnExit.FlatAppearance.BorderSize = 0;
-			this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnExit.ForeColor = System.Drawing.Color.Silver;
-			this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-			this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnExit.Location = new System.Drawing.Point(0, 1041);
-			this.btnExit.Name = "btnExit";
-			this.btnExit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.btnExit.Size = new System.Drawing.Size(233, 45);
-			this.btnExit.TabIndex = 9;
-			this.btnExit.Text = "  Exit";
-			this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnExit.UseVisualStyleBackColor = true;
-			this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-			// 
-			// btnMedia
-			// 
-			this.btnMedia.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnMedia.FlatAppearance.BorderSize = 0;
-			this.btnMedia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.btnMedia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.btnMedia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnMedia.ForeColor = System.Drawing.Color.Silver;
-			this.btnMedia.Image = ((System.Drawing.Image)(resources.GetObject("btnMedia.Image")));
-			this.btnMedia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnMedia.Location = new System.Drawing.Point(0, 92);
-			this.btnMedia.Name = "btnMedia";
-			this.btnMedia.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.btnMedia.Size = new System.Drawing.Size(233, 45);
-			this.btnMedia.TabIndex = 1;
-			this.btnMedia.Text = "   Product";
-			this.btnMedia.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnMedia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnMedia.UseVisualStyleBackColor = true;
-			this.btnMedia.Click += new System.EventHandler(this.btnMedia_Click);
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.ImageLocation = "23,15";
-			this.pictureBox1.Location = new System.Drawing.Point(36, 15);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(159, 71);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
 			// 
 			// Home
 			// 
@@ -591,16 +591,16 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.panelSideMenu.ResumeLayout(false);
+			this.Product_Panel.ResumeLayout(false);
 			this.Units_Panel.ResumeLayout(false);
 			this.Category_Panel.ResumeLayout(false);
 			this.User_Panel.ResumeLayout(false);
 			this.panelToolsSubMenu.ResumeLayout(false);
 			this.panelMediaSubMenu.ResumeLayout(false);
 			this.panelLogo.ResumeLayout(false);
-			this.panelChildForm.ResumeLayout(false);
-			this.Product_Panel.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.panelChildForm.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -611,7 +611,7 @@
         private System.Windows.Forms.Panel panelMediaSubMenu;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnMedia;
+        private System.Windows.Forms.Button Product;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnExit;
@@ -637,7 +637,7 @@
 		private System.Windows.Forms.Panel Product_Panel;
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.Button button11;
-		private System.Windows.Forms.Button Product;
+		private System.Windows.Forms.Button Expense;
 	}
 }
 

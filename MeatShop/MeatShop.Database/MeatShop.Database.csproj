@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="Expense.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="User.cs" />

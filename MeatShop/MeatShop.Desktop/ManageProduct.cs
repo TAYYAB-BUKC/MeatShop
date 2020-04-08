@@ -16,9 +16,6 @@ namespace MeatShop
 {
 	public partial class ManageProduct : Form
 	{
-		//DataTable businessData = new DataTable();
-		//Business business = new Business();
-		bool isError = false;
 		bool isImageUpdated = false;
 		OpenFileDialog opf = new OpenFileDialog();
 		string oldPath;
@@ -51,7 +48,6 @@ namespace MeatShop
 			{
 				if (MessageBox.Show("Are you sure you want to Delete this product?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
-					//businessData = business.DeleteData(businessData, Convert.ToInt32(Product_ID.Text));
 					FileInfo fileInfo = new FileInfo(oldPath);
 					product.DeleteProduct(Convert.ToInt32(Product_ID.Text),fileInfo,oldPath);
 					ClearData();
@@ -77,7 +73,6 @@ namespace MeatShop
 				}
 				else
 				{
-					//businessData = business.UpdateData(businessData, Convert.ToInt32(Product_ID.Text), Product_Name.Text, Product_Price.Text, Business_Email.Text, Business_Address.Text, Product_Unit.Text, Product_Category.Text, oldPath);
 					product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, Convert.ToInt32(Product_Price.Text), null, oldPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue));
 					ClearData();
 					product.GetData(Grd_Product, "select * from Products");
@@ -87,28 +82,6 @@ namespace MeatShop
 			{
 				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-		}
-
-		private bool Checking()
-		{
-			//if (businessData.Rows.Count > 0)
-			//{
-			//	string searchExpression = string.Format("Name like '{0}%'", Product_Search.Text);
-
-			//	DataRow[] foundRows = businessData.Select(searchExpression);
-			//	DataTable dt = business.GenerateTempTableSchema();
-			//	foreach (var row in foundRows)
-			//	{
-			//		dt.ImportRow(row);	
-			//	}
-			//	Grd_Product.DataSource = dt;
-			//	return true;
-			//}
-			//else
-			//{
-			//	return false;
-			//}
-			return false;
 		}
 
 		private void Browse_Button_Click(object sender, EventArgs e)

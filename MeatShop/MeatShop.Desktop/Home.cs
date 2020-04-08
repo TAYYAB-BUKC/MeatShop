@@ -61,14 +61,13 @@ namespace MeatShop
         #region MediaSubMenu
         private void button2_Click(object sender, EventArgs e)
         {
-            openChildForm(new AddCategory());
-           
+            openChildForm(new AddProduct());
             hideSubMenu();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openChildForm(new AddCategory());
+            openChildForm(new ManageProduct());
             hideSubMenu();
         }
 
@@ -331,13 +330,13 @@ namespace MeatShop
 
         private void button11_Click_1(object sender, EventArgs e)
         {
-            openChildForm(new AddProduct());
+            openChildForm(new AddExpense());
             hideSubMenu();
         }
 
         private void button10_Click_2(object sender, EventArgs e)
         {
-            openChildForm(new ManageProduct());
+            openChildForm(new ManageExpense());
             hideSubMenu(); 
         }
     }

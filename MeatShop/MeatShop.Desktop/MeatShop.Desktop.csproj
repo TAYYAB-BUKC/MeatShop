@@ -93,6 +93,18 @@
     <Compile Include="AddProduct.designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddExpense.designer.cs">
+      <DependentUpon>AddExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageExpense.designer.cs">
+      <DependentUpon>ManageExpense.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddExpense.resx">
+      <DependentUpon>AddExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageExpense.resx">
+      <DependentUpon>ManageExpense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageProduct.resx">
       <DependentUpon>ManageProduct.cs</DependentUpon>
