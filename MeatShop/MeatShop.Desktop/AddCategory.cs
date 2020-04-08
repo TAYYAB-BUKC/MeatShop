@@ -27,8 +27,10 @@ namespace MeatShop
 
 		private void Save_Button_Click(object sender, EventArgs e)
 		{
-            category.AddCategory(Category_Name.Text);
-            Category_Name.Text = "";
+            if (category.AddCategory(Category_Name.Text))
+            {
+                Category_Name.Text = "";
+            }
         }
 	}
 }

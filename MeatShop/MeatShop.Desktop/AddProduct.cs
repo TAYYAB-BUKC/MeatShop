@@ -34,26 +34,46 @@ namespace MeatShop
 		}
 		private void Save_Button_Click(object sender, EventArgs e)
 		{
-
+			int price = -1;
 			try
 			{
-				if (isImageSelected)
-				{
-					product.AddProduct(Product_Name.Text, Convert.ToInt32(Product_Price.Text), imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue));
-					ClearData();
-				}
-				else
-				{
-					product.AddProduct(Product_Name.Text, Convert.ToInt32(Product_Price.Text), finalPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue));
-					ClearData();
-				}
-
-
+				price = Convert.ToInt32(Product_Price.Text);
 			}
 			catch (Exception)
 			{
-				MessageBox.Show("Something went wrong Please try again later.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("please enter amount", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+
+			if (price > 0)
+			{
+				try
+				{
+					if (isImageSelected)
+					{
+						if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue)))
+						{
+							ClearData();
+						}
+					}
+					else
+					{
+						if (product.AddProduct(Product_Name.Text, price, finalPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue)))
+						{
+							ClearData();
+						}
+					}
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Something went wrong Please try again later.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+
+			}
+			else
+			{
+				MessageBox.Show("please type a valid Amount", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+
 		//	MessageBox.Show("Unit: "+ Product_Unit.SelectedValue+"Category "+Product_Category.SelectedValue, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 		}

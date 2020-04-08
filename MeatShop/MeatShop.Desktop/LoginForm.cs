@@ -38,18 +38,6 @@ namespace MeatShop
 			
 		}
 
-		private void timer1_Tick(object sender, EventArgs e)
-		{
-			//pictureBox4.Hide();
-
-		}
-
-		private void pictureBox4_Click(object sender, EventArgs e)
-		{
-			timer1.Start();
-		}
-
-
 		private void Email_Click(object sender, EventArgs e)
 		{
 			Username.Text = "";

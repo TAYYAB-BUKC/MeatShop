@@ -35,7 +35,11 @@ namespace MeatShop
 		{
 			try
 			{
-				if (MessageBox.Show("Are you sure you want to Delete this expense?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+				if (Expense_ID.Text == String.Empty)
+				{
+					MessageBox.Show("Please select the expense first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				else if (MessageBox.Show("Are you sure you want to Delete this expense?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
 					expense.DeleteExpense(Convert.ToInt32(Expense_ID.Text));
 					ClearData();

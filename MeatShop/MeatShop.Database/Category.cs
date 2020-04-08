@@ -11,21 +11,31 @@ namespace MeatShop.Database
 	{
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		bool isError = false;
-		public void AddCategory(string name)
+		public bool AddCategory(string name)
 		{
-			try
+			if (name == "")
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("insert into Categories(Name) values(@Name)", sql);
-				cmd.Parameters.AddWithValue("@Name", name);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("Category Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				sql.Close();
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
-			catch (Exception)
+			else
 			{
-				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				try
+				{
+					SQLiteConnection sql = new SQLiteConnection(con);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("insert into Categories(Name) values(@Name)", sql);
+					cmd.Parameters.AddWithValue("@Name", name);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Category Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+					return true;
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
 			}
 		}
 
@@ -97,23 +107,34 @@ namespace MeatShop.Database
 				return false;
 			}
 		}
-		public void UpdateCategory(int id, string name)
+		public bool UpdateCategory(int id, string name)
 		{
-			try
+			if (name == "")
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("update Categories set Name=@Name where Id=@Id", sql);
-				cmd.Parameters.AddWithValue("@Name", name);
-				cmd.Parameters.AddWithValue("@Id", id);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("Category Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				sql.Close();
+				MessageBox.Show("Please enter the category name first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
-			catch (Exception)
+			else
 			{
-				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				try
+				{
+					SQLiteConnection sql = new SQLiteConnection(con);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("update Categories set Name=@Name where Id=@Id", sql);
+					cmd.Parameters.AddWithValue("@Name", name);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Category Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+					return true;
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
 			}
+
 		}
 
 		public void DeleteCategory(int id)

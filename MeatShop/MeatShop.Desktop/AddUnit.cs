@@ -27,9 +27,11 @@ namespace MeatShop
 
 		private void Save_Button_Click(object sender, EventArgs e)
 		{
-            unit.AddUnit(Unit_Name.Text,Unit_Prefix.Text);
-            Unit_Name.Text = "";
-            Unit_Prefix.Text = "";
+            if (unit.AddUnit(Unit_Name.Text, Unit_Prefix.Text))
+            {
+                Unit_Name.Text = "";
+                Unit_Prefix.Text = "";
+            }
         }
 	}
 }

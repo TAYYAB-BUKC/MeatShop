@@ -44,27 +44,41 @@ namespace MeatShop.Database
 		}
 
 
-		public void AddExpense(string name, int amount, string date, string comment)
+		public bool AddExpense(string name, int amount, string date, string comment)
 		{
-			try
+			if (amount < 0)
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("insert into Expenses(Name,Amount,Datetime,Comment) values(@Name,@Amount,@Datetime,@Comment)", sql);
-				cmd.Parameters.AddWithValue("@Name", name);
-				cmd.Parameters.AddWithValue("@Amount", amount);
-				cmd.Parameters.AddWithValue("@Datetime", date);
-				cmd.Parameters.AddWithValue("@Comment", comment);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("Expense Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				sql.Close();
+				MessageBox.Show("Please enter the valid amount", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
-			catch (Exception)
+			if (name == "" || date == "" || comment == "")
 			{
-				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+			else
+			{
+				try
+				{
+					SQLiteConnection sql = new SQLiteConnection(con);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("insert into Expenses(Name,Amount,Datetime,Comment) values(@Name,@Amount,@Datetime,@Comment)", sql);
+					cmd.Parameters.AddWithValue("@Name", name);
+					cmd.Parameters.AddWithValue("@Amount", amount);
+					cmd.Parameters.AddWithValue("@Datetime", date);
+					cmd.Parameters.AddWithValue("@Comment", comment);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Expense Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+					return true;
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
 			}
 		}
-
 		public void SearchExpense(BunifuCustomDataGrid dataGrid, string name)
 		{
 			if (name.Length > 0)

@@ -15,22 +15,32 @@ namespace MeatShop.Database
 	{
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		bool isError = false;
-		public void AddUnit(string name,string prefix)
+		public bool AddUnit(string name, string prefix)
 		{
-			try
+			if (name == "" || prefix == "")
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("insert into Units(Name,Unit_prefix) values(@Name,@Unit_prefix)", sql);
-				cmd.Parameters.AddWithValue("@Name", name);
-				cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("Unit Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				sql.Close();
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
-			catch (Exception)
+			else
 			{
-				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				try
+				{
+					SQLiteConnection sql = new SQLiteConnection(con);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("insert into Units(Name,Unit_prefix) values(@Name,@Unit_prefix)", sql);
+					cmd.Parameters.AddWithValue("@Name", name);
+					cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Unit Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+					return true;
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
 			}
 		}
 
@@ -102,23 +112,33 @@ namespace MeatShop.Database
 				return false;
 			}
 		}
-		public void UpdateUnit(int id, string name,string prefix)
+		public bool UpdateUnit(int id, string name, string prefix)
 		{
-			try
+			if (name == "" || prefix == "")
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("update Units set Name=@Name,Unit_Prefix=@Unit_Prefix where Id=@Id", sql);
-				cmd.Parameters.AddWithValue("@Name", name);
-				cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
-				cmd.Parameters.AddWithValue("@Id", id);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("Unit Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				sql.Close();
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
-			catch (Exception)
+			else
 			{
-				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				try
+				{
+					SQLiteConnection sql = new SQLiteConnection(con);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("update Units set Name=@Name,Unit_Prefix=@Unit_Prefix where Id=@Id", sql);
+					cmd.Parameters.AddWithValue("@Name", name);
+					cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Unit Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+					return true;
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
 			}
 		}
 

@@ -10,14 +10,18 @@ namespace MeatShop
 		public AddExpense()
 		{
 			InitializeComponent();
+			Expense_Date.Value = DateTime.Now;
 		}
 		private void Save_Button_Click(object sender, EventArgs e)
 		{
 			try
 			{
 				string date = ""+Expense_Date.Value.ToOADate();
-				expense.AddExpense(Expense_Name.Text, Convert.ToInt32(Expense_Amount.Text), date, Expense_Comment.Text);
-				ClearData();
+
+				if (expense.AddExpense(Expense_Name.Text, Convert.ToInt32(Expense_Amount.Text), date, Expense_Comment.Text))
+				{
+					ClearData();
+				}
 			}
 			catch (Exception)
 			{

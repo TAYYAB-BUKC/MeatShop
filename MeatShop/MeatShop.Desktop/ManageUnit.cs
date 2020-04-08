@@ -40,9 +40,11 @@ namespace MeatShop
 			}
 			else
 			{
-				unit.UpdateUnit(Convert.ToInt32(Unit_ID.Text), Unit_Name.Text, Unit_Prefix.Text);
-				ClearData();
-				unit.GetData(Grd_Unit, "select * from Units");
+				if (unit.UpdateUnit(Convert.ToInt32(Unit_ID.Text), Unit_Name.Text, Unit_Prefix.Text))
+				{
+					ClearData();
+					unit.GetData(Grd_Unit, "select * from Units");
+				}
 			}
 		}
 

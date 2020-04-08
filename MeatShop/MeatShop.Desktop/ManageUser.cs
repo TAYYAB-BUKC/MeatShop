@@ -36,22 +36,27 @@ namespace MeatShop
 	
 		private void Update_Button_Click(object sender, EventArgs e)
 		{
-			int role = 0;
-			if (User_Role.SelectedIndex == -1)
+			if (User_ID.Text == String.Empty)
 			{
-				MessageBox.Show("Please select Role first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-			else if (User_Role.SelectedIndex == 0)
-			{
-				role = 0;
+				MessageBox.Show("Please select the user first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			else
 			{
-				role = 1;
+				int role = -1;
+				if (User_Role.SelectedIndex == 0)
+				{
+					role = 0;
+				}
+				else if (User_Role.SelectedIndex == 1)
+				{
+					role = 1;
+				}
+				if (user.UpdateUser(Convert.ToInt32(User_ID.Text), User_Name.Text, User_Username.Text, User_Password.Text, role))
+				{
+					ClearData();
+					user.GetData(Grd_User, "select * from Users");
+				}
 			}
-			user.UpdateUser(Convert.ToInt32(User_ID.Text), User_Name.Text, User_Username.Text, User_Password.Text, role);
-			ClearData();
-			user.GetData(Grd_User, "select * from Users");
 		}
 
 		private void User_Search_TextChanged(object sender, EventArgs e)

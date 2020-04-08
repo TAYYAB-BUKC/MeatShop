@@ -46,7 +46,12 @@ namespace MeatShop
 		{
 			try
 			{
-				if (MessageBox.Show("Are you sure you want to Delete this product?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+				if (Product_ID.Text == String.Empty)
+				{
+					MessageBox.Show("Please select the product first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+				}
+				else if (MessageBox.Show("Are you sure you want to Delete this product?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
 					FileInfo fileInfo = new FileInfo(oldPath);
 					product.DeleteProduct(Convert.ToInt32(Product_ID.Text),fileInfo,oldPath);
@@ -62,25 +67,53 @@ namespace MeatShop
 
 		private void Update_Button_Click(object sender, EventArgs e)
 		{
-			try
+			if (Product_ID.Text == String.Empty)
 			{
-				if (isImageUpdated)
+				MessageBox.Show("Please select the product first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				int price = -1;
+				try
 				{
-					//Delete old file first then update 
-					product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, Convert.ToInt32(Product_Price.Text), oldPath,newPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue));
-					ClearData();
-					product.GetData(Grd_Product, "select * from Products");
+					price = Convert.ToInt32(Product_Price.Text);
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("please enter amount", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+
+				if (price > 0)
+				{
+					try
+					{
+						if (isImageUpdated)
+						{
+							//Delete old file first then update 
+							if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, oldPath, newPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue)))
+							{
+								ClearData();
+								product.GetData(Grd_Product, "select * from Products");
+							}
+						}
+						else
+						{
+							if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, null, oldPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue)))
+							{
+								ClearData();
+								product.GetData(Grd_Product, "select * from Products");
+							}
+						}
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 				}
 				else
 				{
-					product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, Convert.ToInt32(Product_Price.Text), null, oldPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue));
-					ClearData();
-					product.GetData(Grd_Product, "select * from Products");
+					MessageBox.Show("please type a valid Amount", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 

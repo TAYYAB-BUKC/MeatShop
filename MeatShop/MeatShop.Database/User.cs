@@ -17,21 +17,29 @@ namespace MeatShop.Database
 		bool isError = false;
 		public bool Login(string username, string password)
 		{
-			SQLiteConnection sql = new SQLiteConnection(con);
-			sql.Open();
-			SQLiteCommand cmd = new SQLiteCommand("select * from Users where Username = @Username and Password = @Password", sql);
-			cmd.Parameters.AddWithValue("@Username", username);
-			cmd.Parameters.AddWithValue("@Password", password);
-			SQLiteDataAdapter sda = new SQLiteDataAdapter(cmd);
-			DataTable dt = new DataTable();
-			sda.Fill(dt);
-			if (dt.Rows.Count == 1)
+			if (username == "" || password == "")
 			{
-				return true;
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
 			else
 			{
-				return false;
+				SQLiteConnection sql = new SQLiteConnection(con);
+				sql.Open();
+				SQLiteCommand cmd = new SQLiteCommand("select * from Users where Username = @Username and Password = @Password", sql);
+				cmd.Parameters.AddWithValue("@Username", username);
+				cmd.Parameters.AddWithValue("@Password", password);
+				SQLiteDataAdapter sda = new SQLiteDataAdapter(cmd);
+				DataTable dt = new DataTable();
+				sda.Fill(dt);
+				if (dt.Rows.Count == 1)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 		}
 
@@ -56,24 +64,35 @@ namespace MeatShop.Database
 		}
 
 
-		public void AddUser(string name, string username, string password, int role)
+		public bool AddUser(string name, string username, string password, int role)
 		{
-			try
+			if (name == "" || username == "" || password == "" || role == -1)
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("insert into Users(Name,Username,Password,Role) values(@Name,@Username,@Password,@Role)", sql);
-				cmd.Parameters.AddWithValue("@Name", name);
-				cmd.Parameters.AddWithValue("@Username", username);
-				cmd.Parameters.AddWithValue("@Password", password);
-				cmd.Parameters.AddWithValue("@Role", role);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("User Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				sql.Close();
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
-			catch (Exception)
+			else
 			{
-				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				try
+				{
+					SQLiteConnection sql = new SQLiteConnection(con);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("insert into Users(Name,Username,Password,Role) values(@Name,@Username,@Password,@Role)", sql);
+					cmd.Parameters.AddWithValue("@Name", name);
+					cmd.Parameters.AddWithValue("@Username", username);
+					cmd.Parameters.AddWithValue("@Password", password);
+					cmd.Parameters.AddWithValue("@Role", role);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("User Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+					return true;
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
+
 			}
 		}
 
@@ -125,25 +144,35 @@ namespace MeatShop.Database
 				return false;
 			}
 		}
-		public void UpdateUser(int id,string name, string username, string password, int role)
+		public bool UpdateUser(int id,string name, string username, string password, int role)
 		{
-			try
+			if (id > 0 || name == "" || username == "" || password == "" || role == -1)
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("update Users set Name=@Name,Username=@Username,Password=@Password,Role=@Role where Id=@Id", sql);
-				cmd.Parameters.AddWithValue("@Name", name);
-				cmd.Parameters.AddWithValue("@Username", username);
-				cmd.Parameters.AddWithValue("@Password", password);
-				cmd.Parameters.AddWithValue("@Role", role);
-				cmd.Parameters.AddWithValue("@Id", id);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("User Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				sql.Close();
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
-			catch (Exception)
+			else
 			{
-				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				try
+				{
+					SQLiteConnection sql = new SQLiteConnection(con);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("update Users set Name=@Name,Username=@Username,Password=@Password,Role=@Role where Id=@Id", sql);
+					cmd.Parameters.AddWithValue("@Name", name);
+					cmd.Parameters.AddWithValue("@Username", username);
+					cmd.Parameters.AddWithValue("@Password", password);
+					cmd.Parameters.AddWithValue("@Role", role);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("User Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+					return true;
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
 			}
 		}
 

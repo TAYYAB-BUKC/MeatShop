@@ -17,59 +17,70 @@ namespace MeatShop.Database
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		bool isError = false;
 
-		public void AddProduct(string name, int price, string imageurl, int categoryID,int unitID)
+		public bool AddProduct(string name, int price, string imageurl, int categoryID,int unitID)
 		{
-			if (imageurl == "")
+			if (name == ""  || price > -1 || categoryID < 0 || unitID < 0)
 			{
-				try
-				{
-					SQLiteConnection sql = new SQLiteConnection(con);
-					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
-					cmd.Parameters.AddWithValue("@Name", name);
-					cmd.Parameters.AddWithValue("@Price", price);
-					cmd.Parameters.AddWithValue("@ImageUrl", imageurl);
-					cmd.Parameters.AddWithValue("@CategoryID", categoryID);
-					cmd.Parameters.AddWithValue("@UnitID", unitID);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					sql.Close();
-
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
 			else
 			{
-				string finalPath = String.Empty;
-				try
+				if (imageurl == "")
 				{
-					string path = Path.GetDirectoryName(Application.StartupPath);
-					string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
-					finalPath = newpath + "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
-					File.Copy(imageurl, finalPath);
+					try
+					{
+						SQLiteConnection sql = new SQLiteConnection(con);
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
+						cmd.Parameters.AddWithValue("@Name", name);
+						cmd.Parameters.AddWithValue("@Price", price);
+						cmd.Parameters.AddWithValue("@ImageUrl", imageurl);
+						cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+						cmd.Parameters.AddWithValue("@UnitID", unitID);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						return true;
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return false;
+					}
 				}
-				catch (Exception ex)
+				else
 				{
-					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-				finally
-				{
-					SQLiteConnection sql = new SQLiteConnection(con);
-					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
-					cmd.Parameters.AddWithValue("@Name", name);
-					cmd.Parameters.AddWithValue("@Price", price);
-					cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
-					cmd.Parameters.AddWithValue("@CategoryID", categoryID);
-					cmd.Parameters.AddWithValue("@UnitID", unitID);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					sql.Close();
+					string finalPath = String.Empty;
+					try
+					{
+						string path = Path.GetDirectoryName(Application.StartupPath);
+						string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+						finalPath = newpath + "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
+						File.Copy(imageurl, finalPath);
+
+						SQLiteConnection sql = new SQLiteConnection(con);
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
+						cmd.Parameters.AddWithValue("@Name", name);
+						cmd.Parameters.AddWithValue("@Price", price);
+						cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
+						cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+						cmd.Parameters.AddWithValue("@UnitID", unitID);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						return true;
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return false;
+					}
 				}
 			}
+			
+			
 			
 		}
 
@@ -141,83 +152,86 @@ namespace MeatShop.Database
 				return false;
 			}
 		}
-		public void UpdateProduct(int id, string name, int price, string oldPath ,string newPath, int categoryID, int unitID)
+		public bool UpdateProduct(int id, string name, int price, string oldPath, string newPath, int categoryID, int unitID)
 		{
-			if (oldPath == null)
+			if (name == "" || price < -1 || categoryID < 0 || unitID < 0)
 			{
-				try
-				{
-					SQLiteConnection sql = new SQLiteConnection(con);
-					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
-					cmd.Parameters.AddWithValue("@Name", name);
-					cmd.Parameters.AddWithValue("@Price", price);
-					cmd.Parameters.AddWithValue("@ImageUrl", newPath);
-					cmd.Parameters.AddWithValue("@CategoryID", categoryID);
-					cmd.Parameters.AddWithValue("@UnitID", unitID);
-					cmd.Parameters.AddWithValue("@Id", id);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					sql.Close();
-				}
-				catch (Exception)
-				{
-					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
 			}
-			//else
-			//{ 
-			//if (File.Exists(oldPath))
-			//{
-			//	File.Delete(oldPath);
-			//}
-			
-			
-			
 			else
 			{
-				string finalPath = String.Empty;
-
-				if (File.Exists(oldPath))
+				if (oldPath == null)
 				{
-					GC.Collect();
-					GC.WaitForPendingFinalizers();
-					File.Delete(oldPath);
-
 					try
 					{
-						string path = Path.GetDirectoryName(Application.StartupPath);
-						string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
-						finalPath = newpath + "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
-						File.Copy(newPath, finalPath);
+						SQLiteConnection sql = new SQLiteConnection(con);
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
+						cmd.Parameters.AddWithValue("@Name", name);
+						cmd.Parameters.AddWithValue("@Price", price);
+						cmd.Parameters.AddWithValue("@ImageUrl", newPath);
+						cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+						cmd.Parameters.AddWithValue("@UnitID", unitID);
+						cmd.Parameters.AddWithValue("@Id", id);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						return true;
 					}
-					catch (Exception ex)
+					catch (Exception)
 					{
-						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return false;
 					}
 				}
-				try
-					{
-					SQLiteConnection sql = new SQLiteConnection(con);
-					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
-					cmd.Parameters.AddWithValue("@Name", name);
-					cmd.Parameters.AddWithValue("@Price", price);
-					cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
-					cmd.Parameters.AddWithValue("@CategoryID", categoryID);
-					cmd.Parameters.AddWithValue("@UnitID", unitID);
-					cmd.Parameters.AddWithValue("@Id", id);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					sql.Close();
-				}
-				catch (Exception)
+				//else
+				//{ 
+				//if (File.Exists(oldPath))
+				//{
+				//	File.Delete(oldPath);
+				//}
+				else
 				{
-					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					string finalPath = String.Empty;
+
+					if (File.Exists(oldPath))
+					{
+						try
+						{
+							GC.Collect();
+							GC.WaitForPendingFinalizers();
+							File.Delete(oldPath);
+
+							string path = Path.GetDirectoryName(Application.StartupPath);
+							string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+							finalPath = newpath + "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
+							File.Copy(newPath, finalPath);
+
+							SQLiteConnection sql = new SQLiteConnection(con);
+							sql.Open();
+							SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
+							cmd.Parameters.AddWithValue("@Name", name);
+							cmd.Parameters.AddWithValue("@Price", price);
+							cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
+							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.Parameters.AddWithValue("@Id", id);
+							cmd.ExecuteNonQuery();
+							MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							sql.Close();
+							return true;
+						}
+						catch (Exception ex)
+						{
+							MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							return false;
+						}
+					}
+					return false;
 				}
 			}
 		}
-
 		public void DeleteProduct(int id,FileInfo path,string oldPath)
 		{
 			bool isFileDeleted = false;
