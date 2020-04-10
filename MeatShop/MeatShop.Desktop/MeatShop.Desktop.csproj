@@ -69,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddStock.designer.cs">
+      <DependentUpon>AddStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddStock.resx">
+      <DependentUpon>AddStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddUnit.resx">
       <DependentUpon>AddUnit.cs</DependentUpon>
     </EmbeddedResource>

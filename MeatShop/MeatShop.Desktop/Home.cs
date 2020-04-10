@@ -339,5 +339,11 @@ namespace MeatShop
             openChildForm(new ManageExpense());
             hideSubMenu(); 
         }
+
+        private void button13_Click_2(object sender, EventArgs e)
+        {
+            openChildForm(new AddStock());
+            hideSubMenu();
+        }
     }
 }

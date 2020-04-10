@@ -56,10 +56,10 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.Product = new System.Windows.Forms.Button();
 			this.panelLogo = new System.Windows.Forms.Panel();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.panelPlayer = new System.Windows.Forms.Panel();
 			this.panelChildForm = new System.Windows.Forms.Panel();
 			this.pictureBox9 = new System.Windows.Forms.PictureBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.panelSideMenu.SuspendLayout();
 			this.Product_Panel.SuspendLayout();
 			this.Units_Panel.SuspendLayout();
@@ -68,9 +68,9 @@
 			this.panelToolsSubMenu.SuspendLayout();
 			this.panelMediaSubMenu.SuspendLayout();
 			this.panelLogo.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.panelChildForm.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panelSideMenu
@@ -413,6 +413,7 @@
 			this.button13.Text = "Add Stock";
 			this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.button13.UseVisualStyleBackColor = true;
+			this.button13.Click += new System.EventHandler(this.button13_Click_2);
 			// 
 			// btnTools
 			// 
@@ -527,22 +528,12 @@
 			// 
 			// panelLogo
 			// 
-			this.panelLogo.Controls.Add(this.pictureBox1);
+			this.panelLogo.Controls.Add(this.pictureBox2);
 			this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelLogo.Location = new System.Drawing.Point(0, 0);
 			this.panelLogo.Name = "panelLogo";
 			this.panelLogo.Size = new System.Drawing.Size(233, 92);
 			this.panelLogo.TabIndex = 0;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.ImageLocation = "23,15";
-			this.pictureBox1.Location = new System.Drawing.Point(36, 15);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(159, 71);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
 			// 
 			// panelPlayer
 			// 
@@ -574,6 +565,17 @@
 			this.pictureBox9.TabIndex = 2;
 			this.pictureBox9.TabStop = false;
 			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.pictureBox2.Image = global::MeatShop.Desktop.Properties.Resources.icon;
+			this.pictureBox2.Location = new System.Drawing.Point(33, 12);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(169, 68);
+			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox2.TabIndex = 3;
+			this.pictureBox2.TabStop = false;
+			// 
 			// Home
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -598,9 +600,9 @@
 			this.panelToolsSubMenu.ResumeLayout(false);
 			this.panelMediaSubMenu.ResumeLayout(false);
 			this.panelLogo.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.panelChildForm.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -613,7 +615,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Product;
         private System.Windows.Forms.Panel panelLogo;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Panel panelPlayer;
         private System.Windows.Forms.Panel panelChildForm;
@@ -638,6 +639,7 @@
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.Button Expense;
+		private System.Windows.Forms.PictureBox pictureBox2;
 	}
 }
 

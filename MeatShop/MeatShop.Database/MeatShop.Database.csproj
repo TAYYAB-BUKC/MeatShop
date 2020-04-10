@@ -69,6 +69,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="Expense.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="Stock.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

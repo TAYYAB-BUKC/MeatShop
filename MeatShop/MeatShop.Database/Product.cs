@@ -17,9 +17,9 @@ namespace MeatShop.Database
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		bool isError = false;
 
-		public bool AddProduct(string name, int price, string imageurl, int categoryID,int unitID)
+		public bool AddProduct(string name, int price, string imageurl, int categoryID, int unitID)
 		{
-			if (name == ""  || price > -1 || categoryID < 0 || unitID < 0)
+			if (name == "" || price < -1 || categoryID < 0 || unitID < 0)
 			{
 				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
@@ -79,9 +79,49 @@ namespace MeatShop.Database
 					}
 				}
 			}
-			
-			
-			
+
+
+
+		}
+
+		public ProductEntity IsExist(int id)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select * from Stock where Product_Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					SQLiteDataReader reader = cmd.ExecuteReader();
+					if (reader.HasRows)
+					{
+						ProductEntity productEntity = new ProductEntity();
+						while (reader.Read())
+						{
+							productEntity.Id = reader.GetInt32(0);
+							productEntity.oldQuantity = reader.GetInt32(2);
+						}
+						sql.Close();
+						return productEntity;
+
+					}
+					else
+					{
+						sql.Close();
+						return new ProductEntity();
+					}
+
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sql.Close();
+					return new ProductEntity();
+				}
+
+			}
+
 		}
 
 		public void GetData(BunifuCustomDataGrid dataGrid, string query)
@@ -232,7 +272,7 @@ namespace MeatShop.Database
 				}
 			}
 		}
-		public void DeleteProduct(int id,FileInfo path,string oldPath)
+		public void DeleteProduct(int id, FileInfo path, string oldPath)
 		{
 			bool isFileDeleted = false;
 			try
@@ -301,5 +341,134 @@ namespace MeatShop.Database
 			//file is not locked
 			return false;
 		}
+
+		private DataTable GetData(string query)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				DataTable dt = new DataTable();
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand(query, sql);
+					cmd.ExecuteNonQuery();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+					sql.Close();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Exception Occurs " + ex.Message);
+				}
+				return dt;
+			}
+		}
+
+		public void FillCombo(ComboBox a)
+		{
+			DataTable dt = GetData("select Id,Name from Products");
+			a.DataSource = dt;
+			a.DisplayMember = "Name";
+			a.ValueMember = "Id";
+		}
+
+		//	public bool GetDetails(TextBox price, int id)
+		//	{
+		//		using (SQLiteConnection sql = new SQLiteConnection(con))
+		//		{
+		//			try
+		//			{
+		//				sql.Open();
+		//				SQLiteCommand cmd = new SQLiteCommand("select Price from Products where Id = @Id", sql);
+		//				cmd.Parameters.AddWithValue("@Id", id);
+		//				SQLiteDataReader reader = cmd.ExecuteReader();
+		//				while (reader.Read())
+		//				{
+		//					price.Text = Convert.ToString(reader.GetInt32(0));
+		//					sql.Close();
+		//					return true;
+		//				}
+		//				sql.Close();
+		//				return false;
+		//			}
+		//			catch (Exception ex)
+		//			{
+		//				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//				sql.Close();
+		//				return false;
+		//			}
+		//		}
+		//	}
+		//}
+
+		public int GetDetails(int id)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select Price from Products where Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					SQLiteDataReader reader = cmd.ExecuteReader();
+					if (reader.HasRows)
+					{
+						int price = -1;
+						while (reader.Read())
+						{
+							//price.Text = Convert.ToString(reader.GetInt32(0));
+							price = reader.GetInt32(0);
+						}
+						if (price > -1)
+						{
+							sql.Close();
+							return price;
+						}
+						else
+						{
+							sql.Close();
+							return -1;
+						}
+					}
+					else
+					{
+						sql.Close();
+						return -1;
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sql.Close();
+					return -1;
+				}
+			}
+		}
+		public void UpdatePrice(int id, int price)
+		{
+			try
+			{
+				SQLiteConnection sql = new SQLiteConnection(con);
+				sql.Open();
+				SQLiteCommand cmd = new SQLiteCommand("update Products set Price=@Price where Id=@Id", sql);
+				cmd.Parameters.AddWithValue("@Price", price);
+				cmd.Parameters.AddWithValue("@Id", id);
+				cmd.ExecuteNonQuery();
+				sql.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+	} 
+
+
+	public class ProductEntity
+	{
+
+		public int Id { get; set; }
+		public int oldQuantity { get; set; }
+
 	}
 }
