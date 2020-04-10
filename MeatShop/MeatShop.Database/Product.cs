@@ -30,18 +30,20 @@ namespace MeatShop.Database
 				{
 					try
 					{
-						SQLiteConnection sql = new SQLiteConnection(con);
-						sql.Open();
-						SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
-						cmd.Parameters.AddWithValue("@Name", name);
-						cmd.Parameters.AddWithValue("@Price", price);
-						cmd.Parameters.AddWithValue("@ImageUrl", imageurl);
-						cmd.Parameters.AddWithValue("@CategoryID", categoryID);
-						cmd.Parameters.AddWithValue("@UnitID", unitID);
-						cmd.ExecuteNonQuery();
-						MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-						sql.Close();
-						return true;
+						using (SQLiteConnection sql = new SQLiteConnection(con))
+						{
+							sql.Open();
+							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
+							cmd.Parameters.AddWithValue("@Name", name);
+							cmd.Parameters.AddWithValue("@Price", price);
+							cmd.Parameters.AddWithValue("@ImageUrl", imageurl);
+							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.ExecuteNonQuery();
+							MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							sql.Close();
+							return true;
+						}
 					}
 					catch (Exception ex)
 					{
@@ -59,18 +61,20 @@ namespace MeatShop.Database
 						finalPath = newpath + "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
 						File.Copy(imageurl, finalPath);
 
-						SQLiteConnection sql = new SQLiteConnection(con);
-						sql.Open();
-						SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
-						cmd.Parameters.AddWithValue("@Name", name);
-						cmd.Parameters.AddWithValue("@Price", price);
-						cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
-						cmd.Parameters.AddWithValue("@CategoryID", categoryID);
-						cmd.Parameters.AddWithValue("@UnitID", unitID);
-						cmd.ExecuteNonQuery();
-						MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-						sql.Close();
-						return true;
+						using (SQLiteConnection sql = new SQLiteConnection(con))
+						{
+							sql.Open();
+							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
+							cmd.Parameters.AddWithValue("@Name", name);
+							cmd.Parameters.AddWithValue("@Price", price);
+							cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
+							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.ExecuteNonQuery();
+							MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							sql.Close();
+							return true;
+						}
 					}
 					catch (Exception ex)
 					{
@@ -79,9 +83,6 @@ namespace MeatShop.Database
 					}
 				}
 			}
-
-
-
 		}
 
 		public ProductEntity IsExist(int id)
@@ -121,22 +122,23 @@ namespace MeatShop.Database
 				}
 
 			}
-
 		}
 
 		public void GetData(BunifuCustomDataGrid dataGrid, string query)
 		{
 			try
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand(query, sql);
-				cmd.ExecuteNonQuery();
-				DataTable dt = new DataTable();
-				SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-				da.Fill(dt);
-				dataGrid.DataSource = dt;
-				sql.Close();
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand(query, sql);
+					cmd.ExecuteNonQuery();
+					DataTable dt = new DataTable();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+					dataGrid.DataSource = dt;
+					sql.Close();
+				}
 			}
 			catch (Exception ex)
 			{
@@ -169,27 +171,28 @@ namespace MeatShop.Database
 
 		private bool Checking(BunifuCustomDataGrid dataGrid, string name)
 		{
-			SQLiteConnection sql = new SQLiteConnection(con);
-			sql.Open();
-			SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Products where Name like '" + name + "%'", sql);
-			//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
-			DataTable dt = new DataTable();
-			if (da != null)
+			using (SQLiteConnection sql = new SQLiteConnection(con))
 			{
-				da.Fill(dt);
-			}
-			if (dt.Rows.Count > 0)
-			{
-				dataGrid.DataSource = dt;
-				sql.Close();
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Products where Name like '" + name + "%'", sql);
+				//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+				if (dt.Rows.Count > 0)
+				{
+					dataGrid.DataSource = dt;
+					sql.Close();
 
-				return true;
-
-			}
-			else
-			{
-				sql.Close();
-				return false;
+					return true;
+				}
+				else
+				{
+					sql.Close();
+					return false;
+				}
 			}
 		}
 		public bool UpdateProduct(int id, string name, int price, string oldPath, string newPath, int categoryID, int unitID)
@@ -205,19 +208,21 @@ namespace MeatShop.Database
 				{
 					try
 					{
-						SQLiteConnection sql = new SQLiteConnection(con);
-						sql.Open();
-						SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
-						cmd.Parameters.AddWithValue("@Name", name);
-						cmd.Parameters.AddWithValue("@Price", price);
-						cmd.Parameters.AddWithValue("@ImageUrl", newPath);
-						cmd.Parameters.AddWithValue("@CategoryID", categoryID);
-						cmd.Parameters.AddWithValue("@UnitID", unitID);
-						cmd.Parameters.AddWithValue("@Id", id);
-						cmd.ExecuteNonQuery();
-						MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-						sql.Close();
-						return true;
+						using (SQLiteConnection sql = new SQLiteConnection(con))
+						{
+							sql.Open();
+							SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
+							cmd.Parameters.AddWithValue("@Name", name);
+							cmd.Parameters.AddWithValue("@Price", price);
+							cmd.Parameters.AddWithValue("@ImageUrl", newPath);
+							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.Parameters.AddWithValue("@Id", id);
+							cmd.ExecuteNonQuery();
+							MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							sql.Close();
+							return true;
+						}
 					}
 					catch (Exception)
 					{
@@ -248,19 +253,21 @@ namespace MeatShop.Database
 							finalPath = newpath + "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
 							File.Copy(newPath, finalPath);
 
-							SQLiteConnection sql = new SQLiteConnection(con);
-							sql.Open();
-							SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
-							cmd.Parameters.AddWithValue("@Name", name);
-							cmd.Parameters.AddWithValue("@Price", price);
-							cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
-							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
-							cmd.Parameters.AddWithValue("@UnitID", unitID);
-							cmd.Parameters.AddWithValue("@Id", id);
-							cmd.ExecuteNonQuery();
-							MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-							sql.Close();
-							return true;
+							using (SQLiteConnection sql = new SQLiteConnection(con))
+							{
+								sql.Open();
+								SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
+								cmd.Parameters.AddWithValue("@Name", name);
+								cmd.Parameters.AddWithValue("@Price", price);
+								cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
+								cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+								cmd.Parameters.AddWithValue("@UnitID", unitID);
+								cmd.Parameters.AddWithValue("@Id", id);
+								cmd.ExecuteNonQuery();
+								MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+								sql.Close();
+								return true;
+							}
 						}
 						catch (Exception ex)
 						{
@@ -296,12 +303,15 @@ namespace MeatShop.Database
 			{
 				if (isFileDeleted)
 				{
-					SQLiteConnection sql = new SQLiteConnection(con);
-					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("delete from Products where Id = @Id", sql);
-					cmd.Parameters.AddWithValue("@Id", id);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Product Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					using (SQLiteConnection sql = new SQLiteConnection(con))
+					{
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("delete from Products where Id = @Id", sql);
+						cmd.Parameters.AddWithValue("@Id", id);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Product Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+					}
 				}
 				else
 				{
@@ -448,13 +458,15 @@ namespace MeatShop.Database
 		{
 			try
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("update Products set Price=@Price where Id=@Id", sql);
-				cmd.Parameters.AddWithValue("@Price", price);
-				cmd.Parameters.AddWithValue("@Id", id);
-				cmd.ExecuteNonQuery();
-				sql.Close();
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("update Products set Price=@Price where Id=@Id", sql);
+					cmd.Parameters.AddWithValue("@Price", price);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					sql.Close();
+				}
 			}
 			catch (Exception ex)
 			{
@@ -466,9 +478,7 @@ namespace MeatShop.Database
 
 	public class ProductEntity
 	{
-
 		public int Id { get; set; }
 		public int oldQuantity { get; set; }
-
 	}
 }

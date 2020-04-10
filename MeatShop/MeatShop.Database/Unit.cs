@@ -26,15 +26,17 @@ namespace MeatShop.Database
 			{
 				try
 				{
-					SQLiteConnection sql = new SQLiteConnection(con);
-					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("insert into Units(Name,Unit_prefix) values(@Name,@Unit_prefix)", sql);
-					cmd.Parameters.AddWithValue("@Name", name);
-					cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Unit Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					sql.Close();
-					return true;
+					using (SQLiteConnection sql = new SQLiteConnection(con))
+					{
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("insert into Units(Name,Unit_prefix) values(@Name,@Unit_prefix)", sql);
+						cmd.Parameters.AddWithValue("@Name", name);
+						cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Unit Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						return true;
+					}
 				}
 				catch (Exception)
 				{
@@ -48,15 +50,17 @@ namespace MeatShop.Database
 		{
 			try
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand(query, sql);
-				cmd.ExecuteNonQuery();
-				DataTable dt = new DataTable();
-				SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-				da.Fill(dt);
-				dataGrid.DataSource = dt;
-				sql.Close();
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand(query, sql);
+					cmd.ExecuteNonQuery();
+					DataTable dt = new DataTable();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+					dataGrid.DataSource = dt;
+					sql.Close();
+				}
 			}
 			catch (Exception ex)
 			{
@@ -89,27 +93,29 @@ namespace MeatShop.Database
 
 		private bool Checking(BunifuCustomDataGrid dataGrid, string name)
 		{
-			SQLiteConnection sql = new SQLiteConnection(con);
-			sql.Open();
-			SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Units where Name like '" + name + "%'", sql);
-			//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
-			DataTable dt = new DataTable();
-			if (da != null)
+			using (SQLiteConnection sql = new SQLiteConnection(con))
 			{
-				da.Fill(dt);
-			}
-			if (dt.Rows.Count > 0)
-			{
-				dataGrid.DataSource = dt;
-				sql.Close();
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Units where Name like '" + name + "%'", sql);
+				//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+				if (dt.Rows.Count > 0)
+				{
+					dataGrid.DataSource = dt;
+					sql.Close();
 
-				return true;
+					return true;
 
-			}
-			else
-			{
-				sql.Close();
-				return false;
+				}
+				else
+				{
+					sql.Close();
+					return false;
+				}
 			}
 		}
 		public bool UpdateUnit(int id, string name, string prefix)
@@ -123,16 +129,18 @@ namespace MeatShop.Database
 			{
 				try
 				{
-					SQLiteConnection sql = new SQLiteConnection(con);
-					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("update Units set Name=@Name,Unit_Prefix=@Unit_Prefix where Id=@Id", sql);
-					cmd.Parameters.AddWithValue("@Name", name);
-					cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
-					cmd.Parameters.AddWithValue("@Id", id);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Unit Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					sql.Close();
-					return true;
+					using (SQLiteConnection sql = new SQLiteConnection(con))
+					{
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("update Units set Name=@Name,Unit_Prefix=@Unit_Prefix where Id=@Id", sql);
+						cmd.Parameters.AddWithValue("@Name", name);
+						cmd.Parameters.AddWithValue("@Unit_prefix", prefix);
+						cmd.Parameters.AddWithValue("@Id", id);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Unit Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						return true;
+					}
 				}
 				catch (Exception)
 				{
@@ -146,12 +154,15 @@ namespace MeatShop.Database
 		{
 			try
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("delete from Units where Id = @Id", sql);
-				cmd.Parameters.AddWithValue("@Id", id);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("Unit Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("delete from Units where Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Unit Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+				}
 			}
 			catch (Exception ex)
 			{
@@ -164,13 +175,15 @@ namespace MeatShop.Database
 			DataTable dt = new DataTable();
 			try
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand(query, sql);
-				cmd.ExecuteNonQuery();
-				SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-				da.Fill(dt);
-				sql.Close();
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand(query, sql);
+					cmd.ExecuteNonQuery();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+					sql.Close();
+				}
 			}
 			catch (Exception ex)
 			{

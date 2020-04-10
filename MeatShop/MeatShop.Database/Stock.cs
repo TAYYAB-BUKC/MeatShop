@@ -132,7 +132,6 @@ namespace MeatShop.Database
 				}
 
 			}
-
 		}
 	}
 }

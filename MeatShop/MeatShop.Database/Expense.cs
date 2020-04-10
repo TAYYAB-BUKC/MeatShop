@@ -16,26 +16,28 @@ namespace MeatShop.Database
 		{
 			try
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand(query, sql);
-				cmd.ExecuteNonQuery();
-				DataTable dt = new DataTable();
-				SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
-				da.Fill(dt);
-				if (dt.Rows.Count > 0)
+				using (SQLiteConnection sql = new SQLiteConnection(con))
 				{
-					foreach (DataRow row in dt.Rows)
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand(query, sql);
+					cmd.ExecuteNonQuery();
+					DataTable dt = new DataTable();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+					if (dt.Rows.Count > 0)
 					{
-						double sdate = Convert.ToDouble(row["Datetime"]);
-						var sfinal = DateTime.FromOADate(sdate);
-						//row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
-						row["Datetime"] = sfinal;
+						foreach (DataRow row in dt.Rows)
+						{
+							double sdate = Convert.ToDouble(row["Datetime"]);
+							var sfinal = DateTime.FromOADate(sdate);
+							//row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
+							row["Datetime"] = sfinal;
 
+						}
 					}
+					dataGrid.DataSource = dt;
+					sql.Close();
 				}
-				dataGrid.DataSource = dt;
-				sql.Close();
 			}
 			catch (Exception ex)
 			{
@@ -60,17 +62,19 @@ namespace MeatShop.Database
 			{
 				try
 				{
-					SQLiteConnection sql = new SQLiteConnection(con);
-					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("insert into Expenses(Name,Amount,Datetime,Comment) values(@Name,@Amount,@Datetime,@Comment)", sql);
-					cmd.Parameters.AddWithValue("@Name", name);
-					cmd.Parameters.AddWithValue("@Amount", amount);
-					cmd.Parameters.AddWithValue("@Datetime", date);
-					cmd.Parameters.AddWithValue("@Comment", comment);
-					cmd.ExecuteNonQuery();
-					MessageBox.Show("Expense Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					sql.Close();
-					return true;
+					using (SQLiteConnection sql = new SQLiteConnection(con))
+					{
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("insert into Expenses(Name,Amount,Datetime,Comment) values(@Name,@Amount,@Datetime,@Comment)", sql);
+						cmd.Parameters.AddWithValue("@Name", name);
+						cmd.Parameters.AddWithValue("@Amount", amount);
+						cmd.Parameters.AddWithValue("@Datetime", date);
+						cmd.Parameters.AddWithValue("@Comment", comment);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Expense Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						return true;
+					}
 				}
 				catch (Exception)
 				{
@@ -104,43 +108,47 @@ namespace MeatShop.Database
 
 		private bool Checking(BunifuCustomDataGrid dataGrid, string name)
 		{
-			SQLiteConnection sql = new SQLiteConnection(con);
-			sql.Open();
-			SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Expenses where Name like '" + name + "%'", sql);
-		 	DataTable dt = new DataTable();
-			if (da != null)
+			using (SQLiteConnection sql = new SQLiteConnection(con))
 			{
-				da.Fill(dt);
-			}
-			if (dt.Rows.Count > 0)
-			{
-				dataGrid.DataSource = dt;
-				sql.Close();
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Expenses where Name like '" + name + "%'", sql);
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+				if (dt.Rows.Count > 0)
+				{
+					dataGrid.DataSource = dt;
+					sql.Close();
 
-				return true;
+					return true;
 
-			}
-			else
-			{
-				sql.Close();
-				return false;
+				}
+				else
+				{
+					sql.Close();
+					return false;
+				}
 			}
 		}
 		public void DeleteExpense(int id)
 		{
 			try
 			{
-				SQLiteConnection sql = new SQLiteConnection(con);
-				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("delete from Expenses where Id = @Id", sql);
-				cmd.Parameters.AddWithValue("@Id", id);
-				cmd.ExecuteNonQuery();
-				MessageBox.Show("Expense Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("delete from Expenses where Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Expense Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+				}
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
 			}
 		}
 	}
