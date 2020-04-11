@@ -75,6 +75,12 @@
     <Compile Include="AddStock.designer.cs">
       <DependentUpon>AddStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUnit - Copy.designer.cs">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,12 @@
     </Compile>
     <Compile Include="AddExpense.designer.cs">
       <DependentUpon>AddExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales.designer.cs">
+      <DependentUpon>Sales.cs</DependentUpon>
     </Compile>
     <Compile Include="ManageExpense.cs">
       <SubType>Form</SubType>
@@ -149,6 +161,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddCustomer.resx">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddStock.resx">
       <DependentUpon>AddStock.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddExpense.resx">
       <DependentUpon>AddExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales.resx">
+      <DependentUpon>Sales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageExpense.resx">
       <DependentUpon>ManageExpense.cs</DependentUpon>
@@ -224,9 +242,7 @@
   <ItemGroup>
     <None Include="Resources\icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ProductImages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Default_Image_Thumbnail.png" />
   </ItemGroup>

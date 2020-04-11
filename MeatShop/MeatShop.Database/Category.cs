@@ -145,6 +145,24 @@ namespace MeatShop.Database
 			}
 		}
 
+		public CategoryEntity GetCategories()
+		{
+			DataTable dataTable = GetData("select Id,Name from Categories");
+			CategoryEntity categoryEntity = new CategoryEntity();
+			categoryEntity.Id = new int[dataTable.Rows.Count];
+			categoryEntity.Name = new string[dataTable.Rows.Count];
+			int counter = 0;
+
+			foreach (DataRow row in dataTable.Rows)
+			{
+				categoryEntity.Id[counter] = Convert.ToInt32(row[0]);
+				categoryEntity.Name[counter] = Convert.ToString(row[1]);
+				counter++;
+			}
+
+			return categoryEntity;
+		}
+
 		public void DeleteCategory(int id)
 		{
 			try
@@ -194,5 +212,11 @@ namespace MeatShop.Database
 			a.DisplayMember = "Name";
 			a.ValueMember = "Id";
 		}
+	}
+
+	public class CategoryEntity
+	{
+		public int[] Id { get; set; }
+		public string[] Name { get; set; }
 	}
 }

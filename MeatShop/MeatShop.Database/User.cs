@@ -153,7 +153,7 @@ namespace MeatShop.Database
 		}
 		public bool UpdateUser(int id,string name, string username, string password, int role)
 		{
-			if (id > 0 || name == "" || username == "" || password == "" || role == -1)
+			if (id < 0 || name == "" || username == "" || password == "" || role == -1)
 			{
 				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;

@@ -473,12 +473,124 @@ namespace MeatShop.Database
 				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-	} 
+		public ProductCategoryEntity getProductsByCategory(int id)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				DataTable dt = new DataTable();
+				ProductCategoryEntity entity = new ProductCategoryEntity();
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,ImageUrl,Price from Products where CategoryID = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+
+					if (dt.Rows.Count > 0)
+					{
+						entity.Id = new int[dt.Rows.Count];
+						entity.Name = new string[dt.Rows.Count];
+						entity.ImageUrl = new string[dt.Rows.Count];
+						entity.Price = new int[dt.Rows.Count];
+
+						int counter = 0;
+
+						foreach (DataRow row in dt.Rows)
+						{
+							entity.Id[counter] = Convert.ToInt32(row[0]);
+							entity.Name[counter] = Convert.ToString(row[1]);
+							entity.ImageUrl[counter] = Convert.ToString(row[2]);
+							entity.Price[counter] = Convert.ToInt32(row[3]);
+							counter++;
+						}
+
+						sql.Close();
+						return entity;
+					}
+					else
+					{
+						sql.Close();
+						return entity;
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Exception Occurs " + ex.Message);
+					sql.Close();
+					return entity;
+				}
+			}
+		}
+
+		public ProductCategoryEntity getProducts()
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				DataTable dt = new DataTable();
+				ProductCategoryEntity entity = new ProductCategoryEntity();
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,ImageUrl,Price from Products", sql);
+					cmd.ExecuteNonQuery();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+
+					if (dt.Rows.Count > 0)
+					{
+						entity.Id = new int[dt.Rows.Count];
+						entity.Name = new string[dt.Rows.Count];
+						entity.ImageUrl = new string[dt.Rows.Count];
+						entity.Price = new int[dt.Rows.Count];
+
+						int counter = 0;
+
+						foreach (DataRow row in dt.Rows)
+						{
+							entity.Id[counter] = Convert.ToInt32(row[0]);
+							entity.Name[counter] = Convert.ToString(row[1]);
+							entity.ImageUrl[counter] = Convert.ToString(row[2]);
+							entity.Price[counter] = Convert.ToInt32(row[3]);
+							counter++;
+						}
+
+						sql.Close();
+						return entity;
+					}
+					else
+					{
+						sql.Close();
+						return entity;
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Exception Occurs " + ex.Message);
+					sql.Close();
+					return entity;
+				}
+			}
+		}
+
+
+	}
 
 
 	public class ProductEntity
 	{
 		public int Id { get; set; }
 		public int oldQuantity { get; set; }
+	}
+		
+	public class ProductCategoryEntity
+	{
+		public int[] Id { get; set; }
+		public int[] Price { get; set; }
+		public string[] Name { get; set; }
+		public string[] ImageUrl { get; set; }
+
+
 	}
 }

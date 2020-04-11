@@ -38,7 +38,7 @@ namespace MeatShop
             Category_Panel.Visible = false;
             Units_Panel.Visible = false;
             Product_Panel.Visible = false;
-
+            Customer_Panel.Visible = false;
 
         }
 
@@ -343,6 +343,23 @@ namespace MeatShop
         private void button13_Click_2(object sender, EventArgs e)
         {
             openChildForm(new AddStock());
+            hideSubMenu();
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            openChildForm(new AddCustomer());
+            hideSubMenu();
+        }
+
+        private void Customer_Click(object sender, EventArgs e)
+        {
+            showSubMenu(Customer_Panel);
+        }
+
+        private void button1_Click_4(object sender, EventArgs e)
+        {
+            openChildForm(new Sales());
             hideSubMenu();
         }
     }
