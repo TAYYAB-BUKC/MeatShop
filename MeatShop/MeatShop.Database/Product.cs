@@ -574,6 +574,78 @@ namespace MeatShop.Database
 			}
 		}
 
+		public bool AddSale(int customerID, int totalAmount, int discount, int paidAmount, int balance)
+		{
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("insert into Sale(Datetime,CustomerID,TotalAmount,Discount,PaidAmount,Balance) values(@Datetime,@CustomerID,@TotalAmount,@Discount,@PaidAmount,@Balance)", sql);
+					cmd.Parameters.AddWithValue("@Datetime", DateTime.Now.Date.ToOADate());
+					cmd.Parameters.AddWithValue("@CustomerID", customerID);
+					cmd.Parameters.AddWithValue("@TotalAmount", totalAmount);
+					cmd.Parameters.AddWithValue("@Discount", discount);
+					cmd.Parameters.AddWithValue("@PaidAmount", paidAmount);
+					cmd.Parameters.AddWithValue("@Balance", balance);
+					cmd.ExecuteNonQuery();
+					sql.Close();
+					return true;
+				}
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+		}
+
+		public bool AddSaleItem(BunifuCustomDataGrid dataGrid)
+		{
+			int saleID;
+			bool check = false;
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select max(Id) from Sale", sql);
+					saleID = Convert.ToInt32(cmd.ExecuteScalar());
+					sql.Close();
+				}
+
+				for (int j = 0; j < dataGrid.Rows.Count; j++)
+				{
+					using (SQLiteConnection sql = new SQLiteConnection(con))
+					{
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("insert into SaleItem(SaleID,ProductID,Price,Quantity) values(@SaleID,@ProductID,@Price,@Quantity)", sql);
+						cmd.Parameters.AddWithValue("@SaleID", saleID);
+						cmd.Parameters.AddWithValue("@ProductID", Convert.ToInt32(dataGrid.Rows[j].Cells[0].Value));
+						cmd.Parameters.AddWithValue("@Price", Convert.ToInt32(dataGrid.Rows[j].Cells[2].Value));
+						cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(dataGrid.Rows[j].Cells[3].Value));
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Sale Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						check = true;
+					}
+				}
+				if (check)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+		}
 
 	}
 

@@ -93,6 +93,25 @@ namespace MeatShop.Database
 			a.ValueMember = "Id";
 		}
 
+		public void UpdateBalance(int customerID, int balance)
+		{
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("Update Customer set Balance = @Balance where Id=@Id", sql);
+					cmd.Parameters.AddWithValue("@Balance", balance);
+					cmd.Parameters.AddWithValue("@Id", customerID);
+					cmd.ExecuteNonQuery();
+					sql.Close();
+				}
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 	}
 }
 	

@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.Sale_Button = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.LDate = new System.Windows.Forms.Label();
@@ -39,19 +39,22 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.Grd_Sale = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-			this.Expense_Name = new System.Windows.Forms.TextBox();
-			this.Expense_ID = new System.Windows.Forms.TextBox();
-			this.Expense_Amount = new System.Windows.Forms.TextBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Update = new System.Windows.Forms.DataGridViewButtonColumn();
+			this.Decrease = new System.Windows.Forms.DataGridViewButtonColumn();
+			this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+			this.Sale_Discount = new System.Windows.Forms.TextBox();
+			this.Sale_TotalAmount = new System.Windows.Forms.TextBox();
+			this.Sale_PaidAmount = new System.Windows.Forms.TextBox();
+			this.Sale_Balance = new System.Windows.Forms.TextBox();
 			this.LBoughtItems = new System.Windows.Forms.Label();
 			this.Sale_Customer = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
-			this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.Grd_Sale)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -68,7 +71,7 @@
 			this.Sale_Button.TabIndex = 82;
 			this.Sale_Button.Text = "Sale";
 			this.Sale_Button.UseVisualStyleBackColor = false;
-			this.Sale_Button.Click += new System.EventHandler(this.Delete_Button_Click);
+			this.Sale_Button.Click += new System.EventHandler(this.Sale_Button_Click);
 			// 
 			// panel2
 			// 
@@ -160,24 +163,29 @@
 			// 
 			this.Grd_Sale.AllowUserToAddRows = false;
 			this.Grd_Sale.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Sale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Sale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.Grd_Sale.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Sale.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Sale.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Sale.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle4.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Sale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Sale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.Grd_Sale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Sale.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.ProductName,
-            this.Price});
+            this.Price,
+            this.Quantity,
+            this.Update,
+            this.Decrease,
+            this.Delete});
 			this.Grd_Sale.DoubleBuffered = true;
 			this.Grd_Sale.EnableHeadersVisualStyles = false;
 			this.Grd_Sale.HeaderBgColor = System.Drawing.SystemColors.Control;
@@ -186,41 +194,95 @@
 			this.Grd_Sale.Name = "Grd_Sale";
 			this.Grd_Sale.ReadOnly = true;
 			this.Grd_Sale.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			this.Grd_Sale.Size = new System.Drawing.Size(516, 297);
+			this.Grd_Sale.Size = new System.Drawing.Size(576, 297);
 			this.Grd_Sale.TabIndex = 89;
+			this.Grd_Sale.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Sale_CellContentClick);
 			// 
-			// Expense_Name
+			// Id
 			// 
-			this.Expense_Name.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.Expense_Name.Location = new System.Drawing.Point(801, 508);
-			this.Expense_Name.Name = "Expense_Name";
-			this.Expense_Name.Size = new System.Drawing.Size(240, 31);
-			this.Expense_Name.TabIndex = 90;
+			this.Id.HeaderText = "ID";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
 			// 
-			// Expense_ID
+			// ProductName
 			// 
-			this.Expense_ID.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.Expense_ID.Location = new System.Drawing.Point(801, 456);
-			this.Expense_ID.Name = "Expense_ID";
-			this.Expense_ID.ReadOnly = true;
-			this.Expense_ID.Size = new System.Drawing.Size(240, 31);
-			this.Expense_ID.TabIndex = 91;
+			this.ProductName.HeaderText = "ProductName";
+			this.ProductName.Name = "ProductName";
+			this.ProductName.ReadOnly = true;
 			// 
-			// Expense_Amount
+			// Price
 			// 
-			this.Expense_Amount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.Expense_Amount.Location = new System.Drawing.Point(801, 561);
-			this.Expense_Amount.Name = "Expense_Amount";
-			this.Expense_Amount.Size = new System.Drawing.Size(240, 31);
-			this.Expense_Amount.TabIndex = 96;
+			this.Price.HeaderText = "Price";
+			this.Price.Name = "Price";
+			this.Price.ReadOnly = true;
 			// 
-			// textBox1
+			// Quantity
 			// 
-			this.textBox1.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.textBox1.Location = new System.Drawing.Point(801, 611);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(240, 31);
-			this.textBox1.TabIndex = 97;
+			this.Quantity.HeaderText = "Quantity";
+			this.Quantity.Name = "Quantity";
+			this.Quantity.ReadOnly = true;
+			// 
+			// Update
+			// 
+			this.Update.HeaderText = "Increase Quantity";
+			this.Update.Name = "Update";
+			this.Update.ReadOnly = true;
+			this.Update.Text = "Increase";
+			this.Update.UseColumnTextForButtonValue = true;
+			// 
+			// Decrease
+			// 
+			this.Decrease.HeaderText = "Decrease Quantity";
+			this.Decrease.Name = "Decrease";
+			this.Decrease.ReadOnly = true;
+			this.Decrease.Text = "Decrease";
+			this.Decrease.UseColumnTextForButtonValue = true;
+			// 
+			// Delete
+			// 
+			this.Delete.HeaderText = "Delete";
+			this.Delete.Name = "Delete";
+			this.Delete.ReadOnly = true;
+			this.Delete.Text = "Remove item";
+			this.Delete.ToolTipText = "Remove item";
+			this.Delete.UseColumnTextForButtonValue = true;
+			// 
+			// Sale_Discount
+			// 
+			this.Sale_Discount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+			this.Sale_Discount.Location = new System.Drawing.Point(801, 508);
+			this.Sale_Discount.Name = "Sale_Discount";
+			this.Sale_Discount.Size = new System.Drawing.Size(240, 31);
+			this.Sale_Discount.TabIndex = 90;
+			this.Sale_Discount.Leave += new System.EventHandler(this.Sale_Discount_Leave);
+			// 
+			// Sale_TotalAmount
+			// 
+			this.Sale_TotalAmount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+			this.Sale_TotalAmount.Location = new System.Drawing.Point(801, 456);
+			this.Sale_TotalAmount.Name = "Sale_TotalAmount";
+			this.Sale_TotalAmount.ReadOnly = true;
+			this.Sale_TotalAmount.Size = new System.Drawing.Size(240, 31);
+			this.Sale_TotalAmount.TabIndex = 91;
+			this.Sale_TotalAmount.Text = "0";
+			// 
+			// Sale_PaidAmount
+			// 
+			this.Sale_PaidAmount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+			this.Sale_PaidAmount.Location = new System.Drawing.Point(801, 561);
+			this.Sale_PaidAmount.Name = "Sale_PaidAmount";
+			this.Sale_PaidAmount.Size = new System.Drawing.Size(240, 31);
+			this.Sale_PaidAmount.TabIndex = 96;
+			this.Sale_PaidAmount.Leave += new System.EventHandler(this.Sale_PaidAmount_Leave);
+			// 
+			// Sale_Balance
+			// 
+			this.Sale_Balance.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+			this.Sale_Balance.Location = new System.Drawing.Point(801, 611);
+			this.Sale_Balance.Name = "Sale_Balance";
+			this.Sale_Balance.ReadOnly = true;
+			this.Sale_Balance.Size = new System.Drawing.Size(240, 31);
+			this.Sale_Balance.TabIndex = 97;
 			// 
 			// LBoughtItems
 			// 
@@ -259,15 +321,6 @@
 			this.label1.TabIndex = 171;
 			this.label1.Text = "Customer";
 			// 
-			// textBox3
-			// 
-			this.textBox3.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.textBox3.Location = new System.Drawing.Point(255, 153);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.ReadOnly = true;
-			this.textBox3.Size = new System.Drawing.Size(385, 31);
-			this.textBox3.TabIndex = 175;
-			// 
 			// label4
 			// 
 			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -276,11 +329,11 @@
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label4.ForeColor = System.Drawing.Color.White;
-			this.label4.Location = new System.Drawing.Point(262, 128);
+			this.label4.Location = new System.Drawing.Point(261, 156);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(152, 22);
+			this.label4.Size = new System.Drawing.Size(90, 22);
 			this.label4.TabIndex = 174;
-			this.label4.Text = "Search Product";
+			this.label4.Text = "Products";
 			// 
 			// label3
 			// 
@@ -296,50 +349,21 @@
 			this.label3.TabIndex = 176;
 			this.label3.Text = "Categories";
 			// 
-			// button1
-			// 
-			this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.button1.FlatAppearance.BorderSize = 0;
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.ForeColor = System.Drawing.Color.LightGray;
-			this.button1.Location = new System.Drawing.Point(331, 674);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(150, 40);
-			this.button1.TabIndex = 177;
-			this.button1.Text = "Sale";
-			this.button1.UseVisualStyleBackColor = false;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// ProductName
-			// 
-			this.ProductName.HeaderText = "ProductName";
-			this.ProductName.Name = "ProductName";
-			this.ProductName.ReadOnly = true;
-			// 
-			// Price
-			// 
-			this.Price.HeaderText = "Price";
-			this.Price.Name = "Price";
-			this.Price.ReadOnly = true;
-			// 
 			// Sales
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-			this.ClientSize = new System.Drawing.Size(1197, 741);
-			this.Controls.Add(this.button1);
+			this.ClientSize = new System.Drawing.Size(1244, 741);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.textBox3);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.Sale_Customer);
 			this.Controls.Add(this.LBoughtItems);
-			this.Controls.Add(this.textBox1);
-			this.Controls.Add(this.Expense_Amount);
-			this.Controls.Add(this.Expense_ID);
-			this.Controls.Add(this.Expense_Name);
+			this.Controls.Add(this.Sale_Balance);
+			this.Controls.Add(this.Sale_PaidAmount);
+			this.Controls.Add(this.Sale_TotalAmount);
+			this.Controls.Add(this.Sale_Discount);
 			this.Controls.Add(this.Grd_Sale);
 			this.Controls.Add(this.Sale_Button);
 			this.Controls.Add(this.panel2);
@@ -368,18 +392,21 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label label2;
 		private Bunifu.Framework.UI.BunifuCustomDataGrid Grd_Sale;
-		private System.Windows.Forms.TextBox Expense_Name;
-		private System.Windows.Forms.TextBox Expense_ID;
-        private System.Windows.Forms.TextBox Expense_Amount;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox Sale_Discount;
+		private System.Windows.Forms.TextBox Sale_TotalAmount;
+        private System.Windows.Forms.TextBox Sale_PaidAmount;
+		private System.Windows.Forms.TextBox Sale_Balance;
 		private System.Windows.Forms.Label LBoughtItems;
 		private System.Windows.Forms.ComboBox Sale_Customer;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+		private System.Windows.Forms.DataGridViewButtonColumn Update;
+		private System.Windows.Forms.DataGridViewButtonColumn Decrease;
+		private System.Windows.Forms.DataGridViewButtonColumn Delete;
 	}
 }
