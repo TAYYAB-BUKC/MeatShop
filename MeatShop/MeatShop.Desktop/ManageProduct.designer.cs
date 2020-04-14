@@ -186,7 +186,7 @@
 			this.Grd_Product.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
 			this.Grd_Product.Size = new System.Drawing.Size(676, 378);
 			this.Grd_Product.TabIndex = 89;
-			this.Grd_Product.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Product_CellContentClick);
+			this.Grd_Product.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Product_CellClick);
 			// 
 			// Product_Name
 			// 

@@ -52,8 +52,22 @@ namespace MeatShop
 			}
 		}
 
+		private void Expense_Search_TextChanged(object sender, EventArgs e)
+		{
+			if (Expense_Search.Text.Any(c => !char.IsLetter(c) && !char.IsWhiteSpace(c)))
+			{
+				//invalid
+				MessageBox.Show("please type a valid Name", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				//valid
+				expense.SearchExpense(Grd_Expense, Expense_Search.Text);
+			}
 
-		private void Grd_Expense_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		}
+
+		private void Grd_Expense_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
 			try
 			{
@@ -72,22 +86,7 @@ namespace MeatShop
 			{
 				MessageBox.Show("Please Choose the Cell....", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-		}
-
-		private void Expense_Search_TextChanged(object sender, EventArgs e)
-		{
-			if (Expense_Search.Text.Any(c => !char.IsLetter(c) && !char.IsWhiteSpace(c)))
-			{
-				//invalid
-				MessageBox.Show("please type a valid Name", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-			else
-			{
-				//valid
-				expense.SearchExpense(Grd_Expense, Expense_Search.Text);
-			}
 
 		}
-
 	}
 }

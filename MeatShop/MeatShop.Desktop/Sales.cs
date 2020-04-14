@@ -1,4 +1,5 @@
 ﻿using MeatShop.Database;
+using MeatShop.Desktop.Properties;
 using System;
 using System.Data.SQLite;
 using System.Drawing;
@@ -24,7 +25,9 @@ namespace MeatShop
 			CreateAllProducts(242, 190);
 			CreateCategories(16,190);
 			customer.FillCombo(Sale_Customer);
+		
 		}
+
 
 		private void CreateAllProducts(int x,int y)
 		{
@@ -47,7 +50,7 @@ namespace MeatShop
 						//pictureBox.Name = (i + 1).ToString();
 						//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
 						pictureBox.Name = products.Name[i];
-						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-"+ Convert.ToString(products.Price[i]);						
+						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]);
 						pictureBox.Location = new Point(px, py);
 						pictureBox.Size = new Size(185, 104);
 						pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
@@ -77,7 +80,7 @@ namespace MeatShop
 							//x += 199;
 							//px += 199;
 							px += 175;
-
+							
 							PictureBox pictureBox = new PictureBox();
 							pictureBox.Location = new Point(px, py);
 							pictureBox.Size = new Size(185, 104);
@@ -94,14 +97,7 @@ namespace MeatShop
 							}
 							pictureBox.Click += new EventHandler(MyClickEvent);
 
-							//Button button = new Button();
-							//button.Location = new Point(x, y);
-							//button.Text = "button"+ (i + 1).ToString();
-							//button.Size = new Size(185, 43);
-							//button.Font = new Font("Microsoft Sans Serif", 10);
-
 							panel.Controls.Add(pictureBox);
-							//panel3.Controls.Add(button);
 						}
 						else
 						{
@@ -128,14 +124,7 @@ namespace MeatShop
 							pictureBox.MouseHover += new EventHandler(MyMouseHover);
 							pictureBox.Click += new EventHandler(MyClickEvent);
 
-							//Button button = new Button();
-							//button.Location = new Point(x, y);
-							//button.Text = "button" + (i + 1).ToString();
-							//button.Size = new Size(185, 43);
-							//button.Font = new Font("Microsoft Sans Serif", 10);
-
 							panel.Controls.Add(pictureBox);
-							//panel3.Controls.Add(button);
 						}
 					}
 				}

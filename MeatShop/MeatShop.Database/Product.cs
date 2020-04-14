@@ -58,16 +58,16 @@ namespace MeatShop.Database
 					{
 						string path = Path.GetDirectoryName(Application.StartupPath);
 						string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
-						finalPath = newpath + "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
-						File.Copy(imageurl, finalPath);
-
+						string relativepPath = "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
+						finalPath = newpath + relativepPath;
+						File.Copy(imageurl, finalPath); 
 						using (SQLiteConnection sql = new SQLiteConnection(con))
 						{
 							sql.Open();
 							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
 							cmd.Parameters.AddWithValue("@Name", name);
 							cmd.Parameters.AddWithValue("@Price", price);
-							cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
+							cmd.Parameters.AddWithValue("@ImageUrl", relativepPath);
 							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 							cmd.Parameters.AddWithValue("@UnitID", unitID);
 							cmd.ExecuteNonQuery();
@@ -239,18 +239,19 @@ namespace MeatShop.Database
 				else
 				{
 					string finalPath = String.Empty;
+					string path = Path.GetDirectoryName(Application.StartupPath);
+					string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
 
-					if (File.Exists(oldPath))
+					if (File.Exists(newpath + oldPath))
 					{
 						try
 						{
 							GC.Collect();
 							GC.WaitForPendingFinalizers();
-							File.Delete(oldPath);
+							File.Delete(newpath + oldPath);
 
-							string path = Path.GetDirectoryName(Application.StartupPath);
-							string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
-							finalPath = newpath + "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
+							string relativepPath = "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
+							finalPath = newpath + relativepPath;
 							File.Copy(newPath, finalPath);
 
 							using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -259,7 +260,7 @@ namespace MeatShop.Database
 								SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
 								cmd.Parameters.AddWithValue("@Name", name);
 								cmd.Parameters.AddWithValue("@Price", price);
-								cmd.Parameters.AddWithValue("@ImageUrl", finalPath);
+								cmd.Parameters.AddWithValue("@ImageUrl", relativepPath);
 								cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 								cmd.Parameters.AddWithValue("@UnitID", unitID);
 								cmd.Parameters.AddWithValue("@Id", id);
@@ -286,11 +287,14 @@ namespace MeatShop.Database
 			{
 				if (!IsFileLocked(path))
 				{
-					if (File.Exists(oldPath))
+					string p = Path.GetDirectoryName(Application.StartupPath);
+					string newpath = p.Substring(0, (Application.StartupPath.Length - 10));
+
+					if (File.Exists(newpath + oldPath))
 					{
 						GC.Collect();
 						GC.WaitForPendingFinalizers();
-						File.Delete(oldPath);
+						File.Delete(newpath + oldPath);
 						isFileDeleted = true;
 					}
 				}

@@ -165,6 +165,9 @@
 			this.Grd_Sale.AllowUserToDeleteRows = false;
 			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
 			this.Grd_Sale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			this.Grd_Sale.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.Grd_Sale.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Sale.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Sale.BorderStyle = System.Windows.Forms.BorderStyle.None;

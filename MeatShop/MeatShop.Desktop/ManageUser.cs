@@ -76,7 +76,6 @@ namespace MeatShop
 
 		private void Grd_User_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
-
 			try
 			{
 				int index = e.RowIndex;

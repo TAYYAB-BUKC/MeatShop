@@ -63,21 +63,22 @@ namespace MeatShop
 
 		private void Grd_User_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
-
 			try
 			{
 				int index = e.RowIndex;
-				if (index > -1)
+				if (index >= 0)
 				{
 					DataGridViewRow selectedRow = Grd_Category.Rows[index];
 					Category_ID.Text = Grd_Category.Rows[e.RowIndex].Cells[0].Value.ToString();
 					Category_Name.Text = selectedRow.Cells[1].Value.ToString();
 				}
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				MessageBox.Show("Please Choose the Cell....", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//	MessageBox.Show("Please Choose the Cell....", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+
 		}
 
 		private void Delete_Button_Click(object sender, EventArgs e)

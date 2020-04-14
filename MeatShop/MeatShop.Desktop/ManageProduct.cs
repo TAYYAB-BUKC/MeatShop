@@ -49,11 +49,13 @@ namespace MeatShop
 				if (Product_ID.Text == String.Empty)
 				{
 					MessageBox.Show("Please select the product first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
 				}
 				else if (MessageBox.Show("Are you sure you want to Delete this product?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
-					FileInfo fileInfo = new FileInfo(oldPath);
+					string path = Path.GetDirectoryName(Application.StartupPath);
+					string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+
+					FileInfo fileInfo = new FileInfo(newpath + oldPath);
 					product.DeleteProduct(Convert.ToInt32(Product_ID.Text),fileInfo,oldPath);
 					ClearData();
 					product.GetData(Grd_Product, "select * from Products");
@@ -152,12 +154,12 @@ namespace MeatShop
 			}
 		}
 
-		private void Grd_Product_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		private void Grd_Product_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
 			try
 			{
 				int index = e.RowIndex;
-				if (index > -1)
+				if (index >= 0)
 				{
 					DataGridViewRow selectedRow = Grd_Product.Rows[index];
 					Product_ID.Text = Grd_Product.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -178,7 +180,11 @@ namespace MeatShop
 					//	oldPath = selectedRow.Cells[3].Value.ToString();
 					//}
 
-					using (var fs = new System.IO.FileStream(selectedRow.Cells[3].Value.ToString(), FileMode.Open))
+					//using (var fs = new System.IO.FileStream("../Debug/ProductImages/"+selectedRow.Cells[3].Value.ToString(), FileMode.Open))
+					string path = Path.GetDirectoryName(Application.StartupPath);
+					string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+
+					using (var fs = new System.IO.FileStream(newpath + selectedRow.Cells[3].Value.ToString(), FileMode.Open))
 					{
 						var bmp = new Bitmap(fs);
 						Product_Image.Image = (Bitmap)bmp.Clone();
@@ -190,9 +196,10 @@ namespace MeatShop
 			}
 			catch (Exception ex)
 			{
-			//	MessageBox.Show("Please Choose the Cell....", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//	MessageBox.Show("Please Choose the Cell....", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+
 		}
 	}
 }

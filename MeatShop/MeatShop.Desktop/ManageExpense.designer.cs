@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.label10 = new System.Windows.Forms.Label();
 			this.Expense_Comment = new System.Windows.Forms.TextBox();
 			this.Delete_Button = new System.Windows.Forms.Button();
@@ -178,20 +178,20 @@
 			// 
 			this.Grd_Expense.AllowUserToAddRows = false;
 			this.Grd_Expense.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Expense.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Expense.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.Grd_Expense.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Expense.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Expense.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Expense.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle4.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Expense.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Expense.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.Grd_Expense.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Expense.DoubleBuffered = true;
 			this.Grd_Expense.EnableHeadersVisualStyles = false;
@@ -203,7 +203,7 @@
 			this.Grd_Expense.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
 			this.Grd_Expense.Size = new System.Drawing.Size(676, 287);
 			this.Grd_Expense.TabIndex = 89;
-			this.Grd_Expense.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Expense_CellContentClick);
+			this.Grd_Expense.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Expense_CellClick);
 			// 
 			// Expense_Name
 			// 
