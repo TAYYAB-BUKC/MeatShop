@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace MeatShop.Database
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		bool isError = false;
 
-		public bool AddProduct(string name, int price, string imageurl, int categoryID, int unitID)
+		public bool AddProduct(string name, int price, string imageurl, int categoryID, int unitID,char shortCode)
 		{
 			if (name == "" || price < -1 || categoryID < 0 || unitID < 0)
 			{
@@ -33,12 +34,13 @@ namespace MeatShop.Database
 						using (SQLiteConnection sql = new SQLiteConnection(con))
 						{
 							sql.Open();
-							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
+							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID,ShortCode) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID,@ShortCode)", sql);
 							cmd.Parameters.AddWithValue("@Name", name);
 							cmd.Parameters.AddWithValue("@Price", price);
 							cmd.Parameters.AddWithValue("@ImageUrl", imageurl);
 							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.Parameters.AddWithValue("@ShortCode", shortCode);
 							cmd.ExecuteNonQuery();
 							MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 							sql.Close();
@@ -64,12 +66,13 @@ namespace MeatShop.Database
 						using (SQLiteConnection sql = new SQLiteConnection(con))
 						{
 							sql.Open();
-							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID)", sql);
+							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID,ShortCode) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID,@ShortCode)", sql);
 							cmd.Parameters.AddWithValue("@Name", name);
 							cmd.Parameters.AddWithValue("@Price", price);
 							cmd.Parameters.AddWithValue("@ImageUrl", relativepPath);
 							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.Parameters.AddWithValue("@ShortCode", shortCode);
 							cmd.ExecuteNonQuery();
 							MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 							sql.Close();
@@ -651,6 +654,102 @@ namespace MeatShop.Database
 			}
 		}
 
+		public Image DrawText(String text, Font font, Color textColor, Color backColor)
+		{
+			//first, create a dummy bitmap just to get a graphics object
+			Image img = new Bitmap(1, 1);
+			Graphics drawing = Graphics.FromImage(img);
+
+			//measure the string to see how big the image needs to be
+			SizeF textSize = drawing.MeasureString(text, font);
+
+			//free up the dummy image and old graphics object
+			img.Dispose();
+			drawing.Dispose();
+
+			//create a new image of the right size
+			img = new Bitmap((int)textSize.Width, (int)textSize.Height);
+
+			drawing = Graphics.FromImage(img);
+
+			//paint the background
+			drawing.Clear(backColor);
+
+			//create a brush for the text
+			Brush textBrush = new SolidBrush(textColor);
+
+			drawing.DrawString(text, font, textBrush, 0, 0);
+
+			drawing.Save();
+
+			textBrush.Dispose();
+			drawing.Dispose();
+
+			return img;
+
+		}
+
+		public bool IsShortExist(char c)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				sql.Open();
+				SQLiteCommand cmd = new SQLiteCommand("select ShortCode from Products", sql);
+				SQLiteDataReader reader = cmd.ExecuteReader(); 
+				while (reader.Read())
+				{
+					string s = reader.GetString(0);
+					char ch = Convert.ToChar(s);
+					if (ch == c)
+					{
+						sql.Close();
+						return true;
+					}
+				}
+				sql.Close();
+				return false; 
+			}
+		}
+
+		public SingleProductEntity GetProduct(char ch)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,Price from Products where ShortCode = @ShortCode", sql);
+					cmd.Parameters.AddWithValue("@ShortCode", ch.ToString());
+					SQLiteDataReader reader = cmd.ExecuteReader();
+					if (reader.HasRows)
+					{
+						SingleProductEntity productEntity = new SingleProductEntity();
+						while (reader.Read())
+						{
+							productEntity.Id = reader.GetInt32(0);
+							productEntity.Name = reader.GetString(1);
+							productEntity.Price = reader.GetInt32(2);
+						}
+						sql.Close();
+						return productEntity;
+
+					}
+					else
+					{
+						sql.Close();
+						return new SingleProductEntity();
+					}
+
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sql.Close();
+					return new SingleProductEntity();
+				}
+
+			}
+		}
 	}
 
 
@@ -666,7 +765,13 @@ namespace MeatShop.Database
 		public int[] Price { get; set; }
 		public string[] Name { get; set; }
 		public string[] ImageUrl { get; set; }
-
-
 	}
+
+	public class SingleProductEntity
+	{
+		public int Id { get; set; }
+		public int Price { get; set; }
+		public string Name { get; set; }
+	}
+
 }

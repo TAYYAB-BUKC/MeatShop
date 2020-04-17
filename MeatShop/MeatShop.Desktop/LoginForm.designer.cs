@@ -69,9 +69,9 @@
 			this.Password.Name = "Password";
 			this.Password.Size = new System.Drawing.Size(369, 40);
 			this.Password.TabIndex = 121;
-			this.Password.Text = "Enter password";
 			this.Password.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
 			this.Password.Click += new System.EventHandler(this.Password_Click);
+			this.Password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Password_KeyPress);
 			// 
 			// Username
 			// 
@@ -89,7 +89,6 @@
 			this.Username.Name = "Username";
 			this.Username.Size = new System.Drawing.Size(369, 40);
 			this.Username.TabIndex = 120;
-			this.Username.Text = "Enter username";
 			this.Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
 			this.Username.Click += new System.EventHandler(this.Email_Click);
 			// 

@@ -98,6 +98,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AddStock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +108,10 @@
       <DependentUpon>AddStock.cs</DependentUpon>
     </Compile>
     <Compile Include="AddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUnit - Copy.designer - Copy.cs">
+      <DependentUpon>NewCustomer.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddUnit - Copy.designer.cs">
@@ -190,6 +197,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="NewCustomer.resx">
+      <DependentUpon>NewCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </EmbeddedResource>

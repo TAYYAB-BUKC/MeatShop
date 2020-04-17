@@ -43,6 +43,8 @@
 			this.Product_Category = new System.Windows.Forms.ComboBox();
 			this.Product_Unit = new System.Windows.Forms.ComboBox();
 			this.Product_Image = new System.Windows.Forms.PictureBox();
+			this.Product_ShortCode = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.Product_Image)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -171,7 +173,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.Color.White;
-			this.label2.Location = new System.Drawing.Point(316, 205);
+			this.label2.Location = new System.Drawing.Point(567, 212);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(70, 22);
 			this.label2.TabIndex = 164;
@@ -184,7 +186,7 @@
 			this.Browse_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.Browse_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Browse_Button.ForeColor = System.Drawing.Color.LightGray;
-			this.Browse_Button.Location = new System.Drawing.Point(236, 256);
+			this.Browse_Button.Location = new System.Drawing.Point(487, 263);
 			this.Browse_Button.Name = "Browse_Button";
 			this.Browse_Button.Size = new System.Drawing.Size(150, 40);
 			this.Browse_Button.TabIndex = 166;
@@ -218,12 +220,37 @@
 			// 
 			// Product_Image
 			// 
-			this.Product_Image.Location = new System.Drawing.Point(407, 205);
+			this.Product_Image.Location = new System.Drawing.Point(658, 212);
 			this.Product_Image.Name = "Product_Image";
 			this.Product_Image.Size = new System.Drawing.Size(249, 200);
 			this.Product_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.Product_Image.TabIndex = 165;
 			this.Product_Image.TabStop = false;
+			// 
+			// Product_ShortCode
+			// 
+			this.Product_ShortCode.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+			this.Product_ShortCode.Location = new System.Drawing.Point(180, 209);
+			this.Product_ShortCode.MaxLength = 1;
+			this.Product_ShortCode.Name = "Product_ShortCode";
+			this.Product_ShortCode.Size = new System.Drawing.Size(252, 31);
+			this.Product_ShortCode.TabIndex = 170;
+			this.Product_ShortCode.Click += new System.EventHandler(this.Product_ShortCode_Click);
+			this.Product_ShortCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Product_ShortCode_KeyPress);
+			// 
+			// label6
+			// 
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label6.ForeColor = System.Drawing.Color.White;
+			this.label6.Location = new System.Drawing.Point(43, 212);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(113, 22);
+			this.label6.TabIndex = 169;
+			this.label6.Text = "Short Code";
 			// 
 			// AddProduct
 			// 
@@ -231,6 +258,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1058, 531);
+			this.Controls.Add(this.Product_ShortCode);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.Product_Unit);
 			this.Controls.Add(this.Product_Category);
 			this.Controls.Add(this.Browse_Button);
@@ -271,5 +300,7 @@
         private System.Windows.Forms.Button Browse_Button;
 		private System.Windows.Forms.ComboBox Product_Category;
 		private System.Windows.Forms.ComboBox Product_Unit;
+		private System.Windows.Forms.TextBox Product_ShortCode;
+		private System.Windows.Forms.Label label6;
 	}
 }

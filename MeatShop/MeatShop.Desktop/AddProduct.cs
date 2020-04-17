@@ -27,10 +27,10 @@ namespace MeatShop
 			InitializeComponent();
 			unit.FillCombo(Product_Unit);
 			category.FillCombo(Product_Category);
-			string path = Path.GetDirectoryName(Application.StartupPath);
-			string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
-			finalPath = newpath + "\\Resources\\Default_Image_Thumbnail.png";
-			Product_Image.Image = Image.FromFile(finalPath);
+			//string path = Path.GetDirectoryName(Application.StartupPath);
+			//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+			//finalPath = newpath + "\\Resources\\Default_Image_Thumbnail.png";
+			//Product_Image.Image = Image.FromFile(finalPath);
 		}
 		private void Save_Button_Click(object sender, EventArgs e)
 		{
@@ -50,16 +50,30 @@ namespace MeatShop
 				{
 					if (isImageSelected)
 					{
-						if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue)))
+						if (Product_ShortCode.BackColor != Color.Red)
 						{
-							ClearData();
+							if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue), Convert.ToChar(Product_ShortCode.Text)))
+							{
+								ClearData();
+							}
+						}
+						else
+						{
+							MessageBox.Show("please type valid ShortCode or type nothing", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						}
 					}
 					else
 					{
-						if (product.AddProduct(Product_Name.Text, price, finalPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue)))
+						if (Product_ShortCode.BackColor != Color.Red)
 						{
-							ClearData();
+							if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue), Convert.ToChar(Product_ShortCode.Text)))
+							{
+								ClearData();
+							}
+						}
+						else
+						{
+							MessageBox.Show("please type valid ShortCode or type nothing", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						}
 					}
 				}
@@ -84,10 +98,11 @@ namespace MeatShop
 			Product_Price.Text = "";
 			Product_Category.Text = "";
 			Product_Unit.Text = "";
-			string path = Path.GetDirectoryName(Application.StartupPath);
-			string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
-			string finalPath = newpath + "\\Resources\\Default_Image_Thumbnail.png";
-			Product_Image.Image = Image.FromFile(finalPath);
+			//string path = Path.GetDirectoryName(Application.StartupPath);
+			//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+			//string finalPath = newpath + "\\Resources\\Default_Image_Thumbnail.png";
+			//Product_Image.Image = Image.FromFile(finalPath);
+			Product_Image.Image = null;
 			isImageSelected = false;
 			imageUrl = "";
 
@@ -106,6 +121,32 @@ namespace MeatShop
 					imageUrl = opf.FileName;
 				}
 			}
+		}
+
+		private void Product_ShortCode_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			//int isNumber = 0;
+			//e.Handled = !int.TryParse(e.KeyChar.ToString(), out isNumber);
+
+			if (char.IsLetter(e.KeyChar))
+			{
+				//e.Handled = true;
+				if (product.IsShortExist(e.KeyChar))
+				{
+					MessageBox.Show("ShortCode already exist try another one", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Product_ShortCode.BackColor = Color.Red;
+				}
+				else
+				{
+					Product_ShortCode.BackColor = SystemColors.Window;
+				}
+			}
+			
+		}
+
+		private void Product_ShortCode_Click(object sender, EventArgs e)
+		{
+			Product_ShortCode.BackColor = SystemColors.Window;
 		}
 	}
 }

@@ -147,7 +147,7 @@ namespace MeatShop.Database
 
 		public CategoryEntity GetCategories()
 		{
-			DataTable dataTable = GetData("select Id,Name from Categories");
+			DataTable dataTable = GetData("select DISTINCT(Categories.Id),Categories.Name from Categories inner join Products on Products.CategoryID = Categories.Id");
 			CategoryEntity categoryEntity = new CategoryEntity();
 			categoryEntity.Id = new int[dataTable.Rows.Count];
 			categoryEntity.Name = new string[dataTable.Rows.Count];
