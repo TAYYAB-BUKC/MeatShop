@@ -211,6 +211,7 @@ namespace MeatShop.Database
 					da.Fill(dt);
 					dataGrid.DataSource = dt;
 					sql.Close();
+					dataGrid.Columns["CategoryID"].Visible = false;
 				}
 			}
 			catch (Exception ex)
@@ -448,20 +449,21 @@ namespace MeatShop.Database
 
 		public void DeleteProduct(int id, FileInfo path, string oldPath)
 		{
-			bool isFileDeleted = false;
 			try
 			{
-				if (!IsFileLocked(path))
+				if (path != null)
 				{
-					string p = Path.GetDirectoryName(Application.StartupPath);
-					string newpath = p.Substring(0, (Application.StartupPath.Length - 10));
-
-					if (File.Exists(newpath + oldPath))
+					if (!IsFileLocked(path))
 					{
-						GC.Collect();
-						GC.WaitForPendingFinalizers();
-						File.Delete(newpath + oldPath);
-						isFileDeleted = true;
+						string p = Path.GetDirectoryName(Application.StartupPath);
+						string newpath = p.Substring(0, (Application.StartupPath.Length - 10));
+
+						if (File.Exists(newpath + oldPath))
+						{
+							GC.Collect();
+							GC.WaitForPendingFinalizers();
+							File.Delete(newpath + oldPath);
+						}
 					}
 				}
 			}
@@ -471,21 +473,14 @@ namespace MeatShop.Database
 			}
 			finally
 			{
-				if (isFileDeleted)
+				using (SQLiteConnection sql = new SQLiteConnection(con))
 				{
-					using (SQLiteConnection sql = new SQLiteConnection(con))
-					{
-						sql.Open();
-						SQLiteCommand cmd = new SQLiteCommand("delete from Products where Id = @Id", sql);
-						cmd.Parameters.AddWithValue("@Id", id);
-						cmd.ExecuteNonQuery();
-						MessageBox.Show("Product Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-						sql.Close();
-					}
-				}
-				else
-				{
-					MessageBox.Show("Sorry file is used by another process so please try again later or try to close the application", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("delete from Products where Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Product Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
 				}
 			}
 		}

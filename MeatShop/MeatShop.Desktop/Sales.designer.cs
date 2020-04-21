@@ -38,6 +38,13 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.Grd_Sale = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.P = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.HPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.Sale_Discount = new System.Windows.Forms.TextBox();
 			this.Sale_TotalAmount = new System.Windows.Forms.TextBox();
 			this.Sale_PaidAmount = new System.Windows.Forms.TextBox();
@@ -63,13 +70,6 @@
 			this.Sale_NumPad = new System.Windows.Forms.CheckBox();
 			this.ReturnLabel = new System.Windows.Forms.Label();
 			this.BtnBack = new System.Windows.Forms.Button();
-			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.P = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.HPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)(this.Grd_Sale)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -201,6 +201,55 @@
 			this.Grd_Sale.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Sale_CellContentClick);
 			this.Grd_Sale.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Sale_CellEndEdit);
 			// 
+			// Id
+			// 
+			this.Id.HeaderText = "ID";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			this.Id.Visible = false;
+			// 
+			// ProductName
+			// 
+			this.ProductName.HeaderText = "ProductName";
+			this.ProductName.Name = "ProductName";
+			this.ProductName.ReadOnly = true;
+			// 
+			// P
+			// 
+			this.P.HeaderText = "Price";
+			this.P.Name = "P";
+			this.P.ReadOnly = true;
+			// 
+			// Quantity
+			// 
+			this.Quantity.HeaderText = "Quantity";
+			this.Quantity.MaxInputLength = 999999;
+			this.Quantity.Name = "Quantity";
+			this.Quantity.ReadOnly = true;
+			// 
+			// HPrice
+			// 
+			this.HPrice.HeaderText = "HPrice";
+			this.HPrice.Name = "HPrice";
+			this.HPrice.ReadOnly = true;
+			this.HPrice.Visible = false;
+			// 
+			// Unit
+			// 
+			this.Unit.HeaderText = "Unit";
+			this.Unit.Name = "Unit";
+			this.Unit.ReadOnly = true;
+			this.Unit.Visible = false;
+			// 
+			// Delete
+			// 
+			this.Delete.HeaderText = "Delete";
+			this.Delete.Name = "Delete";
+			this.Delete.ReadOnly = true;
+			this.Delete.Text = "Remove item";
+			this.Delete.ToolTipText = "Remove item";
+			this.Delete.UseColumnTextForButtonValue = true;
+			// 
 			// Sale_Discount
 			// 
 			this.Sale_Discount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
@@ -227,6 +276,7 @@
 			// 
 			this.Sale_PaidAmount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.Sale_PaidAmount.Location = new System.Drawing.Point(1034, 580);
+			this.Sale_PaidAmount.MaxLength = 6;
 			this.Sale_PaidAmount.Name = "Sale_PaidAmount";
 			this.Sale_PaidAmount.Size = new System.Drawing.Size(134, 31);
 			this.Sale_PaidAmount.TabIndex = 96;
@@ -546,59 +596,10 @@
 			this.BtnBack.UseVisualStyleBackColor = false;
 			this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
 			// 
-			// Id
-			// 
-			this.Id.HeaderText = "ID";
-			this.Id.Name = "Id";
-			this.Id.ReadOnly = true;
-			this.Id.Visible = false;
-			// 
-			// ProductName
-			// 
-			this.ProductName.HeaderText = "ProductName";
-			this.ProductName.Name = "ProductName";
-			this.ProductName.ReadOnly = true;
-			// 
-			// P
-			// 
-			this.P.HeaderText = "Price";
-			this.P.Name = "P";
-			this.P.ReadOnly = true;
-			// 
-			// Quantity
-			// 
-			this.Quantity.HeaderText = "Quantity";
-			this.Quantity.MaxInputLength = 999999;
-			this.Quantity.Name = "Quantity";
-			this.Quantity.ReadOnly = true;
-			// 
-			// HPrice
-			// 
-			this.HPrice.HeaderText = "HPrice";
-			this.HPrice.Name = "HPrice";
-			this.HPrice.ReadOnly = true;
-			this.HPrice.Visible = false;
-			// 
-			// Unit
-			// 
-			this.Unit.HeaderText = "Unit";
-			this.Unit.Name = "Unit";
-			this.Unit.ReadOnly = true;
-			this.Unit.Visible = false;
-			// 
-			// Delete
-			// 
-			this.Delete.HeaderText = "Delete";
-			this.Delete.Name = "Delete";
-			this.Delete.ReadOnly = true;
-			this.Delete.Text = "Remove item";
-			this.Delete.ToolTipText = "Remove item";
-			this.Delete.UseColumnTextForButtonValue = true;
-			// 
 			// Sales
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1244, 767);
 			this.Controls.Add(this.BtnBack);

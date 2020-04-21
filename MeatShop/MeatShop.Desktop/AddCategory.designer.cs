@@ -119,10 +119,10 @@
 			this.Save_Button.UseVisualStyleBackColor = false;
 			this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
 			// 
-			// Add_Category
+			// AddCategory
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(995, 270);
 			this.Controls.Add(this.Save_Button);
@@ -132,7 +132,7 @@
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.button5);
-			this.Name = "Add_Category";
+			this.Name = "AddCategory";
 			this.Text = "Add Category";
 			this.ResumeLayout(false);
 			this.PerformLayout();

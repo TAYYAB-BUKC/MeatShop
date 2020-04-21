@@ -50,6 +50,20 @@ namespace MeatShop.Database
 			}
 		}
 
+		public int GetID()
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				sql.Open();
+				SQLiteCommand cmd = new SQLiteCommand("select max(Id) from Customer", sql);
+				int ID = Convert.ToInt32(cmd.ExecuteScalar());
+				sql.Close();
+				return ID;
+			}
+
+
+		}
+
 		public bool IsPhoneValid(string phone)
 		{
 			if (phone != null && phone.Length > 0 && !Regex.IsMatch(phone, "^[0-9]{4}-[0-9]{7}$"))

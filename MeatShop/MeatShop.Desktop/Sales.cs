@@ -16,9 +16,11 @@ namespace MeatShop
 		Panel categoryPanel;
 		Panel productPanel;
 		int totalAmount = 0;
-		int price = 0;
+		//int price = 0;
 		bool releaseKeys = false;
+		bool firstTime = false;
 		//clsResize _form_resize;
+
 
 		public Sales()
 		{
@@ -567,11 +569,12 @@ namespace MeatShop
 			}
 			else
 			{
-				if (unit == "Unit" )
+				if (unit == "Unit")
 				{
-					Grd_Sale.Rows.Add(id, pictureBox.Name, price,"", price, unit);
+					Grd_Sale.Rows.Add(id, pictureBox.Name, price,"1", price, unit);
 					DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
 					selectedRow.Cells[1].Selected = true;
+					firstTime = true;
 					//this.price = Convert.ToInt32(price);
 					//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + Convert.ToInt32(price));
 				}
@@ -695,7 +698,7 @@ namespace MeatShop
 							Grd_Sale.Rows.RemoveAt(index);
 							Sale_PaidAmount.Text = "";
 							ReturnLabel.Text = "";
-							Sale_Discount.Text = "";
+							Sale_Discount.Text = "0";
 							Sale_Balance.Text = "";
 							this.Focus();
 							this.KeyPreview = true;
@@ -715,7 +718,7 @@ namespace MeatShop
 							Grd_Sale.Rows.RemoveAt(index);
 							Sale_PaidAmount.Text = "";
 							ReturnLabel.Text = "";
-							Sale_Discount.Text = "";
+							Sale_Discount.Text = "0";
 							Sale_Balance.Text = "";
 							this.Focus();
 							this.KeyPreview = true;
@@ -791,7 +794,7 @@ namespace MeatShop
 		{
 			Grd_Sale.Rows.Clear();
 			Sale_Balance.Text = "";
-			Sale_Discount.Text = "";
+			Sale_Discount.Text = "0";
 			Sale_PaidAmount.Text = "";
 			Sale_TotalAmount.Text = "";
 			ReturnLabel.Text = "";
@@ -1149,7 +1152,7 @@ namespace MeatShop
 						int amount = netAmount - Convert.ToInt32(Sale_PaidAmount.Text);
 						if (amount < 0)
 						{
-							ReturnLabel.Text = "Return him " + Math.Abs(amount);
+							ReturnLabel.Text = "Return Rs. " + Math.Abs(amount);
 							check = true;
 						}
 						if (check)

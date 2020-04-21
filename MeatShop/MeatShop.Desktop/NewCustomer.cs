@@ -28,7 +28,9 @@ namespace MeatShop
             {
                 if (customer.AddCustomer(Customer_Name.Text, Customer_Phone.Text))
                 {
+                    int id = customer.GetID();
                     customer.FillCombo(sales.Sale_Customer);
+                    sales.Sale_Customer.SelectedValue = id;
                     this.Close();
                 }
             }
