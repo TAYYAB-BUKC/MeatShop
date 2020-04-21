@@ -36,7 +36,7 @@ namespace MeatShop
             panelToolsSubMenu.Visible = false;
             User_Panel.Visible = false;
             Category_Panel.Visible = false;
-            Units_Panel.Visible = false;
+            //Units_Panel.Visible = false;
             Product_Panel.Visible = false;
             Customer_Panel.Visible = false;
 
@@ -314,7 +314,7 @@ namespace MeatShop
 
         private void Unit_Click(object sender, EventArgs e)
         {
-            showSubMenu(Units_Panel);
+            //showSubMenu(Units_Panel);
         }
 
         private void button8_Click_1(object sender, EventArgs e)

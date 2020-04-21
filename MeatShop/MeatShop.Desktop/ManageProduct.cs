@@ -23,11 +23,12 @@ namespace MeatShop
 		Category category = new Category();
 		Unit unit = new Unit();
 		Product product = new Product();
+		private char oldShortCode;
 
 		public ManageProduct()
 		{
 			InitializeComponent();
-			unit.FillCombo(Product_Unit);
+			//unit.FillCombo(Product_Unit);
 			category.FillCombo(Product_Category);
 			product.GetData(Grd_Product, "select * from Products");
 		}
@@ -38,8 +39,10 @@ namespace MeatShop
 			Product_Name.Text = "";
 			Product_Price.Text = "";
 			Product_Image.Image = null;
-			unit.FillCombo(Product_Unit);
+			//unit.FillCombo(Product_Unit);
+			Product_Unit.SelectedIndex = 0;
 			category.FillCombo(Product_Category);
+			Product_ShortCode.Text = "";
 		}
 
 		private void Delete_Button_Click(object sender, EventArgs e)
@@ -92,19 +95,56 @@ namespace MeatShop
 						if (isImageUpdated)
 						{
 							//Delete old file first then update 
-							if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, oldPath, newPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue)))
+							if (Product_ShortCode.BackColor != Color.Red)
 							{
-								ClearData();
-								product.GetData(Grd_Product, "select * from Products");
+								if (Product_ShortCode.Text == "")
+								{
+									if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, oldPath, newPath, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, ""))
+									{
+										ClearData();
+										product.GetData(Grd_Product, "select * from Products");
+									}
+								}
+								else
+								{
+									if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, oldPath, newPath, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Product_ShortCode.Text))
+									{
+										ClearData();
+										product.GetData(Grd_Product, "select * from Products");
+									}
+								}
+							}
+							else
+							{
+								MessageBox.Show("please type valid ShortCode or type nothing", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 							}
 						}
 						else
 						{
-							if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, null, oldPath, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue)))
+							if (Product_ShortCode.BackColor != Color.Red)
 							{
-								ClearData();
-								product.GetData(Grd_Product, "select * from Products");
+								if (Product_ShortCode.Text == "")
+								{
+									if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, null, oldPath, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, ""))
+									{
+										ClearData();
+										product.GetData(Grd_Product, "select * from Products");
+									}
+								}
+								else
+								{
+									if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, null, oldPath, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Product_ShortCode.Text))
+									{
+										ClearData();
+										product.GetData(Grd_Product, "select * from Products");
+									}
+								}
 							}
+							else
+							{
+								MessageBox.Show("please type valid ShortCode or type nothing", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							}
+							
 						}
 					}
 					catch (Exception ex)
@@ -159,38 +199,50 @@ namespace MeatShop
 			try
 			{
 				int index = e.RowIndex;
+				string path = Path.GetDirectoryName(Application.StartupPath);
+				string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
 				if (index >= 0)
 				{
 					DataGridViewRow selectedRow = Grd_Product.Rows[index];
 					Product_ID.Text = Grd_Product.Rows[e.RowIndex].Cells[0].Value.ToString();
 					Product_Name.Text = selectedRow.Cells[1].Value.ToString();
 					Product_Price.Text = selectedRow.Cells[2].Value.ToString();
+					if (selectedRow.Cells[5].Value.ToString() == "Unit")
+					{
+						Product_Unit.SelectedIndex = 1;
+					}
+					else
+					{
+						Product_Unit.SelectedIndex = 0;
+					}
 					Product_Unit.SelectedValue = selectedRow.Cells[5].Value;
 					Product_Category.SelectedValue = selectedRow.Cells[4].Value;
-					//if (selectedRow.Cells[3].Value.ToString() == "")
-					//{
-					//	Product_Image.Image = null;
-					//	oldPath = "";
-					//}
-					//else
-					//{
-					//using (var file = selectedRow.Cells[3].Value.ToString())
-					//{
-					//	Product_Image.Image = file;
-					//	oldPath = selectedRow.Cells[3].Value.ToString();
-					//}
-
-					//using (var fs = new System.IO.FileStream("../Debug/ProductImages/"+selectedRow.Cells[3].Value.ToString(), FileMode.Open))
-					string path = Path.GetDirectoryName(Application.StartupPath);
-					string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
-
-					using (var fs = new System.IO.FileStream(newpath + selectedRow.Cells[3].Value.ToString(), FileMode.Open))
+					if (selectedRow.Cells[3].Value.ToString() == "")
 					{
-						var bmp = new Bitmap(fs);
-						Product_Image.Image = (Bitmap)bmp.Clone();
-						oldPath = selectedRow.Cells[3].Value.ToString();
+						Product_Image.Image = null;
+						oldPath = "";
+					}
+					else
+					{
+						using (var fs = new FileStream(newpath + selectedRow.Cells[3].Value.ToString(), FileMode.Open))
+						{
+							var bmp = new Bitmap(fs);
+							Product_Image.Image = (Bitmap)bmp.Clone();
+							oldPath = selectedRow.Cells[3].Value.ToString();
+						}
 					}
 
+					if (selectedRow.Cells[6].Value.ToString() == "")
+					{
+						Product_ShortCode.Text = selectedRow.Cells[6].Value.ToString();
+						oldShortCode = new char();
+					}
+					else
+					{
+						Product_ShortCode.Text = selectedRow.Cells[6].Value.ToString();
+						oldShortCode = Convert.ToChar(Product_ShortCode.Text);
+					}
+					
 					//}
 				}
 			}
@@ -198,6 +250,60 @@ namespace MeatShop
 			{
 				//	MessageBox.Show("Please Choose the Cell....", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void Product_ShortCode_Click(object sender, EventArgs e)
+		{
+			Product_ShortCode.Text = "";
+			Product_ShortCode.BackColor = SystemColors.Window;
+		}
+
+		private void Product_ShortCode_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (char.IsLetter(e.KeyChar))
+			{
+				//e.Handled = true;
+				if (oldShortCode == e.KeyChar)
+				{
+
+				}
+				else
+				{
+					if (product.IsShortExist(e.KeyChar))
+					{
+						MessageBox.Show("ShortCode already exist try another one", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						Product_ShortCode.BackColor = Color.Red;
+					}
+					else
+					{
+						Product_ShortCode.BackColor = SystemColors.Window;
+					}
+				}
+			}
+			if (!char.IsLetterOrDigit(e.KeyChar))
+			{
+				if (oldShortCode == e.KeyChar)
+				{
+
+				}
+				else
+				{
+					if (product.IsShortExist(e.KeyChar))
+					{
+						MessageBox.Show("ShortCode already exist try another one", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						Product_ShortCode.BackColor = Color.Red;
+					}
+					else
+					{
+						Product_ShortCode.BackColor = SystemColors.Window;
+					}
+				}
+			}
+			if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
 			}
 
 		}

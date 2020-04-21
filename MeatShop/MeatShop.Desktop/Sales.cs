@@ -1,7 +1,5 @@
 ﻿using MeatShop.Database;
-using MeatShop.Desktop.Properties;
 using System;
-using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -66,7 +64,7 @@ namespace MeatShop
 						//pictureBox.Name = (i + 1).ToString();
 						//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
 						pictureBox.Name = products.Name[i];
-						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]);
+						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]) + "@" + products.Unit[i];
 						pictureBox.Location = new Point(px, py);
 						pictureBox.Size = new Size(141, 77);
 						pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
@@ -77,7 +75,7 @@ namespace MeatShop
 						}
 						else
 						{
-							using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+							using (var fs = new FileStream(newpath + products.ImageUrl[i], FileMode.Open))
 							{
 								var bmp = new Bitmap(fs);
 								pictureBox.Image = (Bitmap)bmp.Clone();
@@ -111,7 +109,7 @@ namespace MeatShop
 						pictureBox.MouseHover += new EventHandler(MyMouseHover);
 						//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
 						pictureBox.Name = products.Name[i];
-						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]);
+						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]) + "@" + products.Unit[i];
 						if (products.ImageUrl[i] == "")
 						{
 							pictureBox.Image = product.DrawText(products.Name[i], new Font("Century Gothic", 10.0f), Color.White, Color.FromArgb(32, 30, 45));
@@ -184,127 +182,7 @@ namespace MeatShop
 			}
 		}
 
-
-		//private void _Load(object sender, EventArgs e)
-		//{
-		//	_form_resize._get_initial_size();
-		//}
-
-		//private void _Resize(object sender, EventArgs e)
-		//{
-		//	_form_resize._resize();
-		//}
-
-
-
-		//private void CreateAllProducts(int x,int y)
-		//{
-		//	//int x = 12, y = 124, px= 12,py = 14;
-		//	products = product.getProducts();
-		//	if (products.Id != null)
-		//	{
-		//		string path = Path.GetDirectoryName(Application.StartupPath);
-		//		string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
-
-		//		Panel panel = new Panel();
-		//		panel.Location = new Point(x,y);
-		//		panel.Size = new Size(398, 446);
-		//		panel.AutoScroll = true;
-		//		this.Controls.Add(panel);
-
-		//		int px = 13, py = 3;
-		//		for (int i = 0; i < products.Id.Length; i++)
-		//		{
-		//			if (i == 0)
-		//			{
-		//				PictureBox pictureBox = new PictureBox();
-		//				//pictureBox.Name = (i + 1).ToString();
-		//				//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
-		//				pictureBox.Name = products.Name[i];
-		//				pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]);
-		//				pictureBox.Location = new Point(px, py);
-		//				pictureBox.Size = new Size(185, 104);
-		//				pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-
-		//				using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
-		//				{
-		//					var bmp = new Bitmap(fs);
-		//					pictureBox.Image = (Bitmap)bmp.Clone();
-		//				}
-
-		//				//pictureBox.Image = Resources.Default_Image_Thumbnail;
-		//				pictureBox.MouseHover += new EventHandler(MyMouseHover);
-		//				pictureBox.Click += new EventHandler(MyClickEvent);
-
-		//				//Button button = new Button();
-		//				//button.Location = new Point(x, y);
-		//				//button.Text = "button" + (i + 1).ToString();
-		//				//button.Size = new Size(185, 43);
-		//				//button.Font = new Font("Microsoft Sans Serif", 10);
-
-		//				panel.Controls.Add(pictureBox);
-		//				//panel3.Controls.Add(button);
-		//			}
-		//			else
-		//			{
-		//				if (i % 2 != 0)
-		//				{
-		//					//x += 199;
-		//					//px += 199;
-		//					px += 175;
-
-		//					PictureBox pictureBox = new PictureBox();
-		//					pictureBox.Location = new Point(px, py);
-		//					pictureBox.Size = new Size(185, 104);
-		//					pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-		//					//pictureBox.Image = Resources.Default_Image_Thumbnail;
-		//					pictureBox.MouseHover += new EventHandler(MyMouseHover);
-		//					//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
-		//					pictureBox.Name = products.Name[i];
-		//					pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]);
-		//					using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
-		//					{
-		//						var bmp = new Bitmap(fs);
-		//						pictureBox.Image = (Bitmap)bmp.Clone();
-		//					}
-		//					pictureBox.Click += new EventHandler(MyClickEvent);
-
-		//					panel.Controls.Add(pictureBox);
-		//				}
-		//				else
-		//				{
-		//					//x -= 199;
-		//					//y += 159;
-		//					//px -= 199;
-		//					//py +=159;
-		//					px -= 175;
-		//					py += 141;
-
-		//					PictureBox pictureBox = new PictureBox();
-		//					//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
-		//					pictureBox.Location = new Point(px, py);
-		//					pictureBox.Size = new Size(185, 104);
-		//					pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-		//					//pictureBox.Image = Resources.Default_Image_Thumbnail;
-		//					pictureBox.Name = products.Name[i];
-		//					pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]);
-		//					using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
-		//					{
-		//						var bmp = new Bitmap(fs);
-		//						pictureBox.Image = (Bitmap)bmp.Clone();
-		//					}
-		//					pictureBox.MouseHover += new EventHandler(MyMouseHover);
-		//					pictureBox.Click += new EventHandler(MyClickEvent);
-
-		//					panel.Controls.Add(pictureBox);
-		//				}
-		//			}
-		//		}
-		//		productPanel = panel;
-		//	}
-		//}
-
-		private void CreateProducts(int x, int y, ProductCategoryEntity entity)
+		private void CreateCustomProducts(int x, int y, ProductCategoryEntity entity)
 		{
 			//int x = 12, y = 124, px= 12,py = 14;
 			products = entity;
@@ -328,7 +206,7 @@ namespace MeatShop
 						//pictureBox.Name = (i + 1).ToString();
 						//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
 						pictureBox.Name = products.Name[i];
-						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]);
+						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]) + "@" + products.Unit[i];
 						pictureBox.Location = new Point(px, py);
 						pictureBox.Size = new Size(141, 77);
 						pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
@@ -372,7 +250,7 @@ namespace MeatShop
 							pictureBox.MouseHover += new EventHandler(MyMouseHover);
 							//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
 							pictureBox.Name = products.Name[i];
-							pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]);
+						pictureBox.Tag = Convert.ToString(products.Id[i]) + "-" + Convert.ToString(products.Price[i]) + "@" + products.Unit[i];
 						if (products.ImageUrl[i] == "")
 						{
 							pictureBox.Image = product.DrawText(products.Name[i], new Font("Century Gothic", 10.0f), Color.White, Color.FromArgb(32, 30, 45));
@@ -402,94 +280,7 @@ namespace MeatShop
 			}
 		}
 
-		//private void CreateCategories(int x,int y)
-		//{
-		//	//int x = 12, y = 124, px= 12,py = 14;
-		//	categoryEntity = category.GetCategories();
-
-		//	if (categoryEntity.Id != null)
-		//	{
-		//		Panel panel = new Panel();
-		//		panel.Location = new Point(x, y);
-		//		panel.Size = new Size(220, 446);
-		//		panel.AutoScroll = true;
-		//		this.Controls.Add(panel);
-		//		int px = 4, py = 3;
-		//		for (int i = 0; i < categoryEntity.Id.Length; i++)
-		//		{
-		//			if (i == 0)
-		//			{
-		//				//PictureBox pictureBox = new PictureBox();
-		//				//pictureBox.Name = (i + 1).ToString();
-		//				//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
-		//				//pictureBox.Location = new Point(px, py);
-		//				//pictureBox.Size = new Size(189, 104);
-		//				//pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-		//				//pictureBox.Image = Resources.Default_Image_Thumbnail;
-		//				//pictureBox.MouseHover += new EventHandler(MyMouseHover);
-		//				//pictureBox.Click += new EventHandler(MyClickEvent);
-
-
-		//				Button button = new Button();
-		//				button.Location = new Point(px, py);
-		//				//button.Tag = i + 1;
-		//				//button.Text = "button" + (i + 1).ToString();
-		//				button.Tag = categoryEntity.Id[i];
-		//				button.Text = categoryEntity.Name[i];
-		//				button.TextAlign = ContentAlignment.MiddleCenter;
-		//				button.Size = new Size(200, 48);
-		//				button.Font = new Font("Microsoft Sans Serif", 10);
-		//				button.Click += new EventHandler(MyButtonClick);
-		//				button.ForeColor = Color.LightGray;
-		//				button.FlatStyle = FlatStyle.Flat;
-		//				button.BackColor = Color.FromArgb(24, 22, 34);
-		//				button.UseVisualStyleBackColor = false;
-		//				//panel4.Controls.Add(button);
-		//				//panel3.Controls.Add(button);
-		//				panel.Controls.Add(button);
-
-		//			}
-		//			else
-		//			{
-		//				//x -= 199;
-		//				//y += 159;
-		//				//px -= 199;
-		//				//py +=159;
-
-		//				py += 54;
-
-		//				//PictureBox pictureBox = new PictureBox();
-		//				//pictureBox.Tag = (i + 1).ToString() + "-Product" + (i + 1).ToString();
-		//				//pictureBox.Location = new Point(px, py);
-		//				//pictureBox.Size = new Size(189, 104);
-		//				//pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-		//				//pictureBox.Image = Resources.Default_Image_Thumbnail;
-		//				//pictureBox.MouseHover += new EventHandler(MyMouseHover);
-		//				//pictureBox.Click += new EventHandler(MyClickEvent);
-
-		//				Button button = new Button();
-		//				button.Location = new Point(px, py);
-		//				//button.Tag = i + 1;
-		//				//button.Text = "button" + (i + 1).ToString();
-		//				button.Tag = categoryEntity.Id[i];
-		//				button.Text = categoryEntity.Name[i];
-		//				button.TextAlign = ContentAlignment.MiddleCenter;
-		//				button.Size = new Size(200, 48);
-		//				button.Font = new Font("Microsoft Sans Serif", 10);
-		//				button.Click += new EventHandler(MyButtonClick);
-		//				button.ForeColor = Color.LightGray;
-		//				button.FlatStyle = FlatStyle.Flat;
-		//				button.BackColor = Color.FromArgb(24, 22, 34);
-		//				button.UseVisualStyleBackColor = false;
-		//				//panel4.Controls.Add(pictureBox);
-		//				//panel3.Controls.Add(button);
-		//				panel.Controls.Add(button);
-		//			}
-		//		}
-		//		categoryPanel = panel;
-		//	}
-		//}
-
+	
 		private void CreateCategoriesOnTop(int x, int y)
 		{
 			//int x = 12, y = 124, px= 12,py = 14;
@@ -678,18 +469,9 @@ namespace MeatShop
 
 			if (Convert.ToInt32(button.Tag) == 0)
 			{
-				products = product.getProducts();
-
-				if (products.Id != null)
-				{
 					productPanel.Controls.Clear();
 					this.Controls.Remove(productPanel);
-					CreateProducts(27, 189, products);
-				}
-				else
-				{
-					MessageBox.Show("No products found", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+					CreateAllProductsNew(27, 189);
 			}
 			else
 			{
@@ -699,7 +481,7 @@ namespace MeatShop
 				{
 					productPanel.Controls.Clear();
 					this.Controls.Remove(productPanel);
-					CreateProducts(27, 189, products);
+					CreateCustomProducts(27, 189, products);
 				}
 				else
 				{
@@ -720,19 +502,33 @@ namespace MeatShop
 		private void MyClickEvent(object sender, EventArgs e)
 		{
 			PictureBox pictureBox = sender as PictureBox;
-			string price = Convert.ToString(pictureBox.Tag);
-			int place = price.LastIndexOf('-');
-			price = price.Substring(place + 1);
-			totalAmount = Convert.ToInt32(Sale_TotalAmount.Text);
+			string pri = Convert.ToString(pictureBox.Tag);
+			int place = pri.LastIndexOf('-');
+			string i = pri.Substring(0, place);
+			pri = pri.Substring(place + 1);
+			int place1 = pri.LastIndexOf('@');
+			string p = pri.Substring(0, place1);
+			string unit = pri.Substring(place1 + 1);
+			int id = Convert.ToInt32(i);
+			int price = Convert.ToInt32(p);
+			
+			if (Sale_TotalAmount.Text == "")
+			{
+				totalAmount = 0;
+			}
+			else
+			{
+				totalAmount = Convert.ToInt32(Sale_TotalAmount.Text);
+			}
 
 
-			string id = Convert.ToString(pictureBox.Tag);
-			int pid = Convert.ToInt32(id.Substring(0, place));
+			//string id = Convert.ToString(pictureBox.Tag);
+			//int pid = Convert.ToInt32(id.Substring(0, place));
 
 			int rowIndex = -1;
 			foreach (DataGridViewRow row in Grd_Sale.Rows)
 			{
-				if (row.Cells[0].Value.ToString().Equals(pid.ToString()))
+				if (row.Cells[0].Value.ToString().Equals(id.ToString()))
 				{
 					rowIndex = row.Index;
 					break;
@@ -741,14 +537,53 @@ namespace MeatShop
 			if (rowIndex != -1)
 			{
 				DataGridViewRow selectedRow = Grd_Sale.Rows[rowIndex];
-				selectedRow.Cells[3].Value = Convert.ToInt32(selectedRow.Cells[3].Value) + 1;
-				Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + Convert.ToInt32(price));
+				if(Convert.ToString(selectedRow.Cells[5].Value) == "Unit")
+				{
+					if (Convert.ToString(selectedRow.Cells[3].Value) == "")
+					{
+						selectedRow.Cells[3].Value = "1";
+						if (totalAmount == 0)
+						{
+							Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(price));
+						}
+						else
+						{
+							Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + Convert.ToInt32(price));
+						}
+					}
+					else
+					{
+						selectedRow.Cells[3].Value = Convert.ToInt32(selectedRow.Cells[3].Value) + 1;
+						if (totalAmount == 0)
+						{
+							Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(price));
+						}
+						else
+						{
+							Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + Convert.ToInt32(price));
+						}
+					}
+				}
 			}
 			else
 			{
-				Grd_Sale.Rows.Add(pid,pictureBox.Name, price);
-				this.price = Convert.ToInt32(price);
-				//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + Convert.ToInt32(price));
+				if (unit == "Unit" )
+				{
+					Grd_Sale.Rows.Add(id, pictureBox.Name, price,"", price, unit);
+					DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+					selectedRow.Cells[1].Selected = true;
+					//this.price = Convert.ToInt32(price);
+					//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + Convert.ToInt32(price));
+				}
+				else
+				{
+					Grd_Sale.Rows.Add(id, pictureBox.Name, "","", price, unit);
+					DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+					selectedRow.Cells[1].Selected = true;
+					//this.price = Convert.ToInt32(price);
+					//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + Convert.ToInt32(price));
+
+				}
 			}
 		}
 
@@ -770,6 +605,16 @@ namespace MeatShop
 
 			ToolTip tt = new ToolTip();
 			tt.SetToolTip(pictureBox,pictureBox.Name);
+
+			//Testing
+			//string price = Convert.ToString(pictureBox.Tag);
+			//int place = price.LastIndexOf('-');
+			//string id = price.Substring(0, place);
+			//price = price.Substring(place + 1);
+			//int place1 = price.LastIndexOf('@');
+			//string p = price.Substring(0, place1);
+			//string unit = price.Substring(place1 + 1);
+			//MessageBox.Show("Id " + id + "\n price" + p + "\n unit" + unit);
 		}
 
 		private void Delete_Button_Click(object sender, EventArgs e)
@@ -794,17 +639,7 @@ namespace MeatShop
 			
 	     
 		}
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-			//categoryPanel.Controls.Clear();
-			//this.Controls.Remove(categoryPanel);
-			productPanel.Controls.Clear();
-			this.Controls.Remove(productPanel);
-			//CreateAllProducts(400, 230);
-			//CreateCategories(30, 230);
-		}
-		
+	
 		private void Grd_Sale_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 			//if (e.ColumnIndex == 4)
@@ -834,17 +669,61 @@ namespace MeatShop
 			//		}
 			//	}
 			//}
-			if (e.ColumnIndex == 4)
+			if (e.ColumnIndex == 6)
 			{
+
 				int index = e.RowIndex;
 				DataGridViewRow selectedRow = Grd_Sale.Rows[index];
-				int quantity = Convert.ToInt32(selectedRow.Cells[3].Value);
-				int price = Convert.ToInt32(selectedRow.Cells[2].Value);
-				int deduct = price * quantity;
-				Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) - deduct);
-				int rowNumber = Convert.ToInt32(e.RowIndex);
-				//MessageBox.Show(""+rowNumber);
-				Grd_Sale.Rows.RemoveAt(rowNumber);
+				if (Convert.ToString(selectedRow.Cells[3].Value) == "")
+				{
+					Grd_Sale.Rows.RemoveAt(index);
+				}
+				else
+				{
+					if (Convert.ToString(selectedRow.Cells[5].Value) == "Unit")
+					{
+						int quantity = Convert.ToInt32(selectedRow.Cells[3].Value);
+						int price = Convert.ToInt32(selectedRow.Cells[2].Value);
+						int deduct = price * quantity;
+						if (Sale_TotalAmount.Text == "0")
+						{
+							Grd_Sale.Rows.RemoveAt(index);
+						}
+						else
+						{
+							Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) - deduct);
+							Grd_Sale.Rows.RemoveAt(index);
+							Sale_PaidAmount.Text = "";
+							ReturnLabel.Text = "";
+							Sale_Discount.Text = "";
+							Sale_Balance.Text = "";
+							this.Focus();
+							this.KeyPreview = true;
+
+						}
+					}
+					else
+					{
+						int p = Convert.ToInt32(selectedRow.Cells[2].Value);
+						if (Sale_TotalAmount.Text == "0")
+						{
+							Grd_Sale.Rows.RemoveAt(index);
+						}
+						else
+						{
+							Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) - p);
+							Grd_Sale.Rows.RemoveAt(index);
+							Sale_PaidAmount.Text = "";
+							ReturnLabel.Text = "";
+							Sale_Discount.Text = "";
+							Sale_Balance.Text = "";
+							this.Focus();
+							this.KeyPreview = true;
+
+						}
+					}
+					
+				}
 			}
 		}
 
@@ -880,14 +759,29 @@ namespace MeatShop
 
 		private void Sale_Button_Click(object sender, EventArgs e)
 		{
-			if (product.AddSale(Convert.ToInt32(Sale_Customer.SelectedValue),Convert.ToInt32(Sale_TotalAmount.Text), Convert.ToInt32(Sale_Discount.Text), Convert.ToInt32(Sale_PaidAmount.Text), Convert.ToInt32(Sale_Balance.Text)))
+			if (Sale_Balance.Text == "")
 			{
-				if (product.AddSaleItem(Grd_Sale))
+				Sale_Balance.Text = "0";
+			}
+			else if (Sale_Customer.Text == "Walk-In" && Convert.ToInt32(Sale_Balance.Text) > 0)
+			{
+				MessageBox.Show("You need to add this Customer", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				if (product.AddSale(Convert.ToInt32(Sale_Customer.SelectedValue), Convert.ToInt32(Sale_TotalAmount.Text), Convert.ToInt32(Sale_Discount.Text), Convert.ToInt32(Sale_PaidAmount.Text), Convert.ToInt32(Sale_Balance.Text)))
 				{
-					if (Convert.ToInt32(Sale_Balance.Text) > 0)
+					if (product.AddSaleItem(Grd_Sale))
 					{
-						customer.UpdateBalance(Convert.ToInt32(Sale_Customer.SelectedValue), Convert.ToInt32(Sale_Balance.Text));
-						ClearData();
+						if (Convert.ToInt32(Sale_Balance.Text) > 0)
+						{
+							customer.UpdateBalance(Convert.ToInt32(Sale_Customer.SelectedValue), Convert.ToInt32(Sale_Balance.Text));
+							ClearData();
+						}
+						else
+						{
+							ClearData();
+						}
 					}
 				}
 			}
@@ -900,7 +794,8 @@ namespace MeatShop
 			Sale_Discount.Text = "";
 			Sale_PaidAmount.Text = "";
 			Sale_TotalAmount.Text = "";
-
+			ReturnLabel.Text = "";
+			
 			customer.FillCombo(Sale_Customer);
 		}
 
@@ -934,102 +829,311 @@ namespace MeatShop
 						}
 						if (rowIndex != -1)
 						{
+							//DataGridViewRow selectedRow = Grd_Sale.Rows[rowIndex];
+							//selectedRow.Cells[3].Value = Convert.ToInt32(selectedRow.Cells[3].Value) + 1;
+							//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+
 							DataGridViewRow selectedRow = Grd_Sale.Rows[rowIndex];
-							selectedRow.Cells[3].Value = Convert.ToInt32(selectedRow.Cells[3].Value) + 1;
-							Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+							if (Convert.ToString(selectedRow.Cells[5].Value) == "Unit")
+							{
+								if (Convert.ToString(selectedRow.Cells[3].Value) == "")
+								{
+									selectedRow.Cells[3].Value = "1";
+									if (totalAmount == 0)
+									{
+										Sale_TotalAmount.Text = Convert.ToString(productEntity.Price);
+									}
+									else
+									{
+										Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+									}
+								}
+								else
+								{
+									selectedRow.Cells[3].Value = Convert.ToInt32(selectedRow.Cells[3].Value) + 1;
+									if (totalAmount == 0)
+									{
+										Sale_TotalAmount.Text = Convert.ToString(productEntity.Price);
+									}
+									else
+									{
+										Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+									}
+								}
+							}
+
 						}
 						else
 						{
-							Grd_Sale.Rows.Add(productEntity.Id, productEntity.Name, productEntity.Price);
-							price = productEntity.Price;
-							//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+							if (productEntity.Unit == "Unit")
+							{
+								Grd_Sale.Rows.Add(productEntity.Id, productEntity.Name, productEntity.Price, "1", productEntity.Price, productEntity.Unit);
+								DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+								selectedRow.Cells[1].Selected = true;
+								//this.price = Convert.ToInt32(price);
+								Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+							}
+							else
+							{
+								Grd_Sale.Rows.Add(productEntity.Id, productEntity.Name, "", "", productEntity.Price, productEntity.Unit);
+								DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+								selectedRow.Cells[1].Selected = true;
+								//this.price = Convert.ToInt32(price);
+								//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+
+							}
+
+
+							//Grd_Sale.Rows.Add(productEntity.Id, productEntity.Name, productEntity.Price);
+							//DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+							//selectedRow.Cells[1].Selected = true;
+							//price = productEntity.Price;
+
+
 						}
 					}
 				}
 
-				if (!char.IsLetter(e.KeyChar))
+				if (!char.IsLetterOrDigit(e.KeyChar))
+				{
+					SingleProductEntity productEntity = product.GetProduct(e.KeyChar);
+					if (productEntity.Id > 0)
+					{
+						totalAmount = Convert.ToInt32(Sale_TotalAmount.Text);
+						int rowIndex = -1;
+						foreach (DataGridViewRow row in Grd_Sale.Rows)
+						{
+							if (row.Cells[0].Value.ToString().Equals(productEntity.Id.ToString()))
+							{
+								rowIndex = row.Index;
+								break;
+							}
+						}
+						if (rowIndex != -1)
+						{
+							DataGridViewRow selectedRow = Grd_Sale.Rows[rowIndex];
+							if (Convert.ToString(selectedRow.Cells[5].Value) == "Unit")
+							{
+								if (Convert.ToString(selectedRow.Cells[3].Value) == "")
+								{
+									selectedRow.Cells[3].Value = "1";
+									if (totalAmount == 0)
+									{
+										Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(productEntity.Price));
+									}
+									else
+									{
+										Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+									}
+								}
+								else
+								{
+									selectedRow.Cells[3].Value = Convert.ToInt32(selectedRow.Cells[3].Value) + 1;
+									if (totalAmount == 0)
+									{
+										Sale_TotalAmount.Text = Convert.ToString(productEntity.Price);
+									}
+									else
+									{
+										Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+									}
+								}
+							}
+
+
+							//DataGridViewRow selectedRow = Grd_Sale.Rows[rowIndex];
+							//selectedRow.Cells[3].Value = Convert.ToInt32(selectedRow.Cells[3].Value) + 1;
+							//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+						}
+						else
+						{
+							if (productEntity.Unit == "Unit")
+							{
+								Grd_Sale.Rows.Add(productEntity.Id, productEntity.Name, productEntity.Price, "1", productEntity.Price, productEntity.Unit);
+								DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+								selectedRow.Cells[1].Selected = true;
+								//this.price = productEntity.Price;
+								Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+							}
+							else
+							{
+								Grd_Sale.Rows.Add(productEntity.Id, productEntity.Name, "", "", productEntity.Price, productEntity.Unit);
+								DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+								selectedRow.Cells[1].Selected = true;
+								//this.price = productEntity.Price;
+								//Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) + productEntity.Price);
+
+							}
+
+
+							//Grd_Sale.Rows.Add(productEntity.Id, productEntity.Name, productEntity.Price);
+							//DataGridViewRow selectedRow = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+							//selectedRow.Cells[1].Selected = true;
+							//price = productEntity.Price;
+
+
+						}
+					}
+				}
+
+				if (char.IsDigit(e.KeyChar))
 				{
 					//MessageBox.Show(e.KeyChar.ToString());
 					int name = Convert.ToInt32(e.KeyChar.ToString());
+					
 					if (Grd_Sale.Rows.Count > 0)
 					{
-						switch (name)
+						DataGridViewRow row = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+						if (Convert.ToString(row.Cells[5].Value) == "Unit")
 						{
-							case 0:
-								DataGridViewRow row0 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row0.Cells[3].Value = row0.Cells[3].Value + "0";
-								break;
-							case 1:
-								DataGridViewRow row1 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row1.Cells[3].Value = row1.Cells[3].Value + "1";
-								break;
-							case 2:
-								DataGridViewRow row2 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row2.Cells[3].Value = row2.Cells[3].Value + "2";
-								break;
-							case 3:
-								DataGridViewRow row3 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row3.Cells[3].Value = row3.Cells[3].Value + "3";
-								break;
-							case 4:
-								DataGridViewRow row4 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row4.Cells[3].Value = row4.Cells[3].Value + "4";
-								break;
-							case 5:
-								DataGridViewRow row5 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row5.Cells[3].Value = row5.Cells[3].Value + "5";
-								break;
-							case 6:
-								DataGridViewRow row6 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row6.Cells[3].Value = row6.Cells[3].Value + "6";
-								break;
-							case 7:
-								DataGridViewRow row7 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row7.Cells[3].Value = row7.Cells[3].Value + "7";
-								break;
-							case 8:
-								DataGridViewRow row8 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row8.Cells[3].Value = row8.Cells[3].Value + "8";
-								break;
+							if (Convert.ToString(row.Cells[3].Value) == "" || Convert.ToInt32(row.Cells[3].Value) < 999999)
+							{
+								switch (name)
+								{
+									case 0:
+										DataGridViewRow row0 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row0.Cells[3].Value = row0.Cells[3].Value + "0";
+										break;
+									case 1:
+										DataGridViewRow row1 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row1.Cells[3].Value = row1.Cells[3].Value + "1";
+										break;
+									case 2:
+										DataGridViewRow row2 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row2.Cells[3].Value = row2.Cells[3].Value + "2";
+										break;
+									case 3:
+										DataGridViewRow row3 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row3.Cells[3].Value = row3.Cells[3].Value + "3";
+										break;
+									case 4:
+										DataGridViewRow row4 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row4.Cells[3].Value = row4.Cells[3].Value + "4";
+										break;
+									case 5:
+										DataGridViewRow row5 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row5.Cells[3].Value = row5.Cells[3].Value + "5";
+										break;
+									case 6:
+										DataGridViewRow row6 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row6.Cells[3].Value = row6.Cells[3].Value + "6";
+										break;
+									case 7:
+										DataGridViewRow row7 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row7.Cells[3].Value = row7.Cells[3].Value + "7";
+										break;
+									case 8:
+										DataGridViewRow row8 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row8.Cells[3].Value = row8.Cells[3].Value + "8";
+										break;
 
-							default:
-								DataGridViewRow row9 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-								row9.Cells[3].Value = row9.Cells[3].Value + "9";
-								break;
+									default:
+										DataGridViewRow row9 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row9.Cells[3].Value = row9.Cells[3].Value + "9";
+										break;
+								}
+
+								DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+
+								int quantity = Convert.ToInt32(r.Cells[3].Value);
+								int price = Convert.ToInt32(r.Cells[2].Value);
+								int deduct = price * quantity;
+
+								Sale_TotalAmount.Text = Convert.ToString(totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + deduct) - Convert.ToInt32(Sale_TotalAmount.Text));
+
+							}
 						}
+						else
+						{
+								switch (name)
+								{
+									case 0:
+										DataGridViewRow row0 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row0.Cells[2].Value = row0.Cells[2].Value + "0";
+										break;
+									case 1:
+										DataGridViewRow row1 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row1.Cells[2].Value = row1.Cells[2].Value + "1";
+										break;
+									case 2:
+										DataGridViewRow row2 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row2.Cells[2].Value = row2.Cells[2].Value + "2";
+										break;
+									case 3:
+										DataGridViewRow row3 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row3.Cells[2].Value = row3.Cells[2].Value + "3";
+										break;
+									case 4:
+										DataGridViewRow row4 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row4.Cells[2].Value = row4.Cells[2].Value + "4";
+										break;
+									case 5:
+										DataGridViewRow row5 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row5.Cells[2].Value = row5.Cells[2].Value + "5";
+										break;
+									case 6:
+										DataGridViewRow row6 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row6.Cells[2].Value = row6.Cells[2].Value + "6";
+										break;
+									case 7:
+										DataGridViewRow row7 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row7.Cells[2].Value = row7.Cells[2].Value + "7";
+										break;
+									case 8:
+										DataGridViewRow row8 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row8.Cells[2].Value = row8.Cells[2].Value + "8";
+										break;
+
+									default:
+										DataGridViewRow row9 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+										row9.Cells[2].Value = row9.Cells[2].Value + "9";
+										break;
+								}
+
+								DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+
+								Double oldprice = Convert.ToDouble(r.Cells[4].Value);
+								Double p = Convert.ToDouble(r.Cells[2].Value);
+								Double finalPrice = p / oldprice;
+								r.Cells[3].Value = Math.Round(finalPrice,3);
+
+								//Double deduct = price * Convert.ToInt32(r.Cells[3].Value);
 
 
+							//	Sale_TotalAmount.Text = Convert.ToString(totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + deduct) - Convert.ToInt32(Sale_TotalAmount.Text));
 
-						DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+							Sale_TotalAmount.Text = Convert.ToString(totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + p) - Convert.ToInt32(Sale_TotalAmount.Text));
 
-						int quantity = Convert.ToInt32(r.Cells[3].Value);
-						int price = Convert.ToInt32(r.Cells[2].Value);
-						int deduct = price * quantity;
 
-						Sale_TotalAmount.Text = Convert.ToString(totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + deduct) - Convert.ToInt32(Sale_TotalAmount.Text));
-
+						}
 					}
-				}
-
-				if (e.KeyChar == (char)Keys.F1)
-				{
-					Sale_PaidAmount.Focus();
-				}
-				if (e.KeyChar == (char)Keys.Enter)
-				{
-					Sale_Button.Focus();
 				}
 			}
 		}
 
 		private void Sales_KeyDown(object sender, KeyEventArgs e)
 		{
-
+			if (e.KeyCode == Keys.Enter)
+			{
+				Sale_Button.Focus();
+			}
+			if (e.KeyCode == Keys.F5)
+			{
+				Sale_PaidAmount.Focus();
+			}
+			if (!releaseKeys)
+			{
+				if (e.KeyCode == Keys.Back)
+				{
+					BtnBack_Click(null, null);
+				}
+			}
 		}
 
 		private void Sale_PaidAmount_KeyUp(object sender, KeyEventArgs e)
 		{
 			bool check = false;
+			ReturnLabel.Text = "";
 			if (Sale_PaidAmount.TextLength == 0)
 			{
 				Sale_Balance.Text = "";
@@ -1037,28 +1141,35 @@ namespace MeatShop
 			}
 			else
 			{
-				try
+				if (Sale_PaidAmount.Text != "-")
 				{
-					int netAmount = Convert.ToInt32(Sale_TotalAmount.Text) - Convert.ToInt32(Sale_Discount.Text);
-					int amount = netAmount - Convert.ToInt32(Sale_PaidAmount.Text);
-					if (amount < 0)
+					try
 					{
-						ReturnLabel.Text = "Return him " + Math.Abs(amount);
-						check = true;
+						int netAmount = Convert.ToInt32(Sale_TotalAmount.Text) - Convert.ToInt32(Sale_Discount.Text);
+						int amount = netAmount - Convert.ToInt32(Sale_PaidAmount.Text);
+						if (amount < 0)
+						{
+							ReturnLabel.Text = "Return him " + Math.Abs(amount);
+							check = true;
+						}
+						if (check)
+						{
+							Sale_Balance.Text = "";
+						}
+						else
+						{
+							Sale_Balance.Text = Convert.ToString(amount);
+						}
 					}
-					if (check)
+					catch (Exception)
 					{
-						Sale_Balance.Text = "";
+						MessageBox.Show("Please enter Discount first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
-					else
-					{
-						Sale_Balance.Text = Convert.ToString(amount);
-					}
-
 				}
-				catch (Exception)
+				else
 				{
-					MessageBox.Show("Please enter Discount first", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show("Paid Amount cannot be less than zero", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Sale_PaidAmount.Text = "";
 				}
 			}
 		}
@@ -1068,75 +1179,201 @@ namespace MeatShop
 			Button button = sender as Button;
 
 			int name = Convert.ToInt32(button.Name.Substring(3));
+			
+			//if (Grd_Sale.Rows.Count > 0)
+			//{
+			//	DataGridViewRow row = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//	if (Convert.ToInt32(row.Cells[3].Value) < 999999)
+			//	{
+			//		Sale_PaidAmount.Text = "";
+			//		ReturnLabel.Text = "";
+			//		Sale_Discount.Text = "";
+			//		switch (name)
+			//		{
+			//			case 0:
+			//				DataGridViewRow row0 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row0.Cells[3].Value = row0.Cells[3].Value + "0";
+			//				break;
+			//			case 1:
+			//				DataGridViewRow row1 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row1.Cells[3].Value = row1.Cells[3].Value + "1";
+			//				break;
+			//			case 2:
+			//				DataGridViewRow row2 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row2.Cells[3].Value = row2.Cells[3].Value + "2";
+			//				break;
+			//			case 3:
+			//				DataGridViewRow row3 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row3.Cells[3].Value = row3.Cells[3].Value + "3";
+			//				break;
+			//			case 4:
+			//				DataGridViewRow row4 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row4.Cells[3].Value = row4.Cells[3].Value + "4";
+			//				break;
+			//			case 5:
+			//				DataGridViewRow row5 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row5.Cells[3].Value = row5.Cells[3].Value + "5";
+			//				break;
+			//			case 6:
+			//				DataGridViewRow row6 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row6.Cells[3].Value = row6.Cells[3].Value + "6";
+			//				break;
+			//			case 7:
+			//				DataGridViewRow row7 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row7.Cells[3].Value = row7.Cells[3].Value + "7";
+			//				break;
+			//			case 8:
+			//				DataGridViewRow row8 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row8.Cells[3].Value = row8.Cells[3].Value + "8";
+			//				break;
 
-			switch (name)
+			//			default:
+			//				DataGridViewRow row9 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+			//				row9.Cells[3].Value = row9.Cells[3].Value + "9";
+			//				break;
+			//		}
+
+			//		DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+
+			//		int quantity = Convert.ToInt32(r.Cells[3].Value);
+			//		int price = Convert.ToInt32(r.Cells[2].Value);
+			//		int deduct = price * quantity;
+
+			//		Sale_TotalAmount.Text = Convert.ToString(totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + deduct) - Convert.ToInt32(Sale_TotalAmount.Text));
+
+			//	}
+			//}
+
+			if (Grd_Sale.Rows.Count > 0)
 			{
-				case 0:
-				    DataGridViewRow row0 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row0.Cells[3].Value = row0.Cells[3].Value + "0";
-					break;
-				case 1:
-					DataGridViewRow row1 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row1.Cells[3].Value = row1.Cells[3].Value + "1";
-					break;
-				case 2:
-					DataGridViewRow row2 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row2.Cells[3].Value = row2.Cells[3].Value + "2";
-					break;
-				case 3:
-					DataGridViewRow row3 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row3.Cells[3].Value = row3.Cells[3].Value + "3";
-					break;
-				case 4:
-					DataGridViewRow row4 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row4.Cells[3].Value = row4.Cells[3].Value + "4";
-					break;
-				case 5:
-					DataGridViewRow row5 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row5.Cells[3].Value = row5.Cells[3].Value + "5";
-					break;
-				case 6:
-					DataGridViewRow row6 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row6.Cells[3].Value = row6.Cells[3].Value + "6";
-					break;
-				case 7:
-					DataGridViewRow row7 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row7.Cells[3].Value = row7.Cells[3].Value + "7";
-					break;
-				case 8:
-					DataGridViewRow row8 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row8.Cells[3].Value = row8.Cells[3].Value + "8";
-					break;
+				DataGridViewRow row = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+				if (Convert.ToString(row.Cells[5].Value) == "Unit")
+				{
+					if (Convert.ToString(row.Cells[3].Value) == "" || Convert.ToInt32(row.Cells[3].Value) < 999999)
+					{
+						switch (name)
+						{
+							case 0:
+								DataGridViewRow row0 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row0.Cells[3].Value = row0.Cells[3].Value + "0";
+								break;
+							case 1:
+								DataGridViewRow row1 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row1.Cells[3].Value = row1.Cells[3].Value + "1";
+								break;
+							case 2:
+								DataGridViewRow row2 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row2.Cells[3].Value = row2.Cells[3].Value + "2";
+								break;
+							case 3:
+								DataGridViewRow row3 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row3.Cells[3].Value = row3.Cells[3].Value + "3";
+								break;
+							case 4:
+								DataGridViewRow row4 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row4.Cells[3].Value = row4.Cells[3].Value + "4";
+								break;
+							case 5:
+								DataGridViewRow row5 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row5.Cells[3].Value = row5.Cells[3].Value + "5";
+								break;
+							case 6:
+								DataGridViewRow row6 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row6.Cells[3].Value = row6.Cells[3].Value + "6";
+								break;
+							case 7:
+								DataGridViewRow row7 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row7.Cells[3].Value = row7.Cells[3].Value + "7";
+								break;
+							case 8:
+								DataGridViewRow row8 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row8.Cells[3].Value = row8.Cells[3].Value + "8";
+								break;
 
-				default:
-					DataGridViewRow row9 = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-					row9.Cells[3].Value = row9.Cells[3].Value + "9";
-					break;
+							default:
+								DataGridViewRow row9 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+								row9.Cells[3].Value = row9.Cells[3].Value + "9";
+								break;
+						}
+
+						DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+
+						int quantity = Convert.ToInt32(r.Cells[3].Value);
+						int price = Convert.ToInt32(r.Cells[2].Value);
+						int deduct = price * quantity;
+
+						Sale_TotalAmount.Text = Convert.ToString(totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + deduct) - Convert.ToInt32(Sale_TotalAmount.Text));
+
+					}
+				}
+				else
+				{
+					switch (name)
+					{
+						case 0:
+							DataGridViewRow row0 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row0.Cells[2].Value = row0.Cells[2].Value + "0";
+							break;
+						case 1:
+							DataGridViewRow row1 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row1.Cells[2].Value = row1.Cells[2].Value + "1";
+							break;
+						case 2:
+							DataGridViewRow row2 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row2.Cells[2].Value = row2.Cells[2].Value + "2";
+							break;
+						case 3:
+							DataGridViewRow row3 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row3.Cells[2].Value = row3.Cells[2].Value + "3";
+							break;
+						case 4:
+							DataGridViewRow row4 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row4.Cells[2].Value = row4.Cells[2].Value + "4";
+							break;
+						case 5:
+							DataGridViewRow row5 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row5.Cells[2].Value = row5.Cells[2].Value + "5";
+							break;
+						case 6:
+							DataGridViewRow row6 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row6.Cells[2].Value = row6.Cells[2].Value + "6";
+							break;
+						case 7:
+							DataGridViewRow row7 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row7.Cells[2].Value = row7.Cells[2].Value + "7";
+							break;
+						case 8:
+							DataGridViewRow row8 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row8.Cells[2].Value = row8.Cells[2].Value + "8";
+							break;
+
+						default:
+							DataGridViewRow row9 = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+							row9.Cells[2].Value = row9.Cells[2].Value + "9";
+							break;
+					}
+
+					DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.CurrentCell.RowIndex];
+
+					Double oldprice = Convert.ToDouble(r.Cells[4].Value);
+					Double p = Convert.ToDouble(r.Cells[2].Value);
+					Double finalPrice = p / oldprice;
+					r.Cells[3].Value = Math.Round(finalPrice, 3);
+
+					//Double deduct = price * Convert.ToInt32(r.Cells[3].Value);
+
+
+					Sale_TotalAmount.Text = Convert.ToString(totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + p) - Convert.ToInt32(Sale_TotalAmount.Text));
+					 
+				}
+
 			}
-
-
-
-			//DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-
-			//int quantity = Convert.ToInt32(r.Cells[3].Value);
-			//int price = Convert.ToInt32(r.Cells[2].Value);
-			//int deduct = price * quantity;
-		
-			//Sale_TotalAmount.Text =  Convert.ToString( totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + deduct) - Convert.ToInt32(Sale_TotalAmount.Text));
-
-			DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
-
-			int quantity = Convert.ToInt32(r.Cells[3].Value);
-			int price = Convert.ToInt32(r.Cells[2].Value);
-			int deduct = price * quantity;
-
-			Sale_TotalAmount.Text = Convert.ToString(totalAmount + (Convert.ToInt32(Sale_TotalAmount.Text) + deduct) - Convert.ToInt32(Sale_TotalAmount.Text));
 
 		}
 
 		private void BtnAdd_Click(object sender, EventArgs e)
 		{
-			NewCustomer customer = new NewCustomer();
+			NewCustomer customer = new NewCustomer(this);
 			customer.Show();
 		}
 
@@ -1160,10 +1397,10 @@ namespace MeatShop
 
 		private void Grd_Sale_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
-			DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
+			//DataGridViewRow r = Grd_Sale.Rows[Grd_Sale.Rows.Count - 1];
 
 			//int id = Convert.ToInt32(r.Cells[0].Value);
-			int price = Convert.ToInt32(r.Cells[2].Value);
+			//int price = Convert.ToInt32(r.Cells[2].Value);
 			//int deduct = price * quantity;
 
 		}
@@ -1183,6 +1420,121 @@ namespace MeatShop
 		private void Sale_PaidAmount_Enter(object sender, EventArgs e)
 		{
 			Sale_NumPad.Checked = true;
+		}
+
+		private void BtnBack_Click(object sender, EventArgs e)
+		{
+			if (Grd_Sale.Rows.Count > 0)
+			{
+				int rowIndex = Grd_Sale.CurrentCell.RowIndex;
+				DataGridViewRow selectedRow = Grd_Sale.Rows[rowIndex];
+				string value = Convert.ToString(selectedRow.Cells[3].Value);
+				Sale_PaidAmount.Text = "";
+				ReturnLabel.Text = "";
+				if (Convert.ToString(selectedRow.Cells[5].Value) == "Unit")
+				{
+					if (value.Length == 0)
+					{
+						Grd_Sale.Rows.RemoveAt(rowIndex);
+					}
+					else if (value.Length == 1)
+					{
+						int quantity = Convert.ToInt32(selectedRow.Cells[3].Value);
+						int price = Convert.ToInt32(selectedRow.Cells[2].Value);
+						int newCalculate = price * quantity;
+
+						Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) - newCalculate);
+
+						selectedRow.Cells[3].Value = value.Substring(0, value.Length - 1);
+
+					}
+					else
+					{
+						selectedRow.Cells[3].Value = value.Substring(0, value.Length - 1);
+						int quantity = Convert.ToInt32(selectedRow.Cells[3].Value);
+						int price = Convert.ToInt32(selectedRow.Cells[2].Value);
+						int newCalculate = price * quantity;
+						int oldCalculate = price * Convert.ToInt32(value);
+
+						oldCalculate = oldCalculate - newCalculate;
+
+						Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) - oldCalculate);
+
+
+					}
+				}
+				else
+				{
+					string val = Convert.ToString(selectedRow.Cells[2].Value);
+
+					if (val.Length == 0)
+					{
+						Grd_Sale.Rows.RemoveAt(rowIndex);
+					}
+					else if (val.Length == 1)
+					{
+						//Double oldprice = Convert.ToDouble(r.Cells[4].Value);
+						//Double p = Convert.ToDouble(r.Cells[2].Value);
+						//Double finalPrice = p / oldprice;
+						//r.Cells[3].Value = Math.Round(finalPrice, 3);
+
+						int price = Convert.ToInt32(selectedRow.Cells[2].Value);
+						//int newCalculate = price * quantity;
+
+
+
+						Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) - price);
+
+						selectedRow.Cells[2].Value = val.Substring(0, val.Length - 1);
+
+						if (Convert.ToString(selectedRow.Cells[2].Value) == "")
+						{
+							Double oldprice = Convert.ToDouble(selectedRow.Cells[4].Value);
+							Double p = 0;
+							Double finalPrice = p / oldprice;
+							selectedRow.Cells[3].Value = Math.Round(finalPrice, 3);
+
+						}
+						else
+						{
+							Double oldprice = Convert.ToDouble(selectedRow.Cells[4].Value);
+							Double p = Convert.ToDouble(selectedRow.Cells[2].Value);
+							Double finalPrice = p / oldprice;
+							selectedRow.Cells[3].Value = Math.Round(finalPrice, 3);
+						}
+					}
+					else
+					{
+					
+						selectedRow.Cells[2].Value = val.Substring(0, val.Length - 1);
+						int price = Convert.ToInt32(selectedRow.Cells[2].Value);
+						int newCalculate = price;
+						int oldCalculate = Convert.ToInt32(val);
+
+						oldCalculate = oldCalculate - newCalculate;
+
+						Sale_TotalAmount.Text = Convert.ToString(Convert.ToInt32(Sale_TotalAmount.Text) - oldCalculate);
+
+						Double oldprice = Convert.ToDouble(selectedRow.Cells[4].Value);
+						Double p = Convert.ToDouble(selectedRow.Cells[2].Value);
+						Double finalPrice = p / oldprice;
+						selectedRow.Cells[3].Value = Math.Round(finalPrice, 3);
+
+
+					}
+
+				}
+			}
+		}
+
+		private void Sale_Discount_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (Sale_Discount.Text == "-")
+			{
+			   MessageBox.Show("Discount cannot be less than zero", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Sale_Discount.Text = "";
+			}
+
 		}
 
 		//private void Grd_Expense_CellContentClick(object sender, DataGridViewCellEventArgs e)

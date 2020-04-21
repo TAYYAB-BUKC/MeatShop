@@ -18,6 +18,7 @@ namespace MeatShop.Desktop
 			Application.SetCompatibleTextRenderingDefault(false);
 			//Application.Run(new Home(false));
 			Application.Run(new Sales());
+			//Application.Run(new ManageProduct());
 		}
 	}
 }

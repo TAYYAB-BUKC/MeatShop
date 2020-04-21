@@ -15,9 +15,11 @@ namespace MeatShop
     public partial class NewCustomer : Form
     {
         Customer customer = new Customer();
-        public NewCustomer()
+        private Sales sales;
+        public NewCustomer(Sales form)
         {
             InitializeComponent();
+            sales = form;
         }
 
 		private void Save_Button_Click(object sender, EventArgs e)
@@ -26,8 +28,8 @@ namespace MeatShop
             {
                 if (customer.AddCustomer(Customer_Name.Text, Customer_Phone.Text))
                 {
-                    Customer_Name.Text = "";
-                    Customer_Phone.Text = "";
+                    customer.FillCombo(sales.Sale_Customer);
+                    this.Close();
                 }
             }
             else
@@ -44,7 +46,6 @@ namespace MeatShop
             }
             else
             {
-
                 MessageBox.Show("Please Enter the correct format of Phone like this XXXX-XXXXXXX", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Customer_Phone.BackColor = Color.Red;
             }

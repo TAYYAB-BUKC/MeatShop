@@ -25,7 +25,8 @@ namespace MeatShop
 		public AddProduct()
 		{
 			InitializeComponent();
-			unit.FillCombo(Product_Unit);
+			//unit.FillCombo(Product_Unit);
+			Product_Unit.SelectedIndex = 0;
 			category.FillCombo(Product_Category);
 			//string path = Path.GetDirectoryName(Application.StartupPath);
 			//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
@@ -52,9 +53,19 @@ namespace MeatShop
 					{
 						if (Product_ShortCode.BackColor != Color.Red)
 						{
-							if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue), Convert.ToChar(Product_ShortCode.Text)))
+							if (Product_ShortCode.Text == "")
 							{
-								ClearData();
+								if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, ""))
+								{
+									ClearData();
+								}
+							}
+							else
+							{
+								if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Convert.ToChar(Product_ShortCode.Text)))
+								{
+									ClearData();
+								}
 							}
 						}
 						else
@@ -66,9 +77,19 @@ namespace MeatShop
 					{
 						if (Product_ShortCode.BackColor != Color.Red)
 						{
-							if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Convert.ToInt32(Product_Unit.SelectedValue), Convert.ToChar(Product_ShortCode.Text)))
+							if (Product_ShortCode.Text == "")
 							{
-								ClearData();
+								if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, ""))
+								{
+									ClearData();
+								}
+							}
+							else
+							{
+								if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Convert.ToChar(Product_ShortCode.Text)))
+								{
+									ClearData();
+								}
 							}
 						}
 						else
@@ -77,9 +98,10 @@ namespace MeatShop
 						}
 					}
 				}
-				catch (Exception)
+				catch (Exception ex)
 				{
-					MessageBox.Show("Something went wrong Please try again later.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					//	MessageBox.Show("Something went wrong Please try again later.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 
 			}
@@ -96,8 +118,8 @@ namespace MeatShop
 		{
 			Product_Name.Text = "";
 			Product_Price.Text = "";
-			Product_Category.Text = "";
-			Product_Unit.Text = "";
+			Product_Category.SelectedIndex = 0;
+			Product_Unit.SelectedIndex = 0;
 			//string path = Path.GetDirectoryName(Application.StartupPath);
 			//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
 			//string finalPath = newpath + "\\Resources\\Default_Image_Thumbnail.png";
@@ -127,7 +149,7 @@ namespace MeatShop
 		{
 			//int isNumber = 0;
 			//e.Handled = !int.TryParse(e.KeyChar.ToString(), out isNumber);
-
+			e.Handled = false;
 			if (char.IsLetter(e.KeyChar))
 			{
 				//e.Handled = true;
@@ -141,11 +163,26 @@ namespace MeatShop
 					Product_ShortCode.BackColor = SystemColors.Window;
 				}
 			}
-			
+			if (!char.IsLetterOrDigit(e.KeyChar))
+			{
+				if (product.IsShortExist(e.KeyChar))
+				{
+					MessageBox.Show("ShortCode already exist try another one", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Product_ShortCode.BackColor = Color.Red;
+				}
+				else
+				{
+					Product_ShortCode.BackColor = SystemColors.Window;
+				}
+			}
+			if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
 		}
-
 		private void Product_ShortCode_Click(object sender, EventArgs e)
 		{
+			Product_ShortCode.Text = "";
 			Product_ShortCode.BackColor = SystemColors.Window;
 		}
 	}

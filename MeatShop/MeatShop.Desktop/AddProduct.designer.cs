@@ -196,6 +196,7 @@
 			// 
 			// Product_Category
 			// 
+			this.Product_Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Product_Category.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.Product_Category.FormattingEnabled = true;
 			this.Product_Category.Items.AddRange(new object[] {
@@ -208,11 +209,12 @@
 			// 
 			// Product_Unit
 			// 
+			this.Product_Unit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Product_Unit.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.Product_Unit.FormattingEnabled = true;
 			this.Product_Unit.Items.AddRange(new object[] {
-            "Admin",
-            "Worker"});
+            "Kg",
+            "Unit"});
 			this.Product_Unit.Location = new System.Drawing.Point(658, 149);
 			this.Product_Unit.Name = "Product_Unit";
 			this.Product_Unit.Size = new System.Drawing.Size(249, 30);

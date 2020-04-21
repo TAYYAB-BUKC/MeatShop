@@ -18,9 +18,79 @@ namespace MeatShop.Database
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		bool isError = false;
 
-		public bool AddProduct(string name, int price, string imageurl, int categoryID, int unitID,char shortCode)
+		public bool AddProduct(string name, int price, string imageurl, int categoryID, string unitID,char shortCode)
 		{
-			if (name == "" || price < -1 || categoryID < 0 || unitID < 0)
+			if (name == "" || price < -1 || categoryID < 0)
+			{
+				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+			else
+			{
+				if (imageurl == "")
+				{
+					try
+					{
+						using (SQLiteConnection sql = new SQLiteConnection(con))
+						{
+							sql.Open();
+							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID,ShortCode) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID,@ShortCode)", sql);
+							cmd.Parameters.AddWithValue("@Name", name);
+							cmd.Parameters.AddWithValue("@Price", price);
+							cmd.Parameters.AddWithValue("@ImageUrl", imageurl);
+							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.Parameters.AddWithValue("@ShortCode", shortCode);
+							cmd.ExecuteNonQuery();
+							MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							sql.Close();
+							return true;
+						}
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return false;
+					}
+				}
+				else
+				{
+					string finalPath = String.Empty;
+					try
+					{
+						string path = Path.GetDirectoryName(Application.StartupPath);
+						string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+						string relativepPath = "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
+						finalPath = newpath + relativepPath;
+						File.Copy(imageurl, finalPath); 
+						using (SQLiteConnection sql = new SQLiteConnection(con))
+						{
+							sql.Open();
+							SQLiteCommand cmd = new SQLiteCommand("insert into Products(Name,Price,ImageUrl,CategoryID,UnitID,ShortCode) values(@Name,@Price,@ImageUrl,@CategoryID,@UnitID,@ShortCode)", sql);
+							cmd.Parameters.AddWithValue("@Name", name);
+							cmd.Parameters.AddWithValue("@Price", price);
+							cmd.Parameters.AddWithValue("@ImageUrl", relativepPath);
+							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.Parameters.AddWithValue("@ShortCode", shortCode);
+							cmd.ExecuteNonQuery();
+							MessageBox.Show("Product Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							sql.Close();
+							return true;
+						}
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return false;
+					}
+				}
+			}
+		}
+
+		public bool AddProduct(string name, int price, string imageurl, int categoryID, string unitID,string shortCode)
+		{
+			if (name == "" || price < -1 || categoryID < 0)
 			{
 				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
@@ -198,9 +268,98 @@ namespace MeatShop.Database
 				}
 			}
 		}
-		public bool UpdateProduct(int id, string name, int price, string oldPath, string newPath, int categoryID, int unitID)
+		//public bool UpdateProduct(int id, string name, int price, string oldPath, string newPath, int categoryID, string unitID,char shortCode)
+		//{
+		//	if (name == "" || price < -1 || categoryID < 0)
+		//	{
+		//		MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//		return false;
+		//	}
+		//	else
+		//	{
+		//		if (oldPath == null)
+		//		{
+		//			try
+		//			{
+		//				using (SQLiteConnection sql = new SQLiteConnection(con))
+		//				{
+		//					sql.Open();
+		//					SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID,ShortCode=@ShortCode where Id=@Id", sql);
+		//					cmd.Parameters.AddWithValue("@Name", name);
+		//					cmd.Parameters.AddWithValue("@Price", price);
+		//					cmd.Parameters.AddWithValue("@ImageUrl", newPath);
+		//					cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+		//					cmd.Parameters.AddWithValue("@UnitID", unitID);
+		//					cmd.Parameters.AddWithValue("@ShortCode", shortCode);
+		//					cmd.Parameters.AddWithValue("@Id", id);
+		//					cmd.ExecuteNonQuery();
+		//					MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		//					sql.Close();
+		//					return true;
+		//				}
+		//			}
+		//			catch (Exception ex)
+		//			{
+		//				//MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//				return false;
+		//			}
+		//		}
+		//		//else
+		//		//{ 
+		//		//if (File.Exists(oldPath))
+		//		//{
+		//		//	File.Delete(oldPath);
+		//		//}
+		//		else
+		//		{
+		//			string finalPath = String.Empty;
+		//			string path = Path.GetDirectoryName(Application.StartupPath);
+		//			string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+
+		//			if (File.Exists(newpath + oldPath))
+		//			{
+		//				try
+		//				{
+		//					GC.Collect();
+		//					GC.WaitForPendingFinalizers();
+		//					File.Delete(newpath + oldPath);
+
+		//					string relativepPath = "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
+		//					finalPath = newpath + relativepPath;
+		//					File.Copy(newPath, finalPath);
+
+		//					using (SQLiteConnection sql = new SQLiteConnection(con))
+		//					{
+		//						sql.Open();
+		//						SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID,ShortCode=@ShortCode where Id=@Id", sql);
+		//						cmd.Parameters.AddWithValue("@Name", name);
+		//						cmd.Parameters.AddWithValue("@Price", price);
+		//						cmd.Parameters.AddWithValue("@ImageUrl", relativepPath);
+		//						cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+		//						cmd.Parameters.AddWithValue("@UnitID", unitID);
+		//						cmd.Parameters.AddWithValue("@ShortCode", shortCode);
+		//						cmd.Parameters.AddWithValue("@Id", id);
+		//						cmd.ExecuteNonQuery();
+		//						MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		//						sql.Close();
+		//						return true;
+		//					}
+		//				}
+		//				catch (Exception ex)
+		//				{
+		//					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+		//					return false;
+		//				}
+		//			}
+		//			return false;
+		//		}
+		//	}
+		//}
+
+		public bool UpdateProduct(int id, string name, int price, string oldPath, string newPath, int categoryID, string unitID, string shortCode)
 		{
-			if (name == "" || price < -1 || categoryID < 0 || unitID < 0)
+			if (name == "" || price < -1 || categoryID < 0)
 			{
 				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
@@ -214,12 +373,13 @@ namespace MeatShop.Database
 						using (SQLiteConnection sql = new SQLiteConnection(con))
 						{
 							sql.Open();
-							SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
+							SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID,ShortCode=@ShortCode where Id=@Id", sql);
 							cmd.Parameters.AddWithValue("@Name", name);
 							cmd.Parameters.AddWithValue("@Price", price);
 							cmd.Parameters.AddWithValue("@ImageUrl", newPath);
 							cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 							cmd.Parameters.AddWithValue("@UnitID", unitID);
+							cmd.Parameters.AddWithValue("@ShortCode", shortCode);
 							cmd.Parameters.AddWithValue("@Id", id);
 							cmd.ExecuteNonQuery();
 							MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -260,12 +420,13 @@ namespace MeatShop.Database
 							using (SQLiteConnection sql = new SQLiteConnection(con))
 							{
 								sql.Open();
-								SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID where Id=@Id", sql);
+								SQLiteCommand cmd = new SQLiteCommand("update Products set Name=@Name,Price=@Price,ImageUrl=@ImageUrl,CategoryID=@CategoryID,UnitID=@UnitID,ShortCode=@ShortCode where Id=@Id", sql);
 								cmd.Parameters.AddWithValue("@Name", name);
 								cmd.Parameters.AddWithValue("@Price", price);
 								cmd.Parameters.AddWithValue("@ImageUrl", relativepPath);
 								cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 								cmd.Parameters.AddWithValue("@UnitID", unitID);
+								cmd.Parameters.AddWithValue("@ShortCode", shortCode);
 								cmd.Parameters.AddWithValue("@Id", id);
 								cmd.ExecuteNonQuery();
 								MessageBox.Show("Product Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -283,6 +444,8 @@ namespace MeatShop.Database
 				}
 			}
 		}
+
+
 		public void DeleteProduct(int id, FileInfo path, string oldPath)
 		{
 			bool isFileDeleted = false;
@@ -489,7 +652,7 @@ namespace MeatShop.Database
 				try
 				{
 					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,ImageUrl,Price from Products where CategoryID = @Id", sql);
+					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,ImageUrl,Price,UnitID from Products where CategoryID = @Id", sql);
 					cmd.Parameters.AddWithValue("@Id", id);
 					cmd.ExecuteNonQuery();
 					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
@@ -501,6 +664,7 @@ namespace MeatShop.Database
 						entity.Name = new string[dt.Rows.Count];
 						entity.ImageUrl = new string[dt.Rows.Count];
 						entity.Price = new int[dt.Rows.Count];
+						entity.Unit = new string[dt.Rows.Count];
 
 						int counter = 0;
 
@@ -510,6 +674,7 @@ namespace MeatShop.Database
 							entity.Name[counter] = Convert.ToString(row[1]);
 							entity.ImageUrl[counter] = Convert.ToString(row[2]);
 							entity.Price[counter] = Convert.ToInt32(row[3]);
+							entity.Unit[counter] = Convert.ToString(row[4]);
 							counter++;
 						}
 
@@ -540,7 +705,7 @@ namespace MeatShop.Database
 				try
 				{
 					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,ImageUrl,Price from Products", sql);
+					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,ImageUrl,Price,UnitID from Products", sql);
 					cmd.ExecuteNonQuery();
 					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
 					da.Fill(dt);
@@ -551,7 +716,7 @@ namespace MeatShop.Database
 						entity.Name = new string[dt.Rows.Count];
 						entity.ImageUrl = new string[dt.Rows.Count];
 						entity.Price = new int[dt.Rows.Count];
-
+						entity.Unit = new string[dt.Rows.Count];
 						int counter = 0;
 
 						foreach (DataRow row in dt.Rows)
@@ -560,6 +725,7 @@ namespace MeatShop.Database
 							entity.Name[counter] = Convert.ToString(row[1]);
 							entity.ImageUrl[counter] = Convert.ToString(row[2]);
 							entity.Price[counter] = Convert.ToInt32(row[3]);
+							entity.Unit[counter] = Convert.ToString(row[4]);
 							counter++;
 						}
 
@@ -630,22 +796,21 @@ namespace MeatShop.Database
 						cmd.Parameters.AddWithValue("@SaleID", saleID);
 						cmd.Parameters.AddWithValue("@ProductID", Convert.ToInt32(dataGrid.Rows[j].Cells[0].Value));
 						cmd.Parameters.AddWithValue("@Price", Convert.ToInt32(dataGrid.Rows[j].Cells[2].Value));
-						cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(dataGrid.Rows[j].Cells[3].Value));
+						cmd.Parameters.AddWithValue("@Quantity", dataGrid.Rows[j].Cells[3].Value);
 						cmd.ExecuteNonQuery();
-						MessageBox.Show("Sale Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 						sql.Close();
 						check = true;
 					}
 				}
 				if (check)
 				{
+					MessageBox.Show("Sale Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					return true;
 				}
 				else
 				{
 					return false;
 				}
-
 			}
 			catch (Exception ex)
 			{
@@ -694,7 +859,8 @@ namespace MeatShop.Database
 			using (SQLiteConnection sql = new SQLiteConnection(con))
 			{
 				sql.Open();
-				SQLiteCommand cmd = new SQLiteCommand("select ShortCode from Products", sql);
+				SQLiteCommand cmd = new SQLiteCommand("select ShortCode from Products where ShortCode != @ShortCode", sql);
+				cmd.Parameters.AddWithValue("@ShortCode", "");
 				SQLiteDataReader reader = cmd.ExecuteReader(); 
 				while (reader.Read())
 				{
@@ -718,7 +884,7 @@ namespace MeatShop.Database
 				try
 				{
 					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,Price from Products where ShortCode = @ShortCode", sql);
+					SQLiteCommand cmd = new SQLiteCommand("select Id,Name,Price,UnitID from Products where ShortCode = @ShortCode", sql);
 					cmd.Parameters.AddWithValue("@ShortCode", ch.ToString());
 					SQLiteDataReader reader = cmd.ExecuteReader();
 					if (reader.HasRows)
@@ -729,6 +895,7 @@ namespace MeatShop.Database
 							productEntity.Id = reader.GetInt32(0);
 							productEntity.Name = reader.GetString(1);
 							productEntity.Price = reader.GetInt32(2);
+							productEntity.Unit = reader.GetString(3);
 						}
 						sql.Close();
 						return productEntity;
@@ -765,6 +932,7 @@ namespace MeatShop.Database
 		public int[] Price { get; set; }
 		public string[] Name { get; set; }
 		public string[] ImageUrl { get; set; }
+		public string[] Unit { get; set; }
 	}
 
 	public class SingleProductEntity
@@ -772,6 +940,7 @@ namespace MeatShop.Database
 		public int Id { get; set; }
 		public int Price { get; set; }
 		public string Name { get; set; }
+		public string Unit { get; set; }
 	}
 
 }

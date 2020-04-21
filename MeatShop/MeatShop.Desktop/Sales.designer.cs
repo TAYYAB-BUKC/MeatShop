@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.Sale_Button = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.LDate = new System.Windows.Forms.Label();
@@ -38,11 +38,6 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.Grd_Sale = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.Sale_Discount = new System.Windows.Forms.TextBox();
 			this.Sale_TotalAmount = new System.Windows.Forms.TextBox();
 			this.Sale_PaidAmount = new System.Windows.Forms.TextBox();
@@ -67,6 +62,14 @@
 			this.Sale_SetPrice = new System.Windows.Forms.CheckBox();
 			this.Sale_NumPad = new System.Windows.Forms.CheckBox();
 			this.ReturnLabel = new System.Windows.Forms.Label();
+			this.BtnBack = new System.Windows.Forms.Button();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.P = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.HPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)(this.Grd_Sale)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -161,32 +164,35 @@
 			// 
 			this.Grd_Sale.AllowUserToAddRows = false;
 			this.Grd_Sale.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Sale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Sale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.Grd_Sale.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Sale.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Sale.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Sale.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle6.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Sale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Sale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.Grd_Sale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Sale.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.ProductName,
-            this.Price,
+            this.P,
             this.Quantity,
+            this.HPrice,
+            this.Unit,
             this.Delete});
 			this.Grd_Sale.DoubleBuffered = true;
 			this.Grd_Sale.EnableHeadersVisualStyles = false;
 			this.Grd_Sale.HeaderBgColor = System.Drawing.SystemColors.Control;
 			this.Grd_Sale.HeaderForeColor = System.Drawing.Color.MediumBlue;
 			this.Grd_Sale.Location = new System.Drawing.Point(656, 163);
+			this.Grd_Sale.MultiSelect = false;
 			this.Grd_Sale.Name = "Grd_Sale";
 			this.Grd_Sale.ReadOnly = true;
 			this.Grd_Sale.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -194,40 +200,6 @@
 			this.Grd_Sale.TabIndex = 89;
 			this.Grd_Sale.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Sale_CellContentClick);
 			this.Grd_Sale.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grd_Sale_CellEndEdit);
-			// 
-			// Id
-			// 
-			this.Id.HeaderText = "ID";
-			this.Id.Name = "Id";
-			this.Id.ReadOnly = true;
-			this.Id.Visible = false;
-			// 
-			// ProductName
-			// 
-			this.ProductName.HeaderText = "ProductName";
-			this.ProductName.Name = "ProductName";
-			this.ProductName.ReadOnly = true;
-			// 
-			// Price
-			// 
-			this.Price.HeaderText = "Price";
-			this.Price.Name = "Price";
-			this.Price.ReadOnly = true;
-			// 
-			// Quantity
-			// 
-			this.Quantity.HeaderText = "Quantity";
-			this.Quantity.Name = "Quantity";
-			this.Quantity.ReadOnly = true;
-			// 
-			// Delete
-			// 
-			this.Delete.HeaderText = "Delete";
-			this.Delete.Name = "Delete";
-			this.Delete.ReadOnly = true;
-			this.Delete.Text = "Remove item";
-			this.Delete.ToolTipText = "Remove item";
-			this.Delete.UseColumnTextForButtonValue = true;
 			// 
 			// Sale_Discount
 			// 
@@ -237,6 +209,8 @@
 			this.Sale_Discount.Size = new System.Drawing.Size(134, 31);
 			this.Sale_Discount.TabIndex = 90;
 			this.Sale_Discount.Text = "0";
+			this.Sale_Discount.Enter += new System.EventHandler(this.Sale_PaidAmount_Enter);
+			this.Sale_Discount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Sale_Discount_KeyUp);
 			this.Sale_Discount.Leave += new System.EventHandler(this.Sale_Discount_Leave);
 			// 
 			// Sale_TotalAmount
@@ -284,6 +258,7 @@
 			// 
 			// Sale_Customer
 			// 
+			this.Sale_Customer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Sale_Customer.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.Sale_Customer.FormattingEnabled = true;
 			this.Sale_Customer.Items.AddRange(new object[] {
@@ -479,7 +454,7 @@
 			this.Btn0.ForeColor = System.Drawing.Color.LightGray;
 			this.Btn0.Location = new System.Drawing.Point(656, 630);
 			this.Btn0.Name = "Btn0";
-			this.Btn0.Size = new System.Drawing.Size(184, 40);
+			this.Btn0.Size = new System.Drawing.Size(117, 40);
 			this.Btn0.TabIndex = 188;
 			this.Btn0.Text = "0";
 			this.Btn0.UseVisualStyleBackColor = false;
@@ -498,6 +473,7 @@
 			this.label3.Size = new System.Drawing.Size(90, 22);
 			this.label3.TabIndex = 191;
 			this.label3.Text = "Products";
+			this.label3.Visible = false;
 			// 
 			// BtnAdd
 			// 
@@ -525,6 +501,7 @@
 			this.Sale_SetPrice.TabIndex = 193;
 			this.Sale_SetPrice.Text = "Set Price";
 			this.Sale_SetPrice.UseVisualStyleBackColor = true;
+			this.Sale_SetPrice.Visible = false;
 			this.Sale_SetPrice.CheckedChanged += new System.EventHandler(this.Sale_SetPrice_CheckedChanged);
 			// 
 			// Sale_NumPad
@@ -538,6 +515,7 @@
 			this.Sale_NumPad.TabIndex = 194;
 			this.Sale_NumPad.Text = "Release Keys";
 			this.Sale_NumPad.UseVisualStyleBackColor = true;
+			this.Sale_NumPad.Visible = false;
 			this.Sale_NumPad.CheckedChanged += new System.EventHandler(this.Sale_NumPad_CheckedChanged);
 			// 
 			// ReturnLabel
@@ -548,10 +526,74 @@
 			this.ReturnLabel.AutoSize = true;
 			this.ReturnLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ReturnLabel.ForeColor = System.Drawing.Color.White;
-			this.ReturnLabel.Location = new System.Drawing.Point(867, 671);
+			this.ReturnLabel.Location = new System.Drawing.Point(939, 680);
 			this.ReturnLabel.Name = "ReturnLabel";
 			this.ReturnLabel.Size = new System.Drawing.Size(0, 22);
 			this.ReturnLabel.TabIndex = 195;
+			// 
+			// BtnBack
+			// 
+			this.BtnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.BtnBack.FlatAppearance.BorderSize = 0;
+			this.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.BtnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BtnBack.ForeColor = System.Drawing.Color.LightGray;
+			this.BtnBack.Image = global::MeatShop.Desktop.Properties.Resources.icons8_back_arrow_24;
+			this.BtnBack.Location = new System.Drawing.Point(790, 628);
+			this.BtnBack.Name = "BtnBack";
+			this.BtnBack.Size = new System.Drawing.Size(50, 40);
+			this.BtnBack.TabIndex = 196;
+			this.BtnBack.UseVisualStyleBackColor = false;
+			this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
+			// 
+			// Id
+			// 
+			this.Id.HeaderText = "ID";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			this.Id.Visible = false;
+			// 
+			// ProductName
+			// 
+			this.ProductName.HeaderText = "ProductName";
+			this.ProductName.Name = "ProductName";
+			this.ProductName.ReadOnly = true;
+			// 
+			// P
+			// 
+			this.P.HeaderText = "Price";
+			this.P.Name = "P";
+			this.P.ReadOnly = true;
+			// 
+			// Quantity
+			// 
+			this.Quantity.HeaderText = "Quantity";
+			this.Quantity.MaxInputLength = 999999;
+			this.Quantity.Name = "Quantity";
+			this.Quantity.ReadOnly = true;
+			// 
+			// HPrice
+			// 
+			this.HPrice.HeaderText = "HPrice";
+			this.HPrice.Name = "HPrice";
+			this.HPrice.ReadOnly = true;
+			this.HPrice.Visible = false;
+			// 
+			// Unit
+			// 
+			this.Unit.HeaderText = "Unit";
+			this.Unit.Name = "Unit";
+			this.Unit.ReadOnly = true;
+			this.Unit.Visible = false;
+			// 
+			// Delete
+			// 
+			this.Delete.HeaderText = "Delete";
+			this.Delete.Name = "Delete";
+			this.Delete.ReadOnly = true;
+			this.Delete.Text = "Remove item";
+			this.Delete.ToolTipText = "Remove item";
+			this.Delete.UseColumnTextForButtonValue = true;
 			// 
 			// Sales
 			// 
@@ -559,6 +601,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1244, 767);
+			this.Controls.Add(this.BtnBack);
 			this.Controls.Add(this.ReturnLabel);
 			this.Controls.Add(this.Sale_NumPad);
 			this.Controls.Add(this.Sale_SetPrice);
@@ -595,6 +638,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Add Sale";
 			this.Load += new System.EventHandler(this.Sales_Load);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Sales_KeyDown);
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Sales_KeyPress);
 			((System.ComponentModel.ISupportInitialize)(this.Grd_Sale)).EndInit();
 			this.ResumeLayout(false);
@@ -616,15 +660,9 @@
         private System.Windows.Forms.TextBox Sale_PaidAmount;
 		private System.Windows.Forms.TextBox Sale_Balance;
 		private System.Windows.Forms.Label LBoughtItems;
-		private System.Windows.Forms.ComboBox Sale_Customer;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-		private System.Windows.Forms.DataGridViewButtonColumn Delete;
 		private System.Windows.Forms.Button Btn7;
 		private System.Windows.Forms.Button Btn9;
 		private System.Windows.Forms.Button Btn8;
@@ -640,5 +678,14 @@
 		private System.Windows.Forms.CheckBox Sale_SetPrice;
 		private System.Windows.Forms.CheckBox Sale_NumPad;
 		private System.Windows.Forms.Label ReturnLabel;
+		private System.Windows.Forms.Button BtnBack;
+		public System.Windows.Forms.ComboBox Sale_Customer;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn P;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+		private System.Windows.Forms.DataGridViewTextBoxColumn HPrice;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Unit;
+		private System.Windows.Forms.DataGridViewButtonColumn Delete;
 	}
 }
