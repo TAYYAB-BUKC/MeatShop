@@ -28,18 +28,25 @@ namespace MeatShop
 
 		private void Login_Button_Click(object sender, EventArgs e)
 		{
-			if (User.Login(Username.Text, Password.Text))
+			int role = User.Login(Username.Text, Password.Text);
+			if (role == 0)
 			{
 				this.Hide();
-				Home home = new Home(false);
+				Home home = new Home();
 				MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				home.Show();
+			}
+			else if (role == 1)
+			{
+				this.Hide();
+				Sales sales = new Sales();
+				MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				sales.Show();
 			}
 			else
 			{
 				MessageBox.Show("Invalid credentials please try again later", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-
 		}
 
 		private void Email_Click(object sender, EventArgs e)
@@ -56,12 +63,20 @@ namespace MeatShop
 		{
 			if (e.KeyChar == (char)Keys.Enter)
 			{
-				if (User.Login(Username.Text, Password.Text))
+				int role = User.Login(Username.Text, Password.Text);
+				if (role == 0)
 				{
 					this.Hide();
-					Home home = new Home(false);
+					Home home = new Home();
 					MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					home.Show();
+				}
+				else if (role == 1)
+				{
+					this.Hide();
+					Sales sales = new Sales();
+					MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sales.Show();
 				}
 				else
 				{

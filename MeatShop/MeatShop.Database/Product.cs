@@ -388,9 +388,9 @@ namespace MeatShop.Database
 							return true;
 						}
 					}
-					catch (Exception)
+					catch (Exception ex)
 					{
-						MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return false;
 					}
 				}
@@ -746,11 +746,13 @@ namespace MeatShop.Database
 		{
 			try
 			{
+				int date = Convert.ToInt32(DateTime.Now.Date.ToOADate());
+
 				using (SQLiteConnection sql = new SQLiteConnection(con))
 				{
 					sql.Open();
 					SQLiteCommand cmd = new SQLiteCommand("insert into Sale(Datetime,CustomerID,TotalAmount,Discount,PaidAmount,Balance) values(@Datetime,@CustomerID,@TotalAmount,@Discount,@PaidAmount,@Balance)", sql);
-					cmd.Parameters.AddWithValue("@Datetime", DateTime.Now.Date.ToOADate());
+					cmd.Parameters.AddWithValue("@Datetime", date);
 					cmd.Parameters.AddWithValue("@CustomerID", customerID);
 					cmd.Parameters.AddWithValue("@TotalAmount", totalAmount);
 					cmd.Parameters.AddWithValue("@Discount", discount);

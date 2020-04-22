@@ -40,7 +40,7 @@ namespace MeatShop.Database
 			//	}
 			//}
 
-			if (AddStockUpdate(quantity, price, productEntity.oldQuantity))
+			if (AddStockUpdate(quantity, price, productEntity.oldQuantity,productID))
 			{
 				bool isSuccess = false;
 				using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -79,7 +79,7 @@ namespace MeatShop.Database
 
 		public void AddStock(int productID, int quantity,int price,bool isPriceUpdated)
 		{
-			if (AddStockUpdate(quantity,price,0))
+			if (AddStockUpdate(quantity,price,0,productID))
 			{
 				bool isSuccess = false;
 				using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -109,16 +109,18 @@ namespace MeatShop.Database
 			}
 		}
 
-		public bool AddStockUpdate(int newQuantity,int price, int oldQuantity)
+		public bool AddStockUpdate(int newQuantity,int price, int oldQuantity,int productID)
 		{
+			int date = Convert.ToInt32(DateTime.Now.Date.ToOADate());
 			using (SQLiteConnection sql = new SQLiteConnection(con))
 			{
 				try
 				{
 					sql.Open();
-					SQLiteCommand cmd = new SQLiteCommand("insert into Stock_Update(Quantity,Price,Datetime,Last_Available) values(@Quantity,@Price,@Datetime,@Last_Available)", sql);
+					SQLiteCommand cmd = new SQLiteCommand("insert into Stock_Update(productID,Quantity,Price,Datetime,Last_Available) values(@productID,@Quantity,@Price,@Datetime,@Last_Available)", sql);
+					cmd.Parameters.AddWithValue("@productID", productID);
 					cmd.Parameters.AddWithValue("@Quantity", newQuantity);
-					cmd.Parameters.AddWithValue("@Datetime", DateTime.Now.Date.ToOADate());
+					cmd.Parameters.AddWithValue("@Datetime", date);
 					cmd.Parameters.AddWithValue("@Price", price);
 					cmd.Parameters.AddWithValue("@Last_Available", oldQuantity);
 					cmd.ExecuteNonQuery();

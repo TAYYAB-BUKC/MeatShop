@@ -15,8 +15,7 @@ namespace MeatShop.Database
 	public class Customer
 	{
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
-		bool isError = false;
-	
+		
 		public bool AddCustomer(string name, string phone)
 		{
 			if (name == "" || phone == "")
@@ -26,6 +25,7 @@ namespace MeatShop.Database
 			}
 			else
 			{
+				int date = Convert.ToInt32(DateTime.Now.Date.ToOADate());
 				try
 				{
 					using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -34,7 +34,7 @@ namespace MeatShop.Database
 						SQLiteCommand cmd = new SQLiteCommand("insert into Customer(Name,Phone,Date,Balance) values(@Name,@Phone,@Date,@Balance)", sql);
 						cmd.Parameters.AddWithValue("@Name", name);
 						cmd.Parameters.AddWithValue("@Phone", phone);
-						cmd.Parameters.AddWithValue("@Date", DateTime.Now.Date.ToOADate());
+						cmd.Parameters.AddWithValue("@Date", date);
 						cmd.Parameters.AddWithValue("@Balance", 0);
 						cmd.ExecuteNonQuery();
 						MessageBox.Show("Customer Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);

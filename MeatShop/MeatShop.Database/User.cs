@@ -15,12 +15,12 @@ namespace MeatShop.Database
 	{
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		bool isError = false;
-		public bool Login(string username, string password)
+		public int Login(string username, string password)
 		{
 			if (username == "" || password == "")
 			{
 				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return false;
+				return -1;
 			}
 			else
 			{
@@ -35,11 +35,17 @@ namespace MeatShop.Database
 					sda.Fill(dt);
 					if (dt.Rows.Count == 1)
 					{
-						return true;
+						int role = -1;
+						foreach (DataRow dr in dt.Rows) // search whole table
+						{
+						    role = Convert.ToInt32(dr["Role"]); //change the name
+						
+						}
+						return role;
 					}
 					else
 					{
-						return false;
+						return -1;
 					}
 				}
 			}

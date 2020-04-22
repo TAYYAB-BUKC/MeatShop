@@ -21,7 +21,7 @@ namespace MeatShop
 		Category category = new Category();
 		Unit unit = new Unit();
 		Product product = new Product();
-		string finalPath;
+		//string finalPath;
 		public AddProduct()
 		{
 			InitializeComponent();

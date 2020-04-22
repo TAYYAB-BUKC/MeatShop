@@ -16,8 +16,10 @@ namespace MeatShop
 		{
 			try
 			{
-				string date = ""+Expense_Date.Value.ToOADate();
+				//string date = ""+Expense_Date.Value.ToOADate();
+				string date = "" + Expense_Date.Value.Date.ToOADate();
 
+				//MessageBox.Show("Date: " + date + "\nDate1: " +date1);
 				if (expense.AddExpense(Expense_Name.Text, Convert.ToInt32(Expense_Amount.Text), date, Expense_Comment.Text))
 				{
 					ClearData();

@@ -30,7 +30,7 @@ namespace MeatShop
 			InitializeComponent();
 			//unit.FillCombo(Product_Unit);
 			category.FillCombo(Product_Category);
-			product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name from Products inner join Categories on Products.CategoryID = Categories.Id");
+			product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id");
 		}
 
 		private void ClearData()
@@ -59,7 +59,7 @@ namespace MeatShop
 					{
 						product.DeleteProduct(Convert.ToInt32(Product_ID.Text), null, null);
 						ClearData();
-						product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name from Products inner join Categories on Products.CategoryID = Categories.Id");
+						product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id");
 					}
 					else
 					{
@@ -70,8 +70,7 @@ namespace MeatShop
 						FileInfo fileInfo = new FileInfo(newpath + oldPath);
 						product.DeleteProduct(Convert.ToInt32(Product_ID.Text), fileInfo, oldPath);
 						ClearData();
-						product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name from Products inner join Categories on Products.CategoryID = Categories.Id");
-
+						product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id");
 					}
 				}
 			}
@@ -113,7 +112,7 @@ namespace MeatShop
 									if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, oldPath, newPath, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, ""))
 									{
 										ClearData();
-										product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name from Products inner join Categories on Products.CategoryID = Categories.Id");
+										product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id");
 									}
 								}
 								else
@@ -121,7 +120,7 @@ namespace MeatShop
 									if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, oldPath, newPath, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Product_ShortCode.Text))
 									{
 										ClearData();
-										product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name from Products inner join Categories on Products.CategoryID = Categories.Id");
+										product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id");
 									}
 								}
 							}
@@ -139,7 +138,7 @@ namespace MeatShop
 									if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, null, oldPath, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, ""))
 									{
 										ClearData();
-										product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name from Products inner join Categories on Products.CategoryID = Categories.Id");
+										product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id");
 									}
 								}
 								else
@@ -147,7 +146,7 @@ namespace MeatShop
 									if (product.UpdateProduct(Convert.ToInt32(Product_ID.Text), Product_Name.Text, price, null, oldPath, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Product_ShortCode.Text))
 									{
 										ClearData();
-										product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name from Products inner join Categories on Products.CategoryID = Categories.Id");
+										product.GetData(Grd_Product, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id");
 									}
 								}
 							}

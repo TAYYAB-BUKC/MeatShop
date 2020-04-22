@@ -12,22 +12,33 @@ namespace MeatShop
 {
     public partial class Home : Form
     {
-		private bool Check;
-        public Home(bool check)
+        //private int Check;
+        //      public Home(int role)
+        //      {
+        //	InitializeComponent();
+        //          hideSubMenu();
+        //	if (role == 1)
+        //	{
+        //              panelMediaSubMenu.Hide();
+        //              Product.Hide();
+        //		Customer_Panel.Hide();
+        //              Customer.Hide();
+        //              User_Panel.Hide();
+        //              User.Hide();
+        //              Product_Panel.Hide();
+        //              Expense.Hide();
+        //              btnTools.Hide();
+        //              panelToolsSubMenu.Hide();
+        //              Category_Panel.Hide();
+        //              Category.Hide();
+        //          }
+        //}
+
+        public Home()
         {
-			InitializeComponent();
+            InitializeComponent();
             hideSubMenu();
-			if (check)
-			{
-				button2.Hide();
-				button3.Hide();
-				//button5.Hide();
-				//button6.Hide();
-				btnTools.Hide();
-				//btnEqualizer.Hide();
-				//button7.Hide();
-			}
-		}
+        }
 
         private void hideSubMenu()
         {
