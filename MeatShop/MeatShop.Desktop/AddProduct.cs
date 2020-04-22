@@ -62,7 +62,7 @@ namespace MeatShop
 							}
 							else
 							{
-								if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Convert.ToChar(Product_ShortCode.Text)))
+								if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Product_ShortCode.Text))
 								{
 									ClearData();
 								}
@@ -86,7 +86,7 @@ namespace MeatShop
 							}
 							else
 							{
-								if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Convert.ToChar(Product_ShortCode.Text)))
+								if (product.AddProduct(Product_Name.Text, price, imageUrl, Convert.ToInt32(Product_Category.SelectedValue), Product_Unit.Text, Product_ShortCode.Text))
 								{
 									ClearData();
 								}
@@ -127,6 +127,7 @@ namespace MeatShop
 			Product_Image.Image = null;
 			isImageSelected = false;
 			imageUrl = "";
+			Product_ShortCode.Text = "";
 
 		}
 		private void Browse_Button_Click(object sender, EventArgs e)
@@ -184,6 +185,48 @@ namespace MeatShop
 		{
 			Product_ShortCode.Text = "";
 			Product_ShortCode.BackColor = SystemColors.Window;
+		}
+
+		private void Product_Name_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (char.IsLetter(e.KeyChar))
+			{
+				e.Handled = false;
+			}
+			if (!char.IsLetterOrDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+			if (e.KeyChar == (char)Keys.Back)
+			{
+				e.Handled = false;
+			}
+			if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void Product_Price_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (char.IsLetter(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+			else if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = false;
+			}
+			else if (e.KeyChar == (char)Keys.Back)
+			{
+				e.Handled = false;
+			}
+			else
+			{
+				e.Handled = true;
+			}
 		}
 	}
 }

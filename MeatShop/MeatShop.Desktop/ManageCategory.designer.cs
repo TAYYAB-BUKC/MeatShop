@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.Delete_Button = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label3 = new System.Windows.Forms.Label();
@@ -137,20 +137,20 @@
 			// 
 			this.Grd_Category.AllowUserToAddRows = false;
 			this.Grd_Category.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Category.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Category.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.Grd_Category.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Category.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Category.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Category.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Category.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Category.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.Grd_Category.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Category.DoubleBuffered = true;
 			this.Grd_Category.EnableHeadersVisualStyles = false;
@@ -171,6 +171,7 @@
 			this.Category_Name.Name = "Category_Name";
 			this.Category_Name.Size = new System.Drawing.Size(240, 31);
 			this.Category_Name.TabIndex = 90;
+			this.Category_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Category_Name_KeyPress);
 			// 
 			// Category_ID
 			// 
@@ -189,6 +190,7 @@
 			this.Category_Search.Size = new System.Drawing.Size(502, 31);
 			this.Category_Search.TabIndex = 99;
 			this.Category_Search.TextChanged += new System.EventHandler(this.User_Search_TextChanged);
+			this.Category_Search.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Category_Search_KeyPress);
 			// 
 			// label8
 			// 

@@ -96,10 +96,11 @@
 			// Product_Price
 			// 
 			this.Product_Price.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.Product_Price.Location = new System.Drawing.Point(658, 85);
+			this.Product_Price.Location = new System.Drawing.Point(658, 91);
 			this.Product_Price.Name = "Product_Price";
 			this.Product_Price.Size = new System.Drawing.Size(249, 31);
 			this.Product_Price.TabIndex = 161;
+			this.Product_Price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Product_Price_KeyPress);
 			// 
 			// label7
 			// 
@@ -122,6 +123,7 @@
 			this.Product_Name.Name = "Product_Name";
 			this.Product_Name.Size = new System.Drawing.Size(252, 31);
 			this.Product_Name.TabIndex = 157;
+			this.Product_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Product_Name_KeyPress);
 			// 
 			// label5
 			// 
@@ -256,6 +258,7 @@
 			// 
 			// AddProduct
 			// 
+			this.AcceptButton = this.Save_Button;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));

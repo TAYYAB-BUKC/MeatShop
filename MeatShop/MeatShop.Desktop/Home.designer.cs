@@ -32,7 +32,6 @@
 			this.panelSideMenu = new System.Windows.Forms.Panel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.Customer_Panel = new System.Windows.Forms.Panel();
-			this.button14 = new System.Windows.Forms.Button();
 			this.button15 = new System.Windows.Forms.Button();
 			this.Customer = new System.Windows.Forms.Button();
 			this.Product_Panel = new System.Windows.Forms.Panel();
@@ -109,7 +108,7 @@
 			this.button1.ForeColor = System.Drawing.Color.Silver;
 			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
 			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button1.Location = new System.Drawing.Point(0, 1010);
+			this.button1.Location = new System.Drawing.Point(0, 969);
 			this.button1.Name = "button1";
 			this.button1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.button1.Size = new System.Drawing.Size(233, 45);
@@ -123,30 +122,12 @@
 			// Customer_Panel
 			// 
 			this.Customer_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-			this.Customer_Panel.Controls.Add(this.button14);
 			this.Customer_Panel.Controls.Add(this.button15);
 			this.Customer_Panel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.Customer_Panel.Location = new System.Drawing.Point(0, 900);
 			this.Customer_Panel.Name = "Customer_Panel";
-			this.Customer_Panel.Size = new System.Drawing.Size(233, 110);
+			this.Customer_Panel.Size = new System.Drawing.Size(233, 69);
 			this.Customer_Panel.TabIndex = 17;
-			// 
-			// button14
-			// 
-			this.button14.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button14.FlatAppearance.BorderSize = 0;
-			this.button14.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.button14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button14.ForeColor = System.Drawing.Color.Silver;
-			this.button14.Location = new System.Drawing.Point(0, 40);
-			this.button14.Name = "button14";
-			this.button14.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.button14.Size = new System.Drawing.Size(233, 47);
-			this.button14.TabIndex = 1;
-			this.button14.Text = "Manage Category";
-			this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button14.UseVisualStyleBackColor = true;
 			// 
 			// button15
 			// 
@@ -468,7 +449,7 @@
 			this.btnExit.ForeColor = System.Drawing.Color.Silver;
 			this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
 			this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnExit.Location = new System.Drawing.Point(0, 1055);
+			this.btnExit.Location = new System.Drawing.Point(0, 1014);
 			this.btnExit.Name = "btnExit";
 			this.btnExit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.btnExit.Size = new System.Drawing.Size(233, 45);
@@ -659,7 +640,6 @@
 		private System.Windows.Forms.Button Expense;
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.Panel Customer_Panel;
-		private System.Windows.Forms.Button button14;
 		private System.Windows.Forms.Button button15;
 		private System.Windows.Forms.Button Customer;
 		private System.Windows.Forms.Button button1;

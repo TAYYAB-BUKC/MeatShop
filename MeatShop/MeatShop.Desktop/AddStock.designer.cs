@@ -92,6 +92,7 @@
 			this.Stock_Price.Name = "Stock_Price";
 			this.Stock_Price.Size = new System.Drawing.Size(249, 31);
 			this.Stock_Price.TabIndex = 161;
+			this.Stock_Price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Stock_Price_KeyPress);
 			// 
 			// label5
 			// 
@@ -123,6 +124,7 @@
 			// 
 			// Stock_Product
 			// 
+			this.Stock_Product.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Stock_Product.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.Stock_Product.FormattingEnabled = true;
 			this.Stock_Product.Location = new System.Drawing.Point(274, 91);
@@ -138,6 +140,7 @@
 			this.Stock_Quantity.Name = "Stock_Quantity";
 			this.Stock_Quantity.Size = new System.Drawing.Size(249, 31);
 			this.Stock_Quantity.TabIndex = 169;
+			this.Stock_Quantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Stock_Quantity_KeyPress);
 			// 
 			// label2
 			// 

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace MeatShop.Desktop
 {
-	static class Program
+	static class Program                                                                                                                                                                                                                                                                                                                                                                                        
 	{
 		/// <summary>
 		/// The main entry point for the application.
@@ -16,8 +16,8 @@ namespace MeatShop.Desktop
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			//Application.Run(new Home(false));
-			Application.Run(new Sales());
+			Application.Run(new Home(false));
+			//Application.Run(new Sales());
 			//Application.Run(new ManageProduct());
 		}
 	}

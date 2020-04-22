@@ -90,10 +90,11 @@
 			// Expense_Amount
 			// 
 			this.Expense_Amount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.Expense_Amount.Location = new System.Drawing.Point(251, 139);
+			this.Expense_Amount.Location = new System.Drawing.Point(251, 145);
 			this.Expense_Amount.Name = "Expense_Amount";
 			this.Expense_Amount.Size = new System.Drawing.Size(252, 31);
 			this.Expense_Amount.TabIndex = 161;
+			this.Expense_Amount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Expense_Amount_KeyPress);
 			// 
 			// label6
 			// 
@@ -112,10 +113,11 @@
 			// Expense_Name
 			// 
 			this.Expense_Name.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-			this.Expense_Name.Location = new System.Drawing.Point(251, 85);
+			this.Expense_Name.Location = new System.Drawing.Point(251, 91);
 			this.Expense_Name.Name = "Expense_Name";
 			this.Expense_Name.Size = new System.Drawing.Size(252, 31);
 			this.Expense_Name.TabIndex = 157;
+			this.Expense_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Expense_Name_KeyPress);
 			// 
 			// label10
 			// 
@@ -139,6 +141,7 @@
 			this.Expense_Comment.Name = "Expense_Comment";
 			this.Expense_Comment.Size = new System.Drawing.Size(255, 136);
 			this.Expense_Comment.TabIndex = 155;
+			this.Expense_Comment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Expense_Comment_KeyPress);
 			// 
 			// label4
 			// 

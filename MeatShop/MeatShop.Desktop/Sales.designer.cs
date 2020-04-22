@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.Sale_Button = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.LDate = new System.Windows.Forms.Label();
@@ -164,20 +164,20 @@
 			// 
 			this.Grd_Sale.AllowUserToAddRows = false;
 			this.Grd_Sale.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Sale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Sale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
 			this.Grd_Sale.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Sale.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Sale.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Sale.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Sale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle8.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Sale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this.Grd_Sale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Sale.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -255,10 +255,12 @@
 			this.Sale_Discount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.Sale_Discount.Location = new System.Drawing.Point(1034, 527);
 			this.Sale_Discount.Name = "Sale_Discount";
-			this.Sale_Discount.Size = new System.Drawing.Size(134, 31);
+			this.Sale_Discount.Size = new System.Drawing.Size(156, 31);
 			this.Sale_Discount.TabIndex = 90;
 			this.Sale_Discount.Text = "0";
+			this.Sale_Discount.Click += new System.EventHandler(this.Sale_Discount_Click);
 			this.Sale_Discount.Enter += new System.EventHandler(this.Sale_PaidAmount_Enter);
+			this.Sale_Discount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Sale_Discount_KeyPress);
 			this.Sale_Discount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Sale_Discount_KeyUp);
 			this.Sale_Discount.Leave += new System.EventHandler(this.Sale_Discount_Leave);
 			// 
@@ -268,7 +270,7 @@
 			this.Sale_TotalAmount.Location = new System.Drawing.Point(1034, 475);
 			this.Sale_TotalAmount.Name = "Sale_TotalAmount";
 			this.Sale_TotalAmount.ReadOnly = true;
-			this.Sale_TotalAmount.Size = new System.Drawing.Size(134, 31);
+			this.Sale_TotalAmount.Size = new System.Drawing.Size(156, 31);
 			this.Sale_TotalAmount.TabIndex = 91;
 			this.Sale_TotalAmount.Text = "0";
 			// 
@@ -276,12 +278,14 @@
 			// 
 			this.Sale_PaidAmount.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.Sale_PaidAmount.Location = new System.Drawing.Point(1034, 580);
-			this.Sale_PaidAmount.MaxLength = 6;
+			this.Sale_PaidAmount.MaxLength = 8;
 			this.Sale_PaidAmount.Name = "Sale_PaidAmount";
-			this.Sale_PaidAmount.Size = new System.Drawing.Size(134, 31);
+			this.Sale_PaidAmount.Size = new System.Drawing.Size(156, 31);
 			this.Sale_PaidAmount.TabIndex = 96;
 			this.Sale_PaidAmount.Enter += new System.EventHandler(this.Sale_PaidAmount_Enter);
+			this.Sale_PaidAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Sale_PaidAmount_KeyPress);
 			this.Sale_PaidAmount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Sale_PaidAmount_KeyUp);
+			this.Sale_PaidAmount.Leave += new System.EventHandler(this.Sale_PaidAmount_Leave);
 			// 
 			// Sale_Balance
 			// 
@@ -289,8 +293,9 @@
 			this.Sale_Balance.Location = new System.Drawing.Point(1034, 630);
 			this.Sale_Balance.Name = "Sale_Balance";
 			this.Sale_Balance.ReadOnly = true;
-			this.Sale_Balance.Size = new System.Drawing.Size(134, 31);
+			this.Sale_Balance.Size = new System.Drawing.Size(156, 31);
 			this.Sale_Balance.TabIndex = 97;
+			this.Sale_Balance.Enter += new System.EventHandler(this.Sale_PaidAmount_Enter);
 			// 
 			// LBoughtItems
 			// 
@@ -583,7 +588,7 @@
 			// 
 			// BtnBack
 			// 
-			this.BtnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.BtnBack.BackColor = System.Drawing.Color.LightGray;
 			this.BtnBack.FlatAppearance.BorderSize = 0;
 			this.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -598,6 +603,7 @@
 			// 
 			// Sales
 			// 
+			this.AcceptButton = this.Sale_Button;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
@@ -639,6 +645,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Add Sale";
 			this.Load += new System.EventHandler(this.Sales_Load);
+			this.Click += new System.EventHandler(this.Sales_Click);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Sales_KeyDown);
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Sales_KeyPress);
 			((System.ComponentModel.ISupportInitialize)(this.Grd_Sale)).EndInit();

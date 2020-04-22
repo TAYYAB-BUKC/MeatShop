@@ -88,5 +88,77 @@ namespace MeatShop
 			}
 
 		}
+
+		private void Expense_Search_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (char.IsLetter(e.KeyChar))
+			{
+				e.Handled = false;
+			}
+			if (!char.IsLetterOrDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+			if (e.KeyChar == (char)Keys.Back)
+			{
+				e.Handled = false;
+			}
+			if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void Expense_Name_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (char.IsLetter(e.KeyChar))
+			{
+				e.Handled = false;
+			}
+			if (!char.IsLetterOrDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+			if (e.KeyChar == (char)Keys.Back)
+			{
+				e.Handled = false;
+			}
+			if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void Expense_Amount_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (char.IsLetter(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+			else if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = false;
+			}
+			else if (e.KeyChar == (char)Keys.Back)
+			{
+				e.Handled = false;
+			}
+			else
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void Expense_Comment_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (!char.IsLetterOrDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
 	}
 }

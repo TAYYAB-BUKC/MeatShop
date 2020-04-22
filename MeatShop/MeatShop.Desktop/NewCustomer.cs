@@ -31,6 +31,7 @@ namespace MeatShop
                     int id = customer.GetID();
                     customer.FillCombo(sales.Sale_Customer);
                     sales.Sale_Customer.SelectedValue = id;
+                    sales.ActiveControl = null;
                     this.Close();
                 }
             }
@@ -56,6 +57,27 @@ namespace MeatShop
         private void Customer_Phone_Click(object sender, EventArgs e)
         {
             Customer_Phone.BackColor = SystemColors.Window;
+        }
+
+        private void Customer_Name_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = false;
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (!char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

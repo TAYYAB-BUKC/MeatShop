@@ -32,5 +32,26 @@ namespace MeatShop
                 Category_Name.Text = "";
             }
         }
-	}
+
+        private void Category_Name_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = false;
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (!char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+    }
 }

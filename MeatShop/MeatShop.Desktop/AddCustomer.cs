@@ -59,5 +59,26 @@ namespace MeatShop
         {
             Customer_Phone.BackColor = SystemColors.Window;
         }
+
+        private void Customer_Name_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = false;
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            if (!char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

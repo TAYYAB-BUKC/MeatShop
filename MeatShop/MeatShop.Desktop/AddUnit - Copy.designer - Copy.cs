@@ -53,6 +53,7 @@
 			this.Customer_Name.Name = "Customer_Name";
 			this.Customer_Name.Size = new System.Drawing.Size(293, 31);
 			this.Customer_Name.TabIndex = 71;
+			this.Customer_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Customer_Name_KeyPress);
 			// 
 			// label1
 			// 

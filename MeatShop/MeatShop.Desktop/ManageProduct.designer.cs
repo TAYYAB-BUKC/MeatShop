@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.Delete_Button = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label4 = new System.Windows.Forms.Label();
@@ -163,20 +163,20 @@
 			// 
 			this.Grd_Product.AllowUserToAddRows = false;
 			this.Grd_Product.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Product.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Product.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
 			this.Grd_Product.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Product.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Product.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Product.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Product.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle6.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Product.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
 			this.Grd_Product.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Product.DoubleBuffered = true;
 			this.Grd_Product.EnableHeadersVisualStyles = false;
@@ -197,6 +197,7 @@
 			this.Product_Name.Name = "Product_Name";
 			this.Product_Name.Size = new System.Drawing.Size(240, 31);
 			this.Product_Name.TabIndex = 90;
+			this.Product_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Product_Name_KeyPress);
 			// 
 			// Product_ID
 			// 
@@ -242,6 +243,7 @@
 			this.Product_Price.Name = "Product_Price";
 			this.Product_Price.Size = new System.Drawing.Size(240, 31);
 			this.Product_Price.TabIndex = 96;
+			this.Product_Price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Product_Price_KeyPress);
 			// 
 			// Product_Search
 			// 
@@ -251,6 +253,7 @@
 			this.Product_Search.Size = new System.Drawing.Size(502, 31);
 			this.Product_Search.TabIndex = 99;
 			this.Product_Search.TextChanged += new System.EventHandler(this.Product_Search_TextChanged);
+			this.Product_Search.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Product_Search_KeyPress);
 			// 
 			// label8
 			// 

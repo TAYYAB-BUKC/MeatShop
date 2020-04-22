@@ -110,5 +110,47 @@ namespace MeatShop
 				
 			}
 		}
+
+		private void Stock_Price_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (char.IsLetter(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+			else if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = false;
+			}
+			else if (e.KeyChar == (char)Keys.Back)
+			{
+				e.Handled = false;
+			}
+			else
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void Stock_Quantity_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = false;
+			if (char.IsLetter(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+			else if (char.IsDigit(e.KeyChar))
+			{
+				e.Handled = false;
+			}
+			else if (e.KeyChar == (char)Keys.Back)
+			{
+				e.Handled = false;
+			}
+			else
+			{
+				e.Handled = true;
+			}
+		}
 	}
 }

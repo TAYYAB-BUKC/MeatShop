@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.label10 = new System.Windows.Forms.Label();
 			this.Expense_Comment = new System.Windows.Forms.TextBox();
 			this.Delete_Button = new System.Windows.Forms.Button();
@@ -72,6 +72,7 @@
 			this.Expense_Comment.Name = "Expense_Comment";
 			this.Expense_Comment.Size = new System.Drawing.Size(240, 95);
 			this.Expense_Comment.TabIndex = 84;
+			this.Expense_Comment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Expense_Comment_KeyPress);
 			// 
 			// Delete_Button
 			// 
@@ -178,20 +179,20 @@
 			// 
 			this.Grd_Expense.AllowUserToAddRows = false;
 			this.Grd_Expense.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Expense.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Expense.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
 			this.Grd_Expense.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Expense.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Expense.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Expense.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Expense.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle8.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Expense.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this.Grd_Expense.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Expense.DoubleBuffered = true;
 			this.Grd_Expense.EnableHeadersVisualStyles = false;
@@ -212,6 +213,7 @@
 			this.Expense_Name.Name = "Expense_Name";
 			this.Expense_Name.Size = new System.Drawing.Size(240, 31);
 			this.Expense_Name.TabIndex = 90;
+			this.Expense_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Expense_Name_KeyPress);
 			// 
 			// Expense_ID
 			// 
@@ -229,6 +231,7 @@
 			this.Expense_Amount.Name = "Expense_Amount";
 			this.Expense_Amount.Size = new System.Drawing.Size(240, 31);
 			this.Expense_Amount.TabIndex = 96;
+			this.Expense_Amount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Expense_Amount_KeyPress);
 			// 
 			// Expense_Search
 			// 
@@ -238,6 +241,7 @@
 			this.Expense_Search.Size = new System.Drawing.Size(502, 31);
 			this.Expense_Search.TabIndex = 99;
 			this.Expense_Search.TextChanged += new System.EventHandler(this.Expense_Search_TextChanged);
+			this.Expense_Search.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Expense_Search_KeyPress);
 			// 
 			// label8
 			// 

@@ -89,6 +89,7 @@
 			// 
 			// User_Role
 			// 
+			this.User_Role.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.User_Role.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.User_Role.FormattingEnabled = true;
 			this.User_Role.Items.AddRange(new object[] {
@@ -114,6 +115,7 @@
 			this.User_Name.Name = "User_Name";
 			this.User_Name.Size = new System.Drawing.Size(240, 31);
 			this.User_Name.TabIndex = 169;
+			this.User_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.User_Name_KeyPress);
 			// 
 			// label10
 			// 
