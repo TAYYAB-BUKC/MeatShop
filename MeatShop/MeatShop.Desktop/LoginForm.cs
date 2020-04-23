@@ -31,13 +31,17 @@ namespace MeatShop
 			int role = User.Login(Username.Text, Password.Text);
 			if (role == 0)
 			{
+				Username.Text = "";
+				Password.Text = "";
 				this.Hide();
-				Home home = new Home();
+				Home home = new Home(this);
 				MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				home.Show();
 			}
 			else if (role == 1)
 			{
+				Username.Text = "";
+				Password.Text = "";
 				this.Hide();
 				Sales sales = new Sales();
 				MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -66,13 +70,19 @@ namespace MeatShop
 				int role = User.Login(Username.Text, Password.Text);
 				if (role == 0)
 				{
+					Username.Text = "";
+					Password.Text = "";
+					Username.Focus();
 					this.Hide();
-					Home home = new Home();
+					Home home = new Home(this);
 					MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					home.Show();
 				}
 				else if (role == 1)
 				{
+					Username.Text = "";
+					Password.Text = "";
+					Username.Focus();
 					this.Hide();
 					Sales sales = new Sales();
 					MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);

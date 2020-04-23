@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.Delete_Button = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.label4 = new System.Windows.Forms.Label();
@@ -50,9 +50,10 @@
 			this.Browse_Button = new System.Windows.Forms.Button();
 			this.Product_Unit = new System.Windows.Forms.ComboBox();
 			this.Product_Category = new System.Windows.Forms.ComboBox();
-			this.Product_Image = new System.Windows.Forms.PictureBox();
 			this.Product_ShortCode = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
+			this.Product_Image = new System.Windows.Forms.PictureBox();
+			this.button5 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.Grd_Product)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Product_Image)).BeginInit();
 			this.SuspendLayout();
@@ -116,7 +117,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(12, 20);
+			this.label1.Location = new System.Drawing.Point(19, 27);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(300, 32);
 			this.label1.TabIndex = 75;
@@ -125,7 +126,7 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.panel1.Location = new System.Drawing.Point(16, 60);
+			this.panel1.Location = new System.Drawing.Point(23, 67);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1118, 5);
 			this.panel1.TabIndex = 73;
@@ -163,20 +164,20 @@
 			// 
 			this.Grd_Product.AllowUserToAddRows = false;
 			this.Grd_Product.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Product.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Product.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.Grd_Product.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Product.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Product.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Product.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle6.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Product.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Product.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.Grd_Product.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Product.DoubleBuffered = true;
 			this.Grd_Product.EnableHeadersVisualStyles = false;
@@ -324,15 +325,6 @@
 			this.Product_Category.Size = new System.Drawing.Size(240, 30);
 			this.Product_Category.TabIndex = 169;
 			// 
-			// Product_Image
-			// 
-			this.Product_Image.Location = new System.Drawing.Point(205, 409);
-			this.Product_Image.Name = "Product_Image";
-			this.Product_Image.Size = new System.Drawing.Size(243, 140);
-			this.Product_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.Product_Image.TabIndex = 101;
-			this.Product_Image.TabStop = false;
-			// 
 			// Product_ShortCode
 			// 
 			this.Product_ShortCode.Font = new System.Drawing.Font("Century Gothic", 14.25F);
@@ -357,12 +349,37 @@
 			this.label5.TabIndex = 171;
 			this.label5.Text = "ShortCode";
 			// 
+			// Product_Image
+			// 
+			this.Product_Image.Location = new System.Drawing.Point(205, 409);
+			this.Product_Image.Name = "Product_Image";
+			this.Product_Image.Size = new System.Drawing.Size(243, 140);
+			this.Product_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.Product_Image.TabIndex = 101;
+			this.Product_Image.TabStop = false;
+			// 
+			// button5
+			// 
+			this.button5.FlatAppearance.BorderSize = 0;
+			this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(42)))), ((int)(((byte)(83)))));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button5.ForeColor = System.Drawing.Color.LightGray;
+			this.button5.Location = new System.Drawing.Point(0, -1);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(25, 25);
+			this.button5.TabIndex = 173;
+			this.button5.Text = "X";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
 			// ManageProduct
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1197, 663);
+			this.Controls.Add(this.button5);
 			this.Controls.Add(this.Product_ShortCode);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.Product_Unit);
@@ -420,5 +437,6 @@
 		private System.Windows.Forms.ComboBox Product_Category;
 		private System.Windows.Forms.TextBox Product_ShortCode;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Button button5;
 	}
 }

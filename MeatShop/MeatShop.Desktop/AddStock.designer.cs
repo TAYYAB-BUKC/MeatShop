@@ -38,6 +38,7 @@
 			this.Stock_Product = new System.Windows.Forms.ComboBox();
 			this.Stock_Quantity = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.button5 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// Save_Button
@@ -156,12 +157,28 @@
 			this.label2.TabIndex = 168;
 			this.label2.Text = "Quantity";
 			// 
+			// button5
+			// 
+			this.button5.FlatAppearance.BorderSize = 0;
+			this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(42)))), ((int)(((byte)(83)))));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button5.ForeColor = System.Drawing.Color.LightGray;
+			this.button5.Location = new System.Drawing.Point(1, 1);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(25, 25);
+			this.button5.TabIndex = 170;
+			this.button5.Text = "X";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
 			// AddStock
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1058, 302);
+			this.Controls.Add(this.button5);
 			this.Controls.Add(this.Stock_Quantity);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.Stock_Product);
@@ -191,5 +208,6 @@
 		private System.Windows.Forms.ComboBox Stock_Product;
 		private System.Windows.Forms.TextBox Stock_Quantity;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Button button5;
 	}
 }

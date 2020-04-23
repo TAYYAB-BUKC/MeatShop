@@ -45,6 +45,7 @@
 			this.Product_Image = new System.Windows.Forms.PictureBox();
 			this.Product_ShortCode = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.button5 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.Product_Image)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -256,6 +257,21 @@
 			this.label6.TabIndex = 169;
 			this.label6.Text = "Short Code";
 			// 
+			// button5
+			// 
+			this.button5.FlatAppearance.BorderSize = 0;
+			this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(42)))), ((int)(((byte)(83)))));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button5.ForeColor = System.Drawing.Color.LightGray;
+			this.button5.Location = new System.Drawing.Point(2, 1);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(25, 25);
+			this.button5.TabIndex = 171;
+			this.button5.Text = "X";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
 			// AddProduct
 			// 
 			this.AcceptButton = this.Save_Button;
@@ -263,6 +279,7 @@
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1058, 531);
+			this.Controls.Add(this.button5);
 			this.Controls.Add(this.Product_ShortCode);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.Product_Unit);
@@ -307,5 +324,6 @@
 		private System.Windows.Forms.ComboBox Product_Unit;
 		private System.Windows.Forms.TextBox Product_ShortCode;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Button button5;
 	}
 }

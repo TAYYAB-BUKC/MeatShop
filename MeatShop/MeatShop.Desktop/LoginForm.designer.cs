@@ -68,7 +68,7 @@
 			this.Password.Margin = new System.Windows.Forms.Padding(4);
 			this.Password.Name = "Password";
 			this.Password.Size = new System.Drawing.Size(369, 40);
-			this.Password.TabIndex = 121;
+			this.Password.TabIndex = 2;
 			this.Password.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
 			this.Password.Click += new System.EventHandler(this.Password_Click);
 			this.Password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Password_KeyPress);
@@ -88,7 +88,7 @@
 			this.Username.Margin = new System.Windows.Forms.Padding(4);
 			this.Username.Name = "Username";
 			this.Username.Size = new System.Drawing.Size(369, 40);
-			this.Username.TabIndex = 120;
+			this.Username.TabIndex = 1;
 			this.Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
 			this.Username.Click += new System.EventHandler(this.Email_Click);
 			// 
@@ -103,7 +103,7 @@
 			this.label1.Location = new System.Drawing.Point(314, 294);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(94, 32);
-			this.label1.TabIndex = 118;
+			this.label1.TabIndex = 0;
 			this.label1.Text = "Log In";
 			// 
 			// Login_Button
@@ -116,7 +116,7 @@
 			this.Login_Button.Location = new System.Drawing.Point(287, 535);
 			this.Login_Button.Name = "Login_Button";
 			this.Login_Button.Size = new System.Drawing.Size(150, 40);
-			this.Login_Button.TabIndex = 117;
+			this.Login_Button.TabIndex = 3;
 			this.Login_Button.Text = "Log In";
 			this.Login_Button.UseVisualStyleBackColor = false;
 			this.Login_Button.Click += new System.EventHandler(this.Login_Button_Click);

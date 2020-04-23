@@ -126,11 +126,11 @@
 			// 
 			this.Customer_Phone.Font = new System.Drawing.Font("Century Gothic", 14.25F);
 			this.Customer_Phone.Location = new System.Drawing.Point(695, 127);
+			this.Customer_Phone.MaxLength = 11;
 			this.Customer_Phone.Name = "Customer_Phone";
 			this.Customer_Phone.Size = new System.Drawing.Size(259, 31);
 			this.Customer_Phone.TabIndex = 83;
-			this.Customer_Phone.Click += new System.EventHandler(this.Customer_Phone_Click);
-			this.Customer_Phone.Leave += new System.EventHandler(this.Customer_Phone_Leave);
+			this.Customer_Phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Customer_Phone_KeyPress);
 			// 
 			// label3
 			// 

@@ -20,8 +20,6 @@ namespace MeatShop
 		bool releaseKeys = false;
 		bool firstTime = false;
 		//clsResize _form_resize;
-		private Sales sales;  
-
 
 		public Sales()
 		{
@@ -37,10 +35,8 @@ namespace MeatShop
 			//CreateCategories(16,190);
 			CreateCategoriesOnTop(12, 34);
 
-
 			customer.FillCombo(Sale_Customer);
-			sales = this;
-
+			
 		}
 
 		private void CreateAllProductsNew(int x, int y)

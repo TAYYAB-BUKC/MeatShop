@@ -18,7 +18,7 @@ namespace MeatShop.Database
 		
 		public bool AddCustomer(string name, string phone)
 		{
-			if (name == "" || phone == "")
+			if (name == "")
 			{
 				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;

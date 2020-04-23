@@ -12,6 +12,7 @@ namespace MeatShop
 {
     public partial class Home : Form
     {
+        Form login;
         //private int Check;
         //      public Home(int role)
         //      {
@@ -34,10 +35,11 @@ namespace MeatShop
         //          }
         //}
 
-        public Home()
+        public Home(Form l)
         {
             InitializeComponent();
             hideSubMenu();
+            login = l;
         }
 
         private void hideSubMenu()
@@ -50,6 +52,7 @@ namespace MeatShop
             //Units_Panel.Visible = false;
             Product_Panel.Visible = false;
             Customer_Panel.Visible = false;
+            Report_Panel.Visible = false;
 
         }
 
@@ -175,7 +178,9 @@ namespace MeatShop
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
+            this.Hide();
+            login.Show();
         }
 
         private Form activeForm = null;
@@ -374,6 +379,23 @@ namespace MeatShop
             Sales sales = new Sales();
             sales.Show();
             hideSubMenu();
+        }
+
+        private void Report_Click(object sender, EventArgs e)
+        {
+            showSubMenu(Report_Panel);
+        }
+
+        private void DailySales_Click(object sender, EventArgs e)
+        {
+            openChildForm(new DailySalesReport());
+            hideSubMenu();
+        }
+
+        private void Home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            login.Show();
         }
     }
 }

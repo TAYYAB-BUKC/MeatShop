@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.label10 = new System.Windows.Forms.Label();
 			this.Expense_Comment = new System.Windows.Forms.TextBox();
 			this.Delete_Button = new System.Windows.Forms.Button();
@@ -47,6 +47,7 @@
 			this.Expense_Search = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.Expense_Date = new Bunifu.Framework.UI.BunifuDatepicker();
+			this.button5 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.Grd_Expense)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -147,7 +148,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(12, 20);
+			this.label1.Location = new System.Drawing.Point(12, 30);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(309, 32);
 			this.label1.TabIndex = 75;
@@ -156,7 +157,7 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.panel1.Location = new System.Drawing.Point(16, 60);
+			this.panel1.Location = new System.Drawing.Point(16, 70);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1118, 5);
 			this.panel1.TabIndex = 73;
@@ -179,20 +180,20 @@
 			// 
 			this.Grd_Expense.AllowUserToAddRows = false;
 			this.Grd_Expense.AllowUserToDeleteRows = false;
-			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Grd_Expense.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.Grd_Expense.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.Grd_Expense.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.Grd_Expense.BackgroundColor = System.Drawing.Color.Gainsboro;
 			this.Grd_Expense.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.Grd_Expense.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle8.ForeColor = System.Drawing.Color.MediumBlue;
-			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.Grd_Expense.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.Color.MediumBlue;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.Grd_Expense.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.Grd_Expense.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Grd_Expense.DoubleBuffered = true;
 			this.Grd_Expense.EnableHeadersVisualStyles = false;
@@ -272,12 +273,28 @@
 			this.Expense_Date.TabIndex = 164;
 			this.Expense_Date.Value = new System.DateTime(2019, 12, 30, 19, 3, 42, 85);
 			// 
+			// button5
+			// 
+			this.button5.FlatAppearance.BorderSize = 0;
+			this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(42)))), ((int)(((byte)(83)))));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button5.ForeColor = System.Drawing.Color.LightGray;
+			this.button5.Location = new System.Drawing.Point(1, 2);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(25, 25);
+			this.button5.TabIndex = 165;
+			this.button5.Text = "X";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
 			// ManageExpense
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1197, 516);
+			this.Controls.Add(this.button5);
 			this.Controls.Add(this.Expense_Date);
 			this.Controls.Add(this.Expense_Search);
 			this.Controls.Add(this.label8);
@@ -322,5 +339,6 @@
         private System.Windows.Forms.TextBox Expense_Search;
         private System.Windows.Forms.Label label8;
 		private Bunifu.Framework.UI.BunifuDatepicker Expense_Date;
+		private System.Windows.Forms.Button button5;
 	}
 }

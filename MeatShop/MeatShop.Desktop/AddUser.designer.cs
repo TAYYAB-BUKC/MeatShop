@@ -40,6 +40,7 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.User_Password = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.button5 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// Save_Button
@@ -181,12 +182,28 @@
 			this.label3.TabIndex = 164;
 			this.label3.Text = "Name";
 			// 
+			// button5
+			// 
+			this.button5.FlatAppearance.BorderSize = 0;
+			this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(42)))), ((int)(((byte)(83)))));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button5.ForeColor = System.Drawing.Color.LightGray;
+			this.button5.Location = new System.Drawing.Point(-2, 0);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(25, 25);
+			this.button5.TabIndex = 172;
+			this.button5.Text = "X";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
 			// AddUser
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1058, 313);
+			this.Controls.Add(this.button5);
 			this.Controls.Add(this.User_Role);
 			this.Controls.Add(this.User_Username);
 			this.Controls.Add(this.User_Name);
@@ -220,5 +237,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox User_Password;
         private System.Windows.Forms.Label label3;
-    }
+		private System.Windows.Forms.Button button5;
+	}
 }

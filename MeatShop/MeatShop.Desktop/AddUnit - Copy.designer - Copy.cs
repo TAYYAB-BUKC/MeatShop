@@ -113,8 +113,7 @@
 			this.Customer_Phone.Name = "Customer_Phone";
 			this.Customer_Phone.Size = new System.Drawing.Size(293, 31);
 			this.Customer_Phone.TabIndex = 83;
-			this.Customer_Phone.Click += new System.EventHandler(this.Customer_Phone_Click);
-			this.Customer_Phone.Leave += new System.EventHandler(this.Customer_Phone_Leave);
+			this.Customer_Phone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Customer_Phone_KeyPress);
 			// 
 			// label3
 			// 
@@ -132,6 +131,7 @@
 			// 
 			// NewCustomer
 			// 
+			this.AcceptButton = this.Save_Button;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));

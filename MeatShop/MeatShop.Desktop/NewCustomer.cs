@@ -41,6 +41,7 @@ namespace MeatShop
             }
         }
 
+
         private void Customer_Phone_Leave(object sender, EventArgs e)
         {
             if (customer.IsPhoneValid(Customer_Phone.Text))
@@ -75,6 +76,27 @@ namespace MeatShop
                 e.Handled = false;
             }
             if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Customer_Phone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = false;
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            else
             {
                 e.Handled = true;
             }

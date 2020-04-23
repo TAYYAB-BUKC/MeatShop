@@ -48,6 +48,7 @@
 			this.User_Search = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.User_Role = new System.Windows.Forms.ComboBox();
+			this.button5 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.Grd_User)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -146,7 +147,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(12, 20);
+			this.label1.Location = new System.Drawing.Point(12, 27);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(256, 32);
 			this.label1.TabIndex = 75;
@@ -155,7 +156,7 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.panel1.Location = new System.Drawing.Point(16, 60);
+			this.panel1.Location = new System.Drawing.Point(16, 67);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1142, 5);
 			this.panel1.TabIndex = 73;
@@ -283,12 +284,28 @@
 			this.User_Role.Size = new System.Drawing.Size(240, 30);
 			this.User_Role.TabIndex = 100;
 			// 
+			// button5
+			// 
+			this.button5.FlatAppearance.BorderSize = 0;
+			this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(42)))), ((int)(((byte)(83)))));
+			this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button5.ForeColor = System.Drawing.Color.LightGray;
+			this.button5.Location = new System.Drawing.Point(-1, -1);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(25, 25);
+			this.button5.TabIndex = 101;
+			this.button5.Text = "X";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
 			// ManageUser
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(1197, 450);
+			this.Controls.Add(this.button5);
 			this.Controls.Add(this.User_Role);
 			this.Controls.Add(this.User_Search);
 			this.Controls.Add(this.label8);
@@ -335,5 +352,6 @@
         private System.Windows.Forms.TextBox User_Search;
         private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.ComboBox User_Role;
+		private System.Windows.Forms.Button button5;
 	}
 }
