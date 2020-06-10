@@ -31,12 +31,13 @@ namespace MeatShop.Database
 							double sdate = Convert.ToDouble(row["Datetime"]);
 							var sfinal = DateTime.FromOADate(sdate);
 							//row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
-							row["Datetime"] = sfinal;
+							row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
 
 						}
 					}
 					dataGrid.DataSource = dt;
 					sql.Close();
+					dataGrid.Columns["Id"].Visible = false;
 				}
 			}
 			catch (Exception ex)
@@ -45,7 +46,6 @@ namespace MeatShop.Database
 			}
 		}
 
-
 		public bool AddExpense(string name, int amount, string date, string comment)
 		{
 			if (amount < 0)
@@ -53,7 +53,7 @@ namespace MeatShop.Database
 				MessageBox.Show("Please enter the valid amount", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
-			if (name == "" || date == "" || comment == "")
+			if (name == "" || date == "")
 			{
 				MessageBox.Show("Please Fill All the Fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
@@ -83,6 +83,7 @@ namespace MeatShop.Database
 				}
 			}
 		}
+
 		public void SearchExpense(BunifuCustomDataGrid dataGrid, string name)
 		{
 			if (name.Length > 0)
@@ -119,6 +120,12 @@ namespace MeatShop.Database
 				}
 				if (dt.Rows.Count > 0)
 				{
+					foreach (DataRow row in dt.Rows)
+					{
+						double sdate = Convert.ToDouble(row["Datetime"]);
+						var sfinal = DateTime.FromOADate(sdate);
+						row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
+					}
 					dataGrid.DataSource = dt;
 					sql.Close();
 
@@ -132,6 +139,7 @@ namespace MeatShop.Database
 				}
 			}
 		}
+
 		public void DeleteExpense(int id)
 		{
 			try

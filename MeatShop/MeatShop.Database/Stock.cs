@@ -18,7 +18,7 @@ namespace MeatShop.Database
 		bool isError = false;
 		public void UpdateStock(int quantity, ProductEntity productEntity, int price, int productID, bool isPriceUpdated)
 		{
-			//int oldQuantity = productEntity.oldQuantity;
+			//int OldQuantity = productEntity.OldQuantity;
 			//int id = productEntity.Id;
 			//bool check = false;
 			//using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -32,7 +32,7 @@ namespace MeatShop.Database
 			//		while (reader.Read())
 			//		{
 			//			id = reader.GetInt32(0);
-			//			oldQuantity = reader.GetInt32(1);
+			//			OldQuantity = reader.GetInt32(1);
 			//			check = true;
 			//		}
 			//		sql.Close();
@@ -43,7 +43,7 @@ namespace MeatShop.Database
 			//	}
 			//}
 
-			if (AddStockUpdate(quantity, price, productEntity.oldQuantity,productID))
+			if (AddStockUpdate(quantity, price, productEntity.OldQuantity,productID))
 			{
 				bool isSuccess = false;
 				using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -53,7 +53,7 @@ namespace MeatShop.Database
 						//if (check)
 						//{
 						sql.Open();
-						int finalQuantity = productEntity.oldQuantity + quantity;
+						int finalQuantity = productEntity.OldQuantity + quantity;
 						SQLiteCommand cmd = new SQLiteCommand("update Stock set Quantity=@Quantity where Id=@Id", sql);
 						cmd.Parameters.AddWithValue("@Quantity", finalQuantity);
 						cmd.Parameters.AddWithValue("@Id", productEntity.Id);
@@ -114,7 +114,7 @@ namespace MeatShop.Database
 
 		public void UpdateStock(int quantity, ProductEntity productEntity, int price, string productID)
 		{
-			//int oldQuantity = productEntity.oldQuantity;
+			//int OldQuantity = productEntity.OldQuantity;
 			//int id = productEntity.Id;
 			//bool check = false;
 			//using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -128,7 +128,7 @@ namespace MeatShop.Database
 			//		while (reader.Read())
 			//		{
 			//			id = reader.GetInt32(0);
-			//			oldQuantity = reader.GetInt32(1);
+			//			OldQuantity = reader.GetInt32(1);
 			//			check = true;
 			//		}
 			//		sql.Close();
@@ -139,7 +139,7 @@ namespace MeatShop.Database
 			//	}
 			//}
 
-			if (AddStockUpdate(quantity, price, productEntity.oldQuantity, productID))
+			if (AddStockUpdate(quantity, price, productEntity.OldQuantity, productID))
 			{
 				using (SQLiteConnection sql = new SQLiteConnection(con))
 				{
@@ -148,7 +148,7 @@ namespace MeatShop.Database
 						//if (check)
 						//{
 						sql.Open();
-						int finalQuantity = productEntity.oldQuantity + quantity;
+						int finalQuantity = productEntity.OldQuantity + quantity;
 						SQLiteCommand cmd = new SQLiteCommand("update Stock set Price=@Price,Quantity=@Quantity where Id=@Id", sql);
 						cmd.Parameters.AddWithValue("@Quantity", finalQuantity);
 						cmd.Parameters.AddWithValue("@Price", price);
@@ -329,10 +329,10 @@ namespace MeatShop.Database
 						ProductEntity productEntity = new ProductEntity();
 						while (reader.Read())
 						{
-							productEntity.oldQuantity = reader.GetInt32(0);
+							productEntity.OldQuantity = reader.GetInt32(0);
 						}
 						sql.Close();
-						return productEntity.oldQuantity;
+						return productEntity.OldQuantity;
 
 					}
 					else

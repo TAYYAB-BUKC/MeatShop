@@ -129,10 +129,17 @@ namespace MeatShop.Database
 					try
 					{
 						string path = Path.GetDirectoryName(Application.StartupPath);
-						string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+						//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+						//string relativepPath = "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
+						//finalPath = newpath + relativepPath;
+						//File.Copy(imageurl, finalPath); 
+						string newpath = path + "\\Awami Meat Shop\\";
+						//MessageBox.Show("Path: " + path);
+						//MessageBox.Show("New Path: " + newpath);
 						string relativepPath = "\\ProductImages\\" + Guid.NewGuid() + ".jpg";
 						finalPath = newpath + relativepPath;
-						File.Copy(imageurl, finalPath); 
+						//MessageBox.Show("FinalPath: " + finalPath);
+						File.Copy(imageurl, finalPath);
 						using (SQLiteConnection sql = new SQLiteConnection(con))
 						{
 							sql.Open();
@@ -174,7 +181,7 @@ namespace MeatShop.Database
 						while (reader.Read())
 						{
 							productEntity.Id = reader.GetInt32(0);
-							productEntity.oldQuantity = reader.GetInt32(2);
+							productEntity.OldQuantity = reader.GetInt32(2);
 						}
 						sql.Close();
 						return productEntity;
@@ -212,6 +219,7 @@ namespace MeatShop.Database
 					dataGrid.DataSource = dt;
 					sql.Close();
 					dataGrid.Columns["CategoryID"].Visible = false;
+					dataGrid.Columns["Id"].Visible = false;
 				}
 			}
 			catch (Exception ex)
@@ -239,7 +247,7 @@ namespace MeatShop.Database
 			}
 			else if (name.Length == 0)
 			{
-				GetData(dataGrid, "select * from Products");
+				GetData(dataGrid, "select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id");
 			}
 		}
 
@@ -248,7 +256,7 @@ namespace MeatShop.Database
 			using (SQLiteConnection sql = new SQLiteConnection(con))
 			{
 				sql.Open();
-				SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Products where Name like '" + name + "%'", sql);
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select Products.Id,Products.Name,Products.Price,Products.ImageUrl,Categories.Id as CategoryID,Products.UnitID,Products.ShortCode,Categories.Name as Category from Products inner join Categories on Products.CategoryID = Categories.Id where Name like '" + name + "%'", sql);
 				//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
 				DataTable dt = new DataTable();
 				if (da != null)
@@ -269,6 +277,7 @@ namespace MeatShop.Database
 				}
 			}
 		}
+		
 		//public bool UpdateProduct(int id, string name, int price, string oldPath, string newPath, int categoryID, string unitID,char shortCode)
 		//{
 		//	if (name == "" || price < -1 || categoryID < 0)
@@ -404,7 +413,7 @@ namespace MeatShop.Database
 				{
 					string finalPath = String.Empty;
 					string path = Path.GetDirectoryName(Application.StartupPath);
-					string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+					string newpath = path + "\\Awami Meat Shop\\";
 
 					if (File.Exists(newpath + oldPath))
 					{
@@ -446,7 +455,6 @@ namespace MeatShop.Database
 			}
 		}
 
-
 		public void DeleteProduct(int id, FileInfo path, string oldPath)
 		{
 			try
@@ -456,7 +464,8 @@ namespace MeatShop.Database
 					if (!IsFileLocked(path))
 					{
 						string p = Path.GetDirectoryName(Application.StartupPath);
-						string newpath = p.Substring(0, (Application.StartupPath.Length - 10));
+						//string newpath = p.Substring(0, (Application.StartupPath.Length - 10));
+						string newpath = p + "\\Awami Meat Shop\\";
 
 						if (File.Exists(newpath + oldPath))
 						{
@@ -484,6 +493,7 @@ namespace MeatShop.Database
 				}
 			}
 		}
+
 		private Boolean IsFileLocked(FileInfo file)
 		{
 			FileStream stream = null;
@@ -619,6 +629,7 @@ namespace MeatShop.Database
 				}
 			}
 		}
+		
 		public void UpdatePrice(int id, int price)
 		{
 			try
@@ -638,6 +649,7 @@ namespace MeatShop.Database
 				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
+		
 		public ProductCategoryEntity getProductsByCategory(int id)
 		{
 			using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -742,6 +754,10 @@ namespace MeatShop.Database
 			}
 		}
 
+		private string dis = "0";
+		private string paid_amount = "0";
+		private string blnc = "0";
+		private string total_amount = "0";
 		public bool AddSale(int customerID, int totalAmount, int discount, int paidAmount, int balance)
 		{
 			try
@@ -760,6 +776,12 @@ namespace MeatShop.Database
 					cmd.Parameters.AddWithValue("@Balance", balance);
 					cmd.ExecuteNonQuery();
 					sql.Close();
+
+					dis = discount.ToString();
+					paid_amount = paidAmount.ToString();
+					blnc = balance.ToString();
+					total_amount = totalAmount.ToString();
+
 					return true;
 				}
 			}
@@ -770,6 +792,7 @@ namespace MeatShop.Database
 			}
 		}
 
+		Receipt rcp = new Receipt();
 		public bool AddSaleItem(BunifuCustomDataGrid dataGrid)
 		{
 			int saleID;
@@ -784,23 +807,85 @@ namespace MeatShop.Database
 					sql.Close();
 				}
 
+				List<Items> ItemList = new List<Items>();
+				string Unit_price = "";
+
 				for (int j = 0; j < dataGrid.Rows.Count; j++)
 				{
 					using (SQLiteConnection sql = new SQLiteConnection(con))
 					{
+
 						sql.Open();
-						SQLiteCommand cmd = new SQLiteCommand("insert into SaleItem(SaleID,ProductID,Price,Quantity) values(@SaleID,@ProductID,@Price,@Quantity)", sql);
-						cmd.Parameters.AddWithValue("@SaleID", saleID);
-						cmd.Parameters.AddWithValue("@ProductID", Convert.ToInt32(dataGrid.Rows[j].Cells[0].Value));
-						cmd.Parameters.AddWithValue("@Price", Convert.ToInt32(dataGrid.Rows[j].Cells[2].Value));
-						cmd.Parameters.AddWithValue("@Quantity", dataGrid.Rows[j].Cells[3].Value);
-						cmd.ExecuteNonQuery();
-						sql.Close();
-						check = true;
+						SQLiteCommand cmd = new SQLiteCommand("select Price from Products where Id =@iid", sql);
+						cmd.Parameters.AddWithValue("@iid", Convert.ToInt32(dataGrid.Rows[j].Cells[0].Value));
+						SQLiteDataReader reader = cmd.ExecuteReader();
+						if (reader.HasRows)
+						{
+
+							while (reader.Read())
+							{
+								//price.Text = Convert.ToString(reader.GetInt32(0));
+								Unit_price = reader.GetInt32(0).ToString();
+							}
+
+						}
+
+					}
+
+					if (dataGrid.Rows[j].Cells[5].Value.ToString() == "Unit")
+					{
+						using (SQLiteConnection sql = new SQLiteConnection(con))
+						{
+							sql.Open();
+							SQLiteCommand cmd = new SQLiteCommand("insert into SaleItem(SaleID,ProductID,Price,Quantity) values(@SaleID,@ProductID,@Price,@Quantity)", sql);
+							cmd.Parameters.AddWithValue("@SaleID", saleID);
+							cmd.Parameters.AddWithValue("@ProductID", Convert.ToInt32(dataGrid.Rows[j].Cells[0].Value));
+							cmd.Parameters.AddWithValue("@Price", Convert.ToInt32(dataGrid.Rows[j].Cells[2].Value));
+							cmd.Parameters.AddWithValue("@Quantity", dataGrid.Rows[j].Cells[3].Value);
+							cmd.ExecuteNonQuery();
+							sql.Close();
+
+							ItemList.Add(new Items()
+							{
+								ItemName = dataGrid.Rows[j].Cells[1].Value.ToString(),
+								ItemQTY = Math.Round(Convert.ToDouble(dataGrid.Rows[j].Cells[3].Value), 2).ToString(),
+								ItemUnitPrice = Unit_price, //dataGrid.Rows[j].Cells[2].Value.ToString(),
+
+
+							});
+
+							check = true;
+						}
+					}
+					else
+					{
+						using (SQLiteConnection sql = new SQLiteConnection(con))
+						{
+							sql.Open();
+							SQLiteCommand cmd = new SQLiteCommand("insert into SaleItem(SaleID,ProductID,Price,Quantity) values(@SaleID,@ProductID,@Price,@Quantity)", sql);
+							cmd.Parameters.AddWithValue("@SaleID", saleID);
+							cmd.Parameters.AddWithValue("@ProductID", Convert.ToInt32(dataGrid.Rows[j].Cells[0].Value));
+							cmd.Parameters.AddWithValue("@Price", Convert.ToInt32(dataGrid.Rows[j].Cells[2].Value));
+							cmd.Parameters.AddWithValue("@Quantity", dataGrid.Rows[j].Cells[3].Value);
+							cmd.ExecuteNonQuery();
+							sql.Close();
+
+							ItemList.Add(new Items()
+							{
+								ItemName = dataGrid.Rows[j].Cells[1].Value.ToString(),
+								ItemQTY = Math.Round(Convert.ToDouble(dataGrid.Rows[j].Cells[3].Value), 2).ToString(),
+								ItemUnitPrice = Unit_price, //dataGrid.Rows[j].Cells[2].Value.ToString(),
+
+
+							});
+
+							check = true;
+						}
 					}
 				}
 				if (check)
 				{
+					rcp.BillReceipt(ItemList, saleID.ToString(), dis, blnc, paid_amount, "", total_amount);
 					MessageBox.Show("Sale Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					return true;
 				}
@@ -917,7 +1002,6 @@ namespace MeatShop.Database
 
 		public double DailyDiscount()
 		{
-			string dailyDiscount = "";
 			try
 			{
 				using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -925,7 +1009,7 @@ namespace MeatShop.Database
 					sql.Open();
 					SQLiteCommand cmd = new SQLiteCommand("select sum(Discount) from Sale where Datetime = @Datetime", sql);
 					cmd.Parameters.AddWithValue("@Datetime", Convert.ToInt32(DateTime.Now.Date.ToOADate()));
-					dailyDiscount = Convert.ToString(cmd.ExecuteScalar());
+					string dailyDiscount = Convert.ToString(cmd.ExecuteScalar());
 					sql.Close();
 					if (dailyDiscount == "")
 					{
@@ -960,7 +1044,7 @@ namespace MeatShop.Database
 						while (reader.Read())
 						{
 							productEntity.Id = reader.GetInt32(0);
-							productEntity.oldQuantity = reader.GetInt32(2);
+							productEntity.OldQuantity = reader.GetInt32(2);
 							productEntity.Price = reader.GetInt32(3);
 						}
 						sql.Close();
@@ -988,7 +1072,7 @@ namespace MeatShop.Database
 	public class ProductEntity
 	{
 		public int Id { get; set; }
-		public int oldQuantity { get; set; }
+		public int OldQuantity { get; set; }
 		public int Price { get; set; }
 	}
 		

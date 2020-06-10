@@ -43,6 +43,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PrinterUtility">
+      <HintPath>..\..\..\..\..\Final Meat\MeatShop\MeatShop\MeatShop.Database\bin\Debug\PrinterUtility.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -68,7 +71,10 @@
   <ItemGroup>
     <Compile Include="Category.cs" />
     <Compile Include="Expense.cs" />
+    <Compile Include="Items.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="RawPrinterHelper.cs" />
+    <Compile Include="Receipt.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Customer.cs" />
