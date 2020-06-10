@@ -47,7 +47,8 @@ namespace MeatShop
 			if (products.Id != null)
 			{
 				string path = Path.GetDirectoryName(Application.StartupPath);
-				string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+				//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+				string newpath = path + "\\Awami Meat Shop\\";
 
 				FlowLayoutPanel panel = new FlowLayoutPanel();
 				panel.Location = new Point(x, y);
@@ -76,10 +77,17 @@ namespace MeatShop
 						}
 						else
 						{
-							using (var fs = new FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+							if (File.Exists(newpath + products.ImageUrl[i]))
 							{
-								var bmp = new Bitmap(fs);
-								pictureBox.Image = (Bitmap)bmp.Clone();
+								using (var fs = new FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+								{
+									var bmp = new Bitmap(fs);
+									pictureBox.Image = (Bitmap)bmp.Clone();
+								}
+							}
+							else
+							{
+								pictureBox.Image = product.DrawText(products.Name[i], new Font("Century Gothic", 10.0f), Color.White, Color.FromArgb(32, 30, 45));
 							}
 						}
 
@@ -117,13 +125,21 @@ namespace MeatShop
 						}
 						else
 						{
-							using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+							if (File.Exists(newpath + products.ImageUrl[i]))
 							{
-								var bmp = new Bitmap(fs);
-								pictureBox.Image = (Bitmap)bmp.Clone();
+								using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+								{
+									var bmp = new Bitmap(fs);
+									pictureBox.Image = (Bitmap)bmp.Clone();
+								}
+							}
+							else
+							{
+								pictureBox.Image = product.DrawText(products.Name[i], new Font("Century Gothic", 10.0f), Color.White, Color.FromArgb(32, 30, 45));
 							}
 						}
 						pictureBox.Click += new EventHandler(MyClickEvent);
+						pictureBox.MouseHover += new EventHandler(MyMouseHover);
 
 						panel.Controls.Add(pictureBox);
 					}
@@ -190,7 +206,8 @@ namespace MeatShop
 			if (products.Id != null)
 			{
 				string path = Path.GetDirectoryName(Application.StartupPath);
-				string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+				//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+				string newpath = path + "\\Awami Meat Shop\\";
 
 				FlowLayoutPanel panel = new FlowLayoutPanel();
 				panel.Location = new Point(x, y);
@@ -218,10 +235,17 @@ namespace MeatShop
 						}
 						else
 						{
-							using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+							if (File.Exists(newpath + products.ImageUrl[i]))
 							{
-								var bmp = new Bitmap(fs);
-								pictureBox.Image = (Bitmap)bmp.Clone();
+								using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+								{
+									var bmp = new Bitmap(fs);
+									pictureBox.Image = (Bitmap)bmp.Clone();
+								}
+							}
+							else
+							{
+								pictureBox.Image = product.DrawText(products.Name[i], new Font("Century Gothic", 10.0f), Color.White, Color.FromArgb(32, 30, 45));
 							}
 						}
 						
@@ -258,21 +282,29 @@ namespace MeatShop
 						}
 						else
 						{
-							using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+							if (File.Exists(newpath + products.ImageUrl[i]))
 							{
-								var bmp = new Bitmap(fs);
-								pictureBox.Image = (Bitmap)bmp.Clone();
+								using (var fs = new System.IO.FileStream(newpath + products.ImageUrl[i], FileMode.Open))
+								{
+									var bmp = new Bitmap(fs);
+									pictureBox.Image = (Bitmap)bmp.Clone();
+								}
+							}
+							else
+							{
+								pictureBox.Image = product.DrawText(products.Name[i], new Font("Century Gothic", 10.0f), Color.White, Color.FromArgb(32, 30, 45));
 							}
 						}
 						pictureBox.Click += new EventHandler(MyClickEvent);
+						pictureBox.MouseHover += new EventHandler(MyMouseHover);
 
-							//Button button = new Button();
-							//button.Location = new Point(x, y);
-							//button.Text = "button"+ (i + 1).ToString();
-							//button.Size = new Size(185, 43);
-							//button.Font = new Font("Microsoft Sans Serif", 10);
+						//Button button = new Button();
+						//button.Location = new Point(x, y);
+						//button.Text = "button"+ (i + 1).ToString();
+						//button.Size = new Size(185, 43);
+						//button.Font = new Font("Microsoft Sans Serif", 10);
 
-							panel.Controls.Add(pictureBox);
+						panel.Controls.Add(pictureBox);
 							//panel3.Controls.Add(button);
 						
 					}
@@ -470,9 +502,12 @@ namespace MeatShop
 
 			if (Convert.ToInt32(button.Tag) == 0)
 			{
+				if (productPanel != null)
+				{
 					productPanel.Controls.Clear();
 					this.Controls.Remove(productPanel);
 					CreateAllProductsNew(27, 189);
+				}
 			}
 			else
 			{
