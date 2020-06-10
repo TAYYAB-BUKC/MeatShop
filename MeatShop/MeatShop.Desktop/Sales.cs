@@ -20,8 +20,8 @@ namespace MeatShop
 		bool releaseKeys = false;
 		bool firstTime = false;
 		//clsResize _form_resize;
-
-		public Sales()
+		bool check = false;
+		public Sales(bool b)
 		{
 			InitializeComponent();
 			//_form_resize = new clsResize(this);
@@ -36,7 +36,8 @@ namespace MeatShop
 			CreateCategoriesOnTop(12, 34);
 
 			customer.FillCombo(Sale_Customer);
-			
+
+			check = b;
 		}
 
 		private void CreateAllProductsNew(int x, int y)
@@ -2079,6 +2080,14 @@ namespace MeatShop
 			else
 			{
 				e.Handled = true;
+			}
+		}
+
+		private void Sales_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (check)
+			{
+				Application.Exit();
 			}
 		}
 

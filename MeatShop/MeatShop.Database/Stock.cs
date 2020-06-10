@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -135,5 +136,96 @@ namespace MeatShop.Database
 
 			}
 		}
+
+		public GetSpecificStock GetStock(string name, string date)
+		{
+			GetSpecificStock stock = new GetSpecificStock();
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select sum(Quantity) as Quantity,(sum(Price * Quantity)) as Price from stock_update where ProductID=@ProductID and Datetime=@Datetime", sql);
+					cmd.Parameters.AddWithValue("@ProductID", name);
+					cmd.Parameters.AddWithValue("@Datetime", date);
+					cmd.ExecuteNonQuery();
+					DataTable dt = new DataTable();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+					if (dt.Rows.Count > 0)
+					{
+						foreach (DataRow row in dt.Rows)
+						{
+							if (row["Quantity"].ToString() == "")
+							{
+								row["Quantity"] = 0;
+								row["Price"] = 0;
+							}
+							else
+							{
+								stock.Quantity = Convert.ToDouble(row["Quantity"]);
+								stock.Price = Convert.ToDouble(row["Price"]);
+							}
+						}
+
+						sql.Close();
+						return stock;
+					}
+					else
+					{
+						sql.Close();
+						return stock;
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Exception Occurs in datagridView Code.........." + ex.Message);
+				return stock;
+			}
+		}
+		public int GetRemainingStock(string product)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select Quantity from Stock where Product_Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", product);
+					SQLiteDataReader reader = cmd.ExecuteReader();
+					if (reader.HasRows)
+					{
+						ProductEntity productEntity = new ProductEntity();
+						while (reader.Read())
+						{
+							productEntity.oldQuantity = reader.GetInt32(0);
+						}
+						sql.Close();
+						return productEntity.oldQuantity;
+
+					}
+					else
+					{
+						sql.Close();
+						return 0;
+					}
+
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sql.Close();
+					return 0;
+				}
+
+			}
+		}
+	}
+
+	public class GetSpecificStock
+	{
+		public Double Quantity { get; set; }
+		public Double Price { get; set; }
 	}
 }

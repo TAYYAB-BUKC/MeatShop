@@ -914,6 +914,36 @@ namespace MeatShop.Database
 
 			}
 		}
+
+		public double DailyDiscount()
+		{
+			string dailyDiscount = "";
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select sum(Discount) from Sale where Datetime = @Datetime", sql);
+					cmd.Parameters.AddWithValue("@Datetime", Convert.ToInt32(DateTime.Now.Date.ToOADate()));
+					dailyDiscount = Convert.ToString(cmd.ExecuteScalar());
+					sql.Close();
+					if (dailyDiscount == "")
+					{
+						return 0;
+					}
+					else
+					{
+						return Convert.ToDouble(dailyDiscount);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return 0;
+			}
+		}
+
 	}
 
 

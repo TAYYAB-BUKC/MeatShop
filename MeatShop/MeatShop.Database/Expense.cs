@@ -151,5 +151,34 @@ namespace MeatShop.Database
 				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
+
+		public double DailyExpense()
+		{
+			string dailyExpense = "";
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select sum(Amount) from Expenses where Datetime = @Datetime", sql);
+					cmd.Parameters.AddWithValue("@Datetime", Convert.ToInt32(DateTime.Now.Date.ToOADate()));
+					dailyExpense = Convert.ToString(cmd.ExecuteScalar());
+					sql.Close();
+					if (dailyExpense == "")
+					{
+						return 0;
+					}
+					else
+					{
+						return Convert.ToDouble(dailyExpense);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return 0;
+			}
+		}
 	}
 }

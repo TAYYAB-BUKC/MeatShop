@@ -43,7 +43,7 @@ namespace MeatShop
 				Username.Text = "";
 				Password.Text = "";
 				this.Hide();
-				Sales sales = new Sales();
+				Sales sales = new Sales(true);
 				MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				sales.Show();
 			}
@@ -84,7 +84,7 @@ namespace MeatShop
 					Password.Text = "";
 					Username.Focus();
 					this.Hide();
-					Sales sales = new Sales();
+					Sales sales = new Sales(true);
 					MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					sales.Show();
 				}

@@ -644,6 +644,7 @@
 			this.Name = "Sales";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Add Sale";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Sales_FormClosing);
 			this.Load += new System.EventHandler(this.Sales_Load);
 			this.Click += new System.EventHandler(this.Sales_Click);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Sales_KeyDown);

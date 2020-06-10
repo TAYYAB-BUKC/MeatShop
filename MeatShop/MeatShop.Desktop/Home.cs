@@ -376,7 +376,7 @@ namespace MeatShop
         private void button1_Click_4(object sender, EventArgs e)
         {
             //openChildForm(new Sales());
-            Sales sales = new Sales();
+            Sales sales = new Sales(false);
             sales.Show();
             hideSubMenu();
         }
