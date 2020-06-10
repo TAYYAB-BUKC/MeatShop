@@ -409,5 +409,17 @@ namespace MeatShop
             openChildForm(new DailyStockReport());
             hideSubMenu();
         }
+
+		private void ManageStock_Click(object sender, EventArgs e)
+		{
+            openChildForm(new ManageStock());
+            hideSubMenu();
+        }
+
+		private void ManageCustomer_Click(object sender, EventArgs e)
+		{
+            openChildForm(new ManageCustomer());
+            hideSubMenu();
+        }
 	}
 }

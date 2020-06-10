@@ -31,6 +31,8 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
 			this.panelSideMenu = new System.Windows.Forms.Panel();
 			this.Report_Panel = new System.Windows.Forms.Panel();
+			this.StockReport = new System.Windows.Forms.Button();
+			this.DailyExpenses = new System.Windows.Forms.Button();
 			this.DailySales = new System.Windows.Forms.Button();
 			this.Report = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -50,7 +52,7 @@
 			this.button5 = new System.Windows.Forms.Button();
 			this.User = new System.Windows.Forms.Button();
 			this.panelToolsSubMenu = new System.Windows.Forms.Panel();
-			this.button12 = new System.Windows.Forms.Button();
+			this.ManageStock = new System.Windows.Forms.Button();
 			this.button13 = new System.Windows.Forms.Button();
 			this.btnTools = new System.Windows.Forms.Button();
 			this.btnExit = new System.Windows.Forms.Button();
@@ -63,8 +65,7 @@
 			this.panelPlayer = new System.Windows.Forms.Panel();
 			this.panelChildForm = new System.Windows.Forms.Panel();
 			this.pictureBox9 = new System.Windows.Forms.PictureBox();
-			this.StockReport = new System.Windows.Forms.Button();
-			this.DailyExpenses = new System.Windows.Forms.Button();
+			this.ManageCustomer = new System.Windows.Forms.Button();
 			this.panelSideMenu.SuspendLayout();
 			this.Report_Panel.SuspendLayout();
 			this.Customer_Panel.SuspendLayout();
@@ -113,10 +114,46 @@
 			this.Report_Panel.Controls.Add(this.DailyExpenses);
 			this.Report_Panel.Controls.Add(this.DailySales);
 			this.Report_Panel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Report_Panel.Location = new System.Drawing.Point(0, 1059);
+			this.Report_Panel.Location = new System.Drawing.Point(0, 1080);
 			this.Report_Panel.Name = "Report_Panel";
 			this.Report_Panel.Size = new System.Drawing.Size(233, 133);
 			this.Report_Panel.TabIndex = 18;
+			// 
+			// StockReport
+			// 
+			this.StockReport.Dock = System.Windows.Forms.DockStyle.Top;
+			this.StockReport.FlatAppearance.BorderSize = 0;
+			this.StockReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.StockReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.StockReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.StockReport.ForeColor = System.Drawing.Color.Silver;
+			this.StockReport.Location = new System.Drawing.Point(0, 80);
+			this.StockReport.Name = "StockReport";
+			this.StockReport.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.StockReport.Size = new System.Drawing.Size(233, 40);
+			this.StockReport.TabIndex = 4;
+			this.StockReport.Text = "Stock Report";
+			this.StockReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.StockReport.UseVisualStyleBackColor = true;
+			this.StockReport.Click += new System.EventHandler(this.StockReport_Click);
+			// 
+			// DailyExpenses
+			// 
+			this.DailyExpenses.Dock = System.Windows.Forms.DockStyle.Top;
+			this.DailyExpenses.FlatAppearance.BorderSize = 0;
+			this.DailyExpenses.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.DailyExpenses.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.DailyExpenses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.DailyExpenses.ForeColor = System.Drawing.Color.Silver;
+			this.DailyExpenses.Location = new System.Drawing.Point(0, 40);
+			this.DailyExpenses.Name = "DailyExpenses";
+			this.DailyExpenses.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.DailyExpenses.Size = new System.Drawing.Size(233, 40);
+			this.DailyExpenses.TabIndex = 3;
+			this.DailyExpenses.Text = "Daily Expenses Report";
+			this.DailyExpenses.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.DailyExpenses.UseVisualStyleBackColor = true;
+			this.DailyExpenses.Click += new System.EventHandler(this.DailyExpenses_Click);
 			// 
 			// DailySales
 			// 
@@ -146,7 +183,7 @@
 			this.Report.ForeColor = System.Drawing.Color.Silver;
 			this.Report.Image = ((System.Drawing.Image)(resources.GetObject("Report.Image")));
 			this.Report.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Report.Location = new System.Drawing.Point(0, 1014);
+			this.Report.Location = new System.Drawing.Point(0, 1035);
 			this.Report.Name = "Report";
 			this.Report.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.Report.Size = new System.Drawing.Size(233, 45);
@@ -167,7 +204,7 @@
 			this.button1.ForeColor = System.Drawing.Color.Silver;
 			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
 			this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button1.Location = new System.Drawing.Point(0, 969);
+			this.button1.Location = new System.Drawing.Point(0, 990);
 			this.button1.Name = "button1";
 			this.button1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.button1.Size = new System.Drawing.Size(233, 45);
@@ -181,11 +218,12 @@
 			// Customer_Panel
 			// 
 			this.Customer_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+			this.Customer_Panel.Controls.Add(this.ManageCustomer);
 			this.Customer_Panel.Controls.Add(this.button15);
 			this.Customer_Panel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.Customer_Panel.Location = new System.Drawing.Point(0, 900);
 			this.Customer_Panel.Name = "Customer_Panel";
-			this.Customer_Panel.Size = new System.Drawing.Size(233, 69);
+			this.Customer_Panel.Size = new System.Drawing.Size(233, 90);
 			this.Customer_Panel.TabIndex = 17;
 			// 
 			// button15
@@ -434,7 +472,7 @@
 			// panelToolsSubMenu
 			// 
 			this.panelToolsSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-			this.panelToolsSubMenu.Controls.Add(this.button12);
+			this.panelToolsSubMenu.Controls.Add(this.ManageStock);
 			this.panelToolsSubMenu.Controls.Add(this.button13);
 			this.panelToolsSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelToolsSubMenu.Location = new System.Drawing.Point(0, 289);
@@ -442,22 +480,23 @@
 			this.panelToolsSubMenu.Size = new System.Drawing.Size(233, 104);
 			this.panelToolsSubMenu.TabIndex = 14;
 			// 
-			// button12
+			// ManageStock
 			// 
-			this.button12.Dock = System.Windows.Forms.DockStyle.Top;
-			this.button12.FlatAppearance.BorderSize = 0;
-			this.button12.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.button12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button12.ForeColor = System.Drawing.Color.Silver;
-			this.button12.Location = new System.Drawing.Point(0, 40);
-			this.button12.Name = "button12";
-			this.button12.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.button12.Size = new System.Drawing.Size(233, 47);
-			this.button12.TabIndex = 1;
-			this.button12.Text = "Manage Stock";
-			this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.button12.UseVisualStyleBackColor = true;
+			this.ManageStock.Dock = System.Windows.Forms.DockStyle.Top;
+			this.ManageStock.FlatAppearance.BorderSize = 0;
+			this.ManageStock.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.ManageStock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.ManageStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.ManageStock.ForeColor = System.Drawing.Color.Silver;
+			this.ManageStock.Location = new System.Drawing.Point(0, 40);
+			this.ManageStock.Name = "ManageStock";
+			this.ManageStock.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.ManageStock.Size = new System.Drawing.Size(233, 47);
+			this.ManageStock.TabIndex = 1;
+			this.ManageStock.Text = "Manage Stock";
+			this.ManageStock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.ManageStock.UseVisualStyleBackColor = true;
+			this.ManageStock.Click += new System.EventHandler(this.ManageStock_Click);
 			// 
 			// button13
 			// 
@@ -508,7 +547,7 @@
 			this.btnExit.ForeColor = System.Drawing.Color.Silver;
 			this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
 			this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnExit.Location = new System.Drawing.Point(0, 1192);
+			this.btnExit.Location = new System.Drawing.Point(0, 1213);
 			this.btnExit.Name = "btnExit";
 			this.btnExit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.btnExit.Size = new System.Drawing.Size(233, 45);
@@ -638,41 +677,23 @@
 			this.pictureBox9.TabIndex = 2;
 			this.pictureBox9.TabStop = false;
 			// 
-			// StockReport
+			// ManageCustomer
 			// 
-			this.StockReport.Dock = System.Windows.Forms.DockStyle.Top;
-			this.StockReport.FlatAppearance.BorderSize = 0;
-			this.StockReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.StockReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.StockReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.StockReport.ForeColor = System.Drawing.Color.Silver;
-			this.StockReport.Location = new System.Drawing.Point(0, 80);
-			this.StockReport.Name = "StockReport";
-			this.StockReport.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.StockReport.Size = new System.Drawing.Size(233, 40);
-			this.StockReport.TabIndex = 4;
-			this.StockReport.Text = "Stock Report";
-			this.StockReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.StockReport.UseVisualStyleBackColor = true;
-			this.StockReport.Click += new System.EventHandler(this.StockReport_Click);
-			// 
-			// DailyExpenses
-			// 
-			this.DailyExpenses.Dock = System.Windows.Forms.DockStyle.Top;
-			this.DailyExpenses.FlatAppearance.BorderSize = 0;
-			this.DailyExpenses.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.DailyExpenses.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.DailyExpenses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.DailyExpenses.ForeColor = System.Drawing.Color.Silver;
-			this.DailyExpenses.Location = new System.Drawing.Point(0, 40);
-			this.DailyExpenses.Name = "DailyExpenses";
-			this.DailyExpenses.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.DailyExpenses.Size = new System.Drawing.Size(233, 40);
-			this.DailyExpenses.TabIndex = 3;
-			this.DailyExpenses.Text = "Daily Expenses Report";
-			this.DailyExpenses.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.DailyExpenses.UseVisualStyleBackColor = true;
-			this.DailyExpenses.Click += new System.EventHandler(this.DailyExpenses_Click);
+			this.ManageCustomer.Dock = System.Windows.Forms.DockStyle.Top;
+			this.ManageCustomer.FlatAppearance.BorderSize = 0;
+			this.ManageCustomer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.ManageCustomer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.ManageCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.ManageCustomer.ForeColor = System.Drawing.Color.Silver;
+			this.ManageCustomer.Location = new System.Drawing.Point(0, 40);
+			this.ManageCustomer.Name = "ManageCustomer";
+			this.ManageCustomer.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.ManageCustomer.Size = new System.Drawing.Size(233, 40);
+			this.ManageCustomer.TabIndex = 2;
+			this.ManageCustomer.Text = "Manage Customer";
+			this.ManageCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.ManageCustomer.UseVisualStyleBackColor = true;
+			this.ManageCustomer.Click += new System.EventHandler(this.ManageCustomer_Click);
 			// 
 			// Home
 			// 
@@ -720,7 +741,7 @@
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.PictureBox pictureBox9;
 		private System.Windows.Forms.Panel panelToolsSubMenu;
-		private System.Windows.Forms.Button button12;
+		private System.Windows.Forms.Button ManageStock;
 		private System.Windows.Forms.Button button13;
 		private System.Windows.Forms.Button btnTools;
 		private System.Windows.Forms.Panel User_Panel;
@@ -745,6 +766,7 @@
 		private System.Windows.Forms.Button Report;
 		private System.Windows.Forms.Button StockReport;
 		private System.Windows.Forms.Button DailyExpenses;
+		private System.Windows.Forms.Button ManageCustomer;
 	}
 }
 

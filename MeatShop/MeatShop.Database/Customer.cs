@@ -15,7 +15,7 @@ namespace MeatShop.Database
 	public class Customer
 	{
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
-		
+		bool isError = false;
 		public bool AddCustomer(string name, string phone)
 		{
 			if (name == "")
@@ -126,6 +126,166 @@ namespace MeatShop.Database
 				MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
+
+		public void DeleteCustomer(int id)
+		{
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("delete from Customer where Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					sql.Close();
+					MessageBox.Show("Customer Deleted Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		public bool UpdateCustomer(int id, string name, string phone, string balance)
+		{
+			if (name == "" || balance == "")
+			{
+				MessageBox.Show("Please fill the fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return false;
+			}
+			else
+			{
+				try
+				{
+					using (SQLiteConnection sql = new SQLiteConnection(con))
+					{
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("update Customer set Name=@Name,Phone=@Phone,Balance=@Balance where Id=@Id", sql);
+						cmd.Parameters.AddWithValue("@Name", name);
+						cmd.Parameters.AddWithValue("@Phone", phone);
+						cmd.Parameters.AddWithValue("@Balance", balance);
+						cmd.Parameters.AddWithValue("@Id", id);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Customer Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						return true;
+					}
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Please enter the fields Correctly", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
+			}
+		}
+
+		public void SearchCustomer(BunifuCustomDataGrid dataGrid, string name)
+		{
+			if (name.Length > 0)
+			{
+				//if (name == "w" || name == "W")
+				//{
+				//	MessageBox.Show("No Record Found For this Name", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				//}
+				//else
+				//{
+				if (Checking(dataGrid, name))
+				{
+				}
+				else
+				{
+					if (!isError)
+					{
+						MessageBox.Show("No Record Found For this Name", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						isError = true;
+					}
+				}
+
+				//}
+			}
+			else if (name.Length == 0)
+			{
+				GetData(dataGrid, "select * from Customer order by Name");
+			}
+		}
+
+		private bool Checking(BunifuCustomDataGrid dataGrid, string name)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Customer where Name like '" + name + "%' order by Name", sql);
+				//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+				if (dt.Rows.Count > 0)
+				{
+					string searchExpression = "Id = 1";
+
+					DataRow[] foundRows = dt.Select(searchExpression);
+					foreach (DataRow dr in foundRows)
+					{
+						dt.Rows.Remove(dr);
+					}
+
+					dataGrid.Columns["Id"].Visible = false;
+					dataGrid.Columns["Date"].Visible = false;
+					dataGrid.DataSource = dt;
+					sql.Close();
+
+					return true;
+
+				}
+				else
+				{
+					sql.Close();
+					return false;
+				}
+			}
+		}
+
+		public void GetData(BunifuCustomDataGrid dataGrid, string query)
+		{
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand(query, sql);
+					cmd.ExecuteNonQuery();
+					DataTable dt = new DataTable();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+					if (dt.Rows.Count > 0)
+					{
+						string searchExpression = "Id = 1";
+
+						DataRow[] foundRows = dt.Select(searchExpression);
+						foreach (DataRow dr in foundRows)
+						{
+							dt.Rows.Remove(dr);
+						}
+						//dt.Rows[0].Delete();
+						//dt.AcceptChanges();
+					}
+					dataGrid.DataSource = dt;
+					sql.Close();
+					dataGrid.Columns["Id"].Visible = false;
+					dataGrid.Columns["Date"].Visible = false;
+
+
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Exception Occurs in datagridView Code.........." + ex.Message);
+			}
+		}
+
 	}
 }
 	

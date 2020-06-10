@@ -174,6 +174,44 @@ namespace MeatShop.Database
 			}
 		}
 
+		public void UpdateStock(Double quantity, string productID, int id)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("update Stock set Quantity=@Quantity where Product_Id=@Id", sql);
+					cmd.Parameters.AddWithValue("@Quantity", quantity);
+					cmd.Parameters.AddWithValue("@Id", productID);
+					cmd.ExecuteNonQuery();
+					sql.Close();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("Delete from Stock_Update where Id=@Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					cmd.ExecuteNonQuery();
+					MessageBox.Show("Stock Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					sql.Close();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+
+		}
+
 		public bool AddStockUpdate(int newQuantity,int price, int oldQuantity,int productID)
 		{
 			int date = Convert.ToInt32(DateTime.Now.Date.ToOADate());
@@ -409,6 +447,101 @@ namespace MeatShop.Database
 					{
 						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
+				}
+			}
+		}
+
+		public void GetData(BunifuCustomDataGrid dataGrid, string query, string date)
+		{
+			try
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand(query, sql);
+					cmd.Parameters.AddWithValue("@Datetime", date);
+					cmd.ExecuteNonQuery();
+					DataTable dt = new DataTable();
+					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
+					da.Fill(dt);
+					if (dt.Rows.Count > 0)
+					{
+						foreach (DataRow row in dt.Rows)
+						{
+							double sdate = Convert.ToDouble(row["Datetime"]);
+							var sfinal = DateTime.FromOADate(sdate);
+							row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
+						}
+					}
+
+					dataGrid.DataSource = dt;
+					sql.Close();
+					dataGrid.Columns["StockQuantity"].Visible = false;
+					dataGrid.Columns["ProductID"].Visible = false;
+					dataGrid.Columns["Id"].Visible = false;
+
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Exception Occurs in datagridView Code.........." + ex.Message);
+			}
+		}
+
+		public void SearchStock(BunifuCustomDataGrid dataGrid, string name)
+		{
+			if (name.Length > 0)
+			{
+				if (Checking(dataGrid, name))
+				{
+				}
+				else
+				{
+					if (!isError)
+					{
+						MessageBox.Show("No Record Found For this Name", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						isError = true;
+					}
+				}
+
+			}
+			else if (name.Length == 0)
+			{
+				GetData(dataGrid, "select Stock_Update.Id, Stock.Product_Id as Name, Stock_Update.Quantity, Stock_Update.Price, Stock_Update.Datetime, Stock_Update.Last_Available, Stock.Quantity as StockQuantity, Stock.Product_Id as ProductID from Stock inner join Stock_Update on Stock_Update.ProductID = Stock.Product_Id where Stock_Update.Datetime = @Datetime", "" + Convert.ToInt32(DateTime.Now.Date.ToOADate()));
+			}
+		}
+
+		private bool Checking(BunifuCustomDataGrid dataGrid, string name)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select Stock_Update.Id,Stock.Product_Id as Name,Stock_Update.Quantity,Stock_Update.Price,Stock_Update.Datetime,Stock_Update.Last_Available,Stock.Quantity as StockQuantity,Stock.Product_Id as ProductID from Stock inner join Stock_Update on Stock_Update.ProductID = Stock.Product_Id where Stock_Update.Datetime = @Datetime and Stock.Product_Id like '" + name + "%'", sql);
+				da.SelectCommand.Parameters.AddWithValue("@Datetime", "" + Convert.ToInt32(DateTime.Now.Date.ToOADate()));
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+
+				if (dt.Rows.Count > 0)
+				{
+					foreach (DataRow row in dt.Rows)
+					{
+						double sdate = Convert.ToDouble(row["Datetime"]);
+						var sfinal = DateTime.FromOADate(sdate);
+						row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
+					}
+					dataGrid.DataSource = dt;
+					sql.Close();
+
+					return true;
+
+				}
+				else
+				{
+					sql.Close();
+					return false;
 				}
 			}
 		}
