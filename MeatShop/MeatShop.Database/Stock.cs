@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bunifu.Framework.UI;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -184,6 +185,7 @@ namespace MeatShop.Database
 				return stock;
 			}
 		}
+
 		public int GetRemainingStock(string product)
 		{
 			using (SQLiteConnection sql = new SQLiteConnection(con))
@@ -219,6 +221,80 @@ namespace MeatShop.Database
 					return 0;
 				}
 
+			}
+		}
+
+		public bool DateWiseStock(BunifuCustomDataGrid dataGrid, int date)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select Stock_Update.Id, Stock.Product_Id as Name, Stock_Update.Quantity, Stock_Update.Price, Stock_Update.Datetime, Stock_Update.Last_Available, Stock.Quantity as StockQuantity, Stock.Product_Id as ProductID from Stock inner join Stock_Update on Stock_Update.ProductID = Stock.Product_Id where Stock_Update.Datetime = @Datetime order by Stock_Update.Datetime", sql);
+				da.SelectCommand.Parameters.AddWithValue("@Datetime", date);
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+				if (dt.Rows.Count > 0)
+				{
+					foreach (DataRow row in dt.Rows)
+					{
+						double sdate = Convert.ToDouble(row["Datetime"]);
+						var sfinal = DateTime.FromOADate(sdate);
+						row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
+					}
+					dataGrid.DataSource = dt;
+					sql.Close();
+					dataGrid.Columns["StockQuantity"].Visible = false;
+					dataGrid.Columns["ProductID"].Visible = false;
+					dataGrid.Columns["Id"].Visible = false;
+
+					return true;
+
+				}
+				else
+				{
+					sql.Close();
+					return false;
+				}
+			}
+		}
+
+		public bool AllStock(BunifuCustomDataGrid dataGrid)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select Stock_Update.Id, Stock.Product_Id as Name, Stock_Update.Quantity, Stock_Update.Price, Stock_Update.Datetime, Stock_Update.Last_Available, Stock.Quantity as StockQuantity, Stock.Product_Id as ProductID from Stock inner join Stock_Update on Stock_Update.ProductID = Stock.Product_Id order by Stock_Update.Datetime", sql);
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+				if (dt.Rows.Count > 0)
+				{
+					foreach (DataRow row in dt.Rows)
+					{
+						double sdate = Convert.ToDouble(row["Datetime"]);
+						var sfinal = DateTime.FromOADate(sdate);
+						row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
+					}
+
+					dataGrid.DataSource = dt;
+					sql.Close();
+					dataGrid.Columns["StockQuantity"].Visible = false;
+					dataGrid.Columns["ProductID"].Visible = false;
+					dataGrid.Columns["Id"].Visible = false;
+
+					return true;
+
+				}
+				else
+				{
+					sql.Close();
+					return false;
+				}
 			}
 		}
 	}

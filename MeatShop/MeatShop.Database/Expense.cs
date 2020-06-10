@@ -180,5 +180,73 @@ namespace MeatShop.Database
 				return 0;
 			}
 		}
+
+		public bool AllExpenses(BunifuCustomDataGrid dataGrid)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Expenses order by Datetime", sql);
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+				if (dt.Rows.Count > 0)
+				{
+					foreach (DataRow row in dt.Rows)
+					{
+						double sdate = Convert.ToDouble(row["Datetime"]);
+						var sfinal = DateTime.FromOADate(sdate);
+						row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
+					}
+
+					dataGrid.DataSource = dt;
+					sql.Close();
+
+					return true;
+
+				}
+				else
+				{
+					sql.Close();
+					return false;
+				}
+			}
+		}
+
+		public bool DateWiseExpenses(BunifuCustomDataGrid dataGrid, int date)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				sql.Open();
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Expenses where Datetime=@Datetime", sql);
+				da.SelectCommand.Parameters.AddWithValue("@Datetime", date);
+				DataTable dt = new DataTable();
+				if (da != null)
+				{
+					da.Fill(dt);
+				}
+				if (dt.Rows.Count > 0)
+				{
+					foreach (DataRow row in dt.Rows)
+					{
+						double sdate = Convert.ToDouble(row["Datetime"]);
+						var sfinal = DateTime.FromOADate(sdate);
+						row["Datetime"] = sfinal.ToString("dd-MM-yyyy");
+					}
+					dataGrid.DataSource = dt;
+					sql.Close();
+
+					return true;
+
+				}
+				else
+				{
+					sql.Close();
+					return false;
+				}
+			}
+		}
 	}
 }
