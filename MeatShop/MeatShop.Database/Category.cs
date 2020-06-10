@@ -56,6 +56,7 @@ namespace MeatShop.Database
 					da.Fill(dt);
 					dataGrid.DataSource = dt;
 					sql.Close();
+					dataGrid.Columns["Id"].Visible = false;
 				}
 			}
 			catch (Exception ex)

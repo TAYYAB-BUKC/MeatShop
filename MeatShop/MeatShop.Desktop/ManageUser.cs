@@ -20,7 +20,7 @@ namespace MeatShop
 		public ManageUser()
 		{
 			InitializeComponent();
-			user.GetData(Grd_User,"select * from Users");
+			user.GetData(Grd_User, "select Id,Name,Username,Password,Role as RoleID,Name as Role from Users");
 		}
 
 		private void ClearData()
@@ -54,7 +54,7 @@ namespace MeatShop
 				if (user.UpdateUser(Convert.ToInt32(User_ID.Text), User_Name.Text, User_Username.Text, User_Password.Text, role))
 				{
 					ClearData();
-					user.GetData(Grd_User, "select * from Users");
+					user.GetData(Grd_User, "select Id,Name,Username,Password,Role as RoleID,Name as Role from Users");
 				}
 			}
 		}
@@ -110,7 +110,7 @@ namespace MeatShop
 			{
 				user.DeleteUser(Convert.ToInt32(User_ID.Text));
 				ClearData();
-				user.GetData(Grd_User, "select * from Users");
+				user.GetData(Grd_User, "select Id,Name,Username,Password,Role as RoleID,Name as Role from Users");
 			}
 		}
 
@@ -120,10 +120,6 @@ namespace MeatShop
 			if (char.IsLetter(e.KeyChar))
 			{
 				e.Handled = false;
-			}
-			if (!char.IsLetterOrDigit(e.KeyChar))
-			{
-				e.Handled = true;
 			}
 			if (e.KeyChar == (char)Keys.Back)
 			{
@@ -141,10 +137,6 @@ namespace MeatShop
 			if (char.IsLetter(e.KeyChar))
 			{
 				e.Handled = false;
-			}
-			if (!char.IsLetterOrDigit(e.KeyChar))
-			{
-				e.Handled = true;
 			}
 			if (e.KeyChar == (char)Keys.Back)
 			{

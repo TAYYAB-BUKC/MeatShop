@@ -35,7 +35,7 @@ namespace MeatShop
 				Password.Text = "";
 				this.Hide();
 				Home home = new Home(this);
-				MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				//MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				home.Show();
 			}
 			else if (role == 1)
@@ -44,7 +44,7 @@ namespace MeatShop
 				Password.Text = "";
 				this.Hide();
 				Sales sales = new Sales(true);
-				MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				//MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				sales.Show();
 			}
 			else
@@ -53,15 +53,15 @@ namespace MeatShop
 			}
 		}
 
-		private void Email_Click(object sender, EventArgs e)
-		{
-			Username.Text = "";
-		}
+		//private void Email_Click(object sender, EventArgs e)
+		//{
+		//	Username.Text = "";
+		//}
 
-		private void Password_Click(object sender, EventArgs e)
-		{
-			Password.Text = "";
-		}
+		//private void Password_Click(object sender, EventArgs e)
+		//{
+		//	Password.Text = "";
+		//}
 
 		private void Password_KeyPress(object sender, KeyPressEventArgs e)
 		{
@@ -75,7 +75,7 @@ namespace MeatShop
 					Username.Focus();
 					this.Hide();
 					Home home = new Home(this);
-					MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					//MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					home.Show();
 				}
 				else if (role == 1)
@@ -85,7 +85,7 @@ namespace MeatShop
 					Username.Focus();
 					this.Hide();
 					Sales sales = new Sales(true);
-					MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					//MessageBox.Show("Logged In Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					sales.Show();
 				}
 				else

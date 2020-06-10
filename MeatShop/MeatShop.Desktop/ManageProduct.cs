@@ -63,9 +63,12 @@ namespace MeatShop
 					}
 					else
 					{
-					
+
+						//string path = Path.GetDirectoryName(Application.StartupPath);
+						//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
 						string path = Path.GetDirectoryName(Application.StartupPath);
-						string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+						//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+						string newpath = path + "\\ProductImages\\";
 
 						FileInfo fileInfo = new FileInfo(newpath + oldPath);
 						product.DeleteProduct(Convert.ToInt32(Product_ID.Text), fileInfo, oldPath);
@@ -210,7 +213,8 @@ namespace MeatShop
 			{
 				int index = e.RowIndex;
 				string path = Path.GetDirectoryName(Application.StartupPath);
-				string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+				//string newpath = path.Substring(0, (Application.StartupPath.Length - 10));
+				string newpath = path + "\\Awami Meat Shop\\";
 				if (index >= 0)
 				{
 					DataGridViewRow selectedRow = Grd_Product.Rows[index];
@@ -233,10 +237,18 @@ namespace MeatShop
 					}
 					else
 					{
-						using (var fs = new FileStream(newpath + selectedRow.Cells[3].Value.ToString(), FileMode.Open))
+						if (File.Exists(newpath + selectedRow.Cells[3].Value.ToString()))
 						{
-							var bmp = new Bitmap(fs);
-							Product_Image.Image = (Bitmap)bmp.Clone();
+							using (var fs = new FileStream(newpath + selectedRow.Cells[3].Value.ToString(), FileMode.Open))
+							{
+								var bmp = new Bitmap(fs);
+								Product_Image.Image = (Bitmap)bmp.Clone();
+								oldPath = selectedRow.Cells[3].Value.ToString();
+							}
+						}
+						else
+						{
+							Product_Image.Image = null;
 							oldPath = selectedRow.Cells[3].Value.ToString();
 						}
 					}
@@ -324,10 +336,6 @@ namespace MeatShop
 			{
 				e.Handled = false;
 			}
-			if (!char.IsLetterOrDigit(e.KeyChar))
-			{
-				e.Handled = true;
-			}
 			if (e.KeyChar == (char)Keys.Back)
 			{
 				e.Handled = false;
@@ -344,10 +352,6 @@ namespace MeatShop
 			if (char.IsLetter(e.KeyChar))
 			{
 				e.Handled = false;
-			}
-			if (!char.IsLetterOrDigit(e.KeyChar))
-			{
-				e.Handled = true;
 			}
 			if (e.KeyChar == (char)Keys.Back)
 			{

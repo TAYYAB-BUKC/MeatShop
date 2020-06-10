@@ -46,10 +46,6 @@ namespace MeatShop
 			{
 				e.Handled = false;
 			}
-			if (!char.IsLetterOrDigit(e.KeyChar))
-			{
-				e.Handled = true;
-			}
 			if (e.KeyChar == (char)Keys.Back)
 			{
 				e.Handled = false;
@@ -81,14 +77,14 @@ namespace MeatShop
 			}
 		}
 
-		private void Expense_Comment_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			e.Handled = false;
-			if (!char.IsLetterOrDigit(e.KeyChar))
-			{
-				e.Handled = true;
-			}
-		}
+		//private void Expense_Comment_KeyPress(object sender, KeyPressEventArgs e)
+		//{
+		//	e.Handled = false;
+		//	if (!char.IsLetterOrDigit(e.KeyChar))
+		//	{
+		//		e.Handled = true;
+		//	}
+		//}
 
 		private void button5_Click(object sender, EventArgs e)
 		{

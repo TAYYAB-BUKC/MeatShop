@@ -15,6 +15,7 @@ namespace MeatShop.Database
 	{
 		public static string con = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ConnectionString;
 		Product product = new Product();
+		bool isError = false;
 		public void UpdateStock(int quantity, ProductEntity productEntity, int price, int productID, bool isPriceUpdated)
 		{
 			//int oldQuantity = productEntity.oldQuantity;
@@ -111,6 +112,68 @@ namespace MeatShop.Database
 			}
 		}
 
+		public void UpdateStock(int quantity, ProductEntity productEntity, int price, string productID)
+		{
+			//int oldQuantity = productEntity.oldQuantity;
+			//int id = productEntity.Id;
+			//bool check = false;
+			//using (SQLiteConnection sql = new SQLiteConnection(con))
+			//{
+			//	try
+			//	{
+			//		sql.Open();
+			//		SQLiteCommand cmd = new SQLiteCommand("select Id,Quantity from Stock where Product_Id = @Id", sql);
+			//		cmd.Parameters.AddWithValue("@Id", productID);
+			//		SQLiteDataReader reader = cmd.ExecuteReader();
+			//		while (reader.Read())
+			//		{
+			//			id = reader.GetInt32(0);
+			//			oldQuantity = reader.GetInt32(1);
+			//			check = true;
+			//		}
+			//		sql.Close();
+			//	}
+			//	catch (Exception ex)
+			//	{
+			//		MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			//	}
+			//}
+
+			if (AddStockUpdate(quantity, price, productEntity.oldQuantity, productID))
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					try
+					{
+						//if (check)
+						//{
+						sql.Open();
+						int finalQuantity = productEntity.oldQuantity + quantity;
+						SQLiteCommand cmd = new SQLiteCommand("update Stock set Price=@Price,Quantity=@Quantity where Id=@Id", sql);
+						cmd.Parameters.AddWithValue("@Quantity", finalQuantity);
+						cmd.Parameters.AddWithValue("@Price", price);
+						cmd.Parameters.AddWithValue("@Id", productEntity.Id);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Stock Updated Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+						//}
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+
+				//if (isPriceUpdated)
+				//{
+				//	if (isSuccess)
+				//	{
+				//		product.UpdatePrice(productID, price);
+				//	}
+				//}
+			}
+		}
+
 		public bool AddStockUpdate(int newQuantity,int price, int oldQuantity,int productID)
 		{
 			int date = Convert.ToInt32(DateTime.Now.Date.ToOADate());
@@ -130,6 +193,33 @@ namespace MeatShop.Database
 					return true;
 				}
 				catch (Exception ex)                                                                                                                                                                                                                                                                                                                                                                                                              
+				{
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return false;
+				}
+
+			}
+		}
+
+		public bool AddStockUpdate(int newQuantity, int price, int oldQuantity, string productID)
+		{
+			int date = Convert.ToInt32(DateTime.Now.Date.ToOADate());
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("insert into Stock_Update(productID,Quantity,Price,Datetime,Last_Available) values(@productID,@Quantity,@Price,@Datetime,@Last_Available)", sql);
+					cmd.Parameters.AddWithValue("@productID", productID);
+					cmd.Parameters.AddWithValue("@Quantity", newQuantity);
+					cmd.Parameters.AddWithValue("@Datetime", date);
+					cmd.Parameters.AddWithValue("@Price", price);
+					cmd.Parameters.AddWithValue("@Last_Available", oldQuantity);
+					cmd.ExecuteNonQuery();
+					sql.Close();
+					return true;
+				}
+				catch (Exception ex)
 				{
 					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return false;
@@ -297,6 +387,32 @@ namespace MeatShop.Database
 				}
 			}
 		}
+
+		public void AddStock(string productID, int quantity, int price)
+		{
+			if (AddStockUpdate(quantity, price, 0, productID))
+			{
+				using (SQLiteConnection sql = new SQLiteConnection(con))
+				{
+					try
+					{
+						sql.Open();
+						SQLiteCommand cmd = new SQLiteCommand("insert into Stock(Product_Id,Quantity,Price) values(@Product_Id,@Quantity,@Price)", sql);
+						cmd.Parameters.AddWithValue("@Product_Id", productID);
+						cmd.Parameters.AddWithValue("@Quantity", quantity);
+						cmd.Parameters.AddWithValue("@Price", price);
+						cmd.ExecuteNonQuery();
+						MessageBox.Show("Stock Added Successfully", "Success Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						sql.Close();
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+			}
+		}
+
 	}
 
 	public class GetSpecificStock

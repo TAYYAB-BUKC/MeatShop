@@ -944,13 +944,52 @@ namespace MeatShop.Database
 			}
 		}
 
-	}
+		public ProductEntity IsExist(string id)
+		{
+			using (SQLiteConnection sql = new SQLiteConnection(con))
+			{
+				try
+				{
+					sql.Open();
+					SQLiteCommand cmd = new SQLiteCommand("select * from Stock where Product_Id = @Id", sql);
+					cmd.Parameters.AddWithValue("@Id", id);
+					SQLiteDataReader reader = cmd.ExecuteReader();
+					if (reader.HasRows)
+					{
+						ProductEntity productEntity = new ProductEntity();
+						while (reader.Read())
+						{
+							productEntity.Id = reader.GetInt32(0);
+							productEntity.oldQuantity = reader.GetInt32(2);
+							productEntity.Price = reader.GetInt32(3);
+						}
+						sql.Close();
+						return productEntity;
 
+					}
+					else
+					{
+						sql.Close();
+						return new ProductEntity();
+					}
+
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					sql.Close();
+					return new ProductEntity();
+				}
+
+			}
+		}
+	}
 
 	public class ProductEntity
 	{
 		public int Id { get; set; }
 		public int oldQuantity { get; set; }
+		public int Price { get; set; }
 	}
 		
 	public class ProductCategoryEntity

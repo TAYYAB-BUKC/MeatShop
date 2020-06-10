@@ -96,10 +96,6 @@ namespace MeatShop
 			{
 				e.Handled = false;
 			}
-			if (!char.IsLetterOrDigit(e.KeyChar))
-			{
-				e.Handled = true;
-			}
 			if (e.KeyChar == (char)Keys.Back)
 			{
 				e.Handled = false;
@@ -116,10 +112,6 @@ namespace MeatShop
 			if (char.IsLetter(e.KeyChar))
 			{
 				e.Handled = false;
-			}
-			if (!char.IsLetterOrDigit(e.KeyChar))
-			{
-				e.Handled = true;
 			}
 			if (e.KeyChar == (char)Keys.Back)
 			{

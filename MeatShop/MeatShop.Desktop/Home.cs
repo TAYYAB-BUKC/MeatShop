@@ -397,5 +397,17 @@ namespace MeatShop
             this.Hide();
             login.Show();
         }
-    }
+
+		private void DailyExpenses_Click(object sender, EventArgs e)
+		{
+            openChildForm(new DailyExpenseReport());
+            hideSubMenu();
+        }
+
+		private void StockReport_Click(object sender, EventArgs e)
+		{
+            openChildForm(new DailyStockReport());
+            hideSubMenu();
+        }
+	}
 }

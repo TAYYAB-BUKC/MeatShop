@@ -142,7 +142,6 @@
 			this.Expense_Comment.Name = "Expense_Comment";
 			this.Expense_Comment.Size = new System.Drawing.Size(255, 136);
 			this.Expense_Comment.TabIndex = 155;
-			this.Expense_Comment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Expense_Comment_KeyPress);
 			// 
 			// label4
 			// 

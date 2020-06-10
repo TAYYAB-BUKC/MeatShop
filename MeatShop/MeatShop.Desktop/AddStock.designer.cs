@@ -132,7 +132,6 @@
 			this.Stock_Product.Name = "Stock_Product";
 			this.Stock_Product.Size = new System.Drawing.Size(252, 30);
 			this.Stock_Product.TabIndex = 167;
-			this.Stock_Product.SelectedIndexChanged += new System.EventHandler(this.Stock_Product_SelectedIndexChanged);
 			// 
 			// Stock_Quantity
 			// 

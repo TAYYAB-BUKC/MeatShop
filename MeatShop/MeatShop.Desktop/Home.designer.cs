@@ -30,6 +30,9 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
 			this.panelSideMenu = new System.Windows.Forms.Panel();
+			this.Report_Panel = new System.Windows.Forms.Panel();
+			this.DailySales = new System.Windows.Forms.Button();
+			this.Report = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.Customer_Panel = new System.Windows.Forms.Panel();
 			this.button15 = new System.Windows.Forms.Button();
@@ -60,10 +63,10 @@
 			this.panelPlayer = new System.Windows.Forms.Panel();
 			this.panelChildForm = new System.Windows.Forms.Panel();
 			this.pictureBox9 = new System.Windows.Forms.PictureBox();
-			this.Report = new System.Windows.Forms.Button();
-			this.Report_Panel = new System.Windows.Forms.Panel();
-			this.DailySales = new System.Windows.Forms.Button();
+			this.StockReport = new System.Windows.Forms.Button();
+			this.DailyExpenses = new System.Windows.Forms.Button();
 			this.panelSideMenu.SuspendLayout();
+			this.Report_Panel.SuspendLayout();
 			this.Customer_Panel.SuspendLayout();
 			this.Product_Panel.SuspendLayout();
 			this.Category_Panel.SuspendLayout();
@@ -74,7 +77,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.panelChildForm.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-			this.Report_Panel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelSideMenu
@@ -103,6 +105,57 @@
 			this.panelSideMenu.Name = "panelSideMenu";
 			this.panelSideMenu.Size = new System.Drawing.Size(250, 751);
 			this.panelSideMenu.TabIndex = 0;
+			// 
+			// Report_Panel
+			// 
+			this.Report_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+			this.Report_Panel.Controls.Add(this.StockReport);
+			this.Report_Panel.Controls.Add(this.DailyExpenses);
+			this.Report_Panel.Controls.Add(this.DailySales);
+			this.Report_Panel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Report_Panel.Location = new System.Drawing.Point(0, 1059);
+			this.Report_Panel.Name = "Report_Panel";
+			this.Report_Panel.Size = new System.Drawing.Size(233, 133);
+			this.Report_Panel.TabIndex = 18;
+			// 
+			// DailySales
+			// 
+			this.DailySales.Dock = System.Windows.Forms.DockStyle.Top;
+			this.DailySales.FlatAppearance.BorderSize = 0;
+			this.DailySales.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.DailySales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.DailySales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.DailySales.ForeColor = System.Drawing.Color.Silver;
+			this.DailySales.Location = new System.Drawing.Point(0, 0);
+			this.DailySales.Name = "DailySales";
+			this.DailySales.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.DailySales.Size = new System.Drawing.Size(233, 40);
+			this.DailySales.TabIndex = 0;
+			this.DailySales.Text = "Daily Sales Report";
+			this.DailySales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.DailySales.UseVisualStyleBackColor = true;
+			this.DailySales.Click += new System.EventHandler(this.DailySales_Click);
+			// 
+			// Report
+			// 
+			this.Report.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Report.FlatAppearance.BorderSize = 0;
+			this.Report.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+			this.Report.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+			this.Report.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.Report.ForeColor = System.Drawing.Color.Silver;
+			this.Report.Image = ((System.Drawing.Image)(resources.GetObject("Report.Image")));
+			this.Report.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.Report.Location = new System.Drawing.Point(0, 1014);
+			this.Report.Name = "Report";
+			this.Report.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.Report.Size = new System.Drawing.Size(233, 45);
+			this.Report.TabIndex = 21;
+			this.Report.Text = "   Report";
+			this.Report.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.Report.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.Report.UseVisualStyleBackColor = true;
+			this.Report.Click += new System.EventHandler(this.Report_Click);
 			// 
 			// button1
 			// 
@@ -455,7 +508,7 @@
 			this.btnExit.ForeColor = System.Drawing.Color.Silver;
 			this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
 			this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnExit.Location = new System.Drawing.Point(0, 1128);
+			this.btnExit.Location = new System.Drawing.Point(0, 1192);
 			this.btnExit.Name = "btnExit";
 			this.btnExit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
 			this.btnExit.Size = new System.Drawing.Size(233, 45);
@@ -585,54 +638,41 @@
 			this.pictureBox9.TabIndex = 2;
 			this.pictureBox9.TabStop = false;
 			// 
-			// Report
+			// StockReport
 			// 
-			this.Report.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Report.FlatAppearance.BorderSize = 0;
-			this.Report.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-			this.Report.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-			this.Report.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.Report.ForeColor = System.Drawing.Color.Silver;
-			this.Report.Image = ((System.Drawing.Image)(resources.GetObject("Report.Image")));
-			this.Report.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.Report.Location = new System.Drawing.Point(0, 1014);
-			this.Report.Name = "Report";
-			this.Report.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.Report.Size = new System.Drawing.Size(233, 45);
-			this.Report.TabIndex = 21;
-			this.Report.Text = "   Report";
-			this.Report.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.Report.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.Report.UseVisualStyleBackColor = true;
-			this.Report.Click += new System.EventHandler(this.Report_Click);
+			this.StockReport.Dock = System.Windows.Forms.DockStyle.Top;
+			this.StockReport.FlatAppearance.BorderSize = 0;
+			this.StockReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.StockReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.StockReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.StockReport.ForeColor = System.Drawing.Color.Silver;
+			this.StockReport.Location = new System.Drawing.Point(0, 80);
+			this.StockReport.Name = "StockReport";
+			this.StockReport.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.StockReport.Size = new System.Drawing.Size(233, 40);
+			this.StockReport.TabIndex = 4;
+			this.StockReport.Text = "Stock Report";
+			this.StockReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.StockReport.UseVisualStyleBackColor = true;
+			this.StockReport.Click += new System.EventHandler(this.StockReport_Click);
 			// 
-			// Report_Panel
+			// DailyExpenses
 			// 
-			this.Report_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-			this.Report_Panel.Controls.Add(this.DailySales);
-			this.Report_Panel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Report_Panel.Location = new System.Drawing.Point(0, 1059);
-			this.Report_Panel.Name = "Report_Panel";
-			this.Report_Panel.Size = new System.Drawing.Size(233, 69);
-			this.Report_Panel.TabIndex = 18;
-			// 
-			// DailySales
-			// 
-			this.DailySales.Dock = System.Windows.Forms.DockStyle.Top;
-			this.DailySales.FlatAppearance.BorderSize = 0;
-			this.DailySales.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.DailySales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-			this.DailySales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.DailySales.ForeColor = System.Drawing.Color.Silver;
-			this.DailySales.Location = new System.Drawing.Point(0, 0);
-			this.DailySales.Name = "DailySales";
-			this.DailySales.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-			this.DailySales.Size = new System.Drawing.Size(233, 40);
-			this.DailySales.TabIndex = 0;
-			this.DailySales.Text = "Daily Sales Report";
-			this.DailySales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.DailySales.UseVisualStyleBackColor = true;
-			this.DailySales.Click += new System.EventHandler(this.DailySales_Click);
+			this.DailyExpenses.Dock = System.Windows.Forms.DockStyle.Top;
+			this.DailyExpenses.FlatAppearance.BorderSize = 0;
+			this.DailyExpenses.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.DailyExpenses.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+			this.DailyExpenses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.DailyExpenses.ForeColor = System.Drawing.Color.Silver;
+			this.DailyExpenses.Location = new System.Drawing.Point(0, 40);
+			this.DailyExpenses.Name = "DailyExpenses";
+			this.DailyExpenses.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+			this.DailyExpenses.Size = new System.Drawing.Size(233, 40);
+			this.DailyExpenses.TabIndex = 3;
+			this.DailyExpenses.Text = "Daily Expenses Report";
+			this.DailyExpenses.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.DailyExpenses.UseVisualStyleBackColor = true;
+			this.DailyExpenses.Click += new System.EventHandler(this.DailyExpenses_Click);
 			// 
 			// Home
 			// 
@@ -652,6 +692,7 @@
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
 			this.panelSideMenu.ResumeLayout(false);
+			this.Report_Panel.ResumeLayout(false);
 			this.Customer_Panel.ResumeLayout(false);
 			this.Product_Panel.ResumeLayout(false);
 			this.Category_Panel.ResumeLayout(false);
@@ -662,7 +703,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.panelChildForm.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-			this.Report_Panel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -703,6 +743,8 @@
 		private System.Windows.Forms.Panel Report_Panel;
 		private System.Windows.Forms.Button DailySales;
 		private System.Windows.Forms.Button Report;
+		private System.Windows.Forms.Button StockReport;
+		private System.Windows.Forms.Button DailyExpenses;
 	}
 }
 

@@ -12,7 +12,12 @@ namespace MeatShop
 		public AddStock()
 		{
 			InitializeComponent();
-			product.FillCombo(Stock_Product);
+			//product.FillCombo(Stock_Product);
+			//if (Stock_Product.Items.Count > 0)
+			//{
+			//	Stock_Product.SelectedIndex = -1;
+			Stock_Product.SelectedIndex = 0;
+			//}
 		}
 		private void Save_Button_Click(object sender, EventArgs e)
 		{
@@ -26,41 +31,46 @@ namespace MeatShop
 			//	MessageBox.Show("please enter amount", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			//}
 
-			if (Convert.ToInt32(Stock_Price.Text) > 0)
+			ProductEntity productEntity = product.IsExist(Stock_Product.Text.ToString());
+
+			if (productEntity.Price == 0 && Stock_Price.Text == "")
+			{
+				MessageBox.Show("Please Enter the price", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else if (Convert.ToInt32(Stock_Price.Text) > 0)
 			{
 				try
 				{
-					ProductEntity productEntity = product.IsExist(Convert.ToInt32(Stock_Product.SelectedValue));
 					if (productEntity.Id > 0)
 					{
 						//update stock quantity
 						//stock.UpdateStock(Convert.ToInt32(Stock_Product.SelectedValue), Convert.ToInt32(Stock_Quantity.Text),productEntity);
-						if (oldPrice != Convert.ToInt32(Stock_Price.Text))
-						{
-							stock.UpdateStock(Convert.ToInt32(Stock_Quantity.Text), productEntity, Convert.ToInt32(Stock_Price.Text), Convert.ToInt32(Stock_Product.SelectedValue), true);
+						//if (oldPrice != Convert.ToInt32(Stock_Price.Text))
+						//{
+							stock.UpdateStock(Convert.ToInt32(Stock_Quantity.Text), productEntity, productEntity.Price, Stock_Product.Text.ToString());
 							ClearData();
-						}
-						else
-						{
-							stock.UpdateStock(Convert.ToInt32(Stock_Quantity.Text), productEntity, Convert.ToInt32(Stock_Price.Text), Convert.ToInt32(Stock_Product.SelectedValue),false);
-							ClearData();
+						//}
+						//else
+						//{
+						//	stock.UpdateStock(Convert.ToInt32(Stock_Quantity.Text), productEntity, Convert.ToInt32(Stock_Price.Text), Convert.ToInt32(Stock_Product.SelectedValue),false);
+						//	ClearData();
 
-						}
+						//}
 
 					}
 					else
 					{
-						if (oldPrice != Convert.ToInt32(Stock_Price.Text))
-						{
+						//if (oldPrice != Convert.ToInt32(Stock_Price.Text))
+						//{
 							//add stock
-							stock.AddStock(Convert.ToInt32(Stock_Product.SelectedValue), Convert.ToInt32(Stock_Quantity.Text), Convert.ToInt32(Stock_Price.Text),true);
+							stock.AddStock(Stock_Product.Text.ToString(), Convert.ToInt32(Stock_Quantity.Text), productEntity.Price);
 							ClearData();
-						}
-						else
-						{
-							stock.AddStock(Convert.ToInt32(Stock_Product.SelectedValue), Convert.ToInt32(Stock_Quantity.Text), Convert.ToInt32(Stock_Price.Text),false);
-							ClearData();
-						}
+						//}
+						//else
+						//{
+							//stock.AddStock(Convert.ToInt32(Stock_Product.SelectedValue), Convert.ToInt32(Stock_Quantity.Text), Convert.ToInt32(Stock_Price.Text),false);
+							//ClearData();
+						//}
 					}
 				}
 				catch (Exception ex)
@@ -78,12 +88,56 @@ namespace MeatShop
 				//	MessageBox.Show("Unit: "+ Product_Unit.SelectedValue+"Category "+Product_Category.SelectedValue, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			}
+
+			else
+			{
+				try
+				{
+					if (productEntity.Id > 0)
+					{
+						//update stock quantity
+						//stock.UpdateStock(Convert.ToInt32(Stock_Product.SelectedValue), Convert.ToInt32(Stock_Quantity.Text),productEntity);
+						//if (oldPrice != Convert.ToInt32(Stock_Price.Text) && Stock_Price.Text != "0")
+						//{
+						stock.UpdateStock(Convert.ToInt32(Stock_Quantity.Text), productEntity, Convert.ToInt32(Stock_Price.Text), Stock_Product.Text.ToString());
+						ClearData();
+						//}
+						//else
+						//{
+						//	stock.UpdateStock(Convert.ToInt32(Stock_Quantity.Text), productEntity, Convert.ToInt32(Stock_Price.Text), Convert.ToInt32(Stock_Product.SelectedValue), false);
+						//	ClearData();
+
+						//}
+
+					}
+					else
+					{
+						//if (oldPrice != Convert.ToInt32(Stock_Price.Text))
+						//{
+						//add stock
+						stock.AddStock(Stock_Product.Text.ToString(), Convert.ToInt32(Stock_Quantity.Text), Convert.ToInt32(Stock_Price.Text));
+						ClearData();
+						//}
+						//else
+						//{
+						//	stock.AddStock(Stock_Product.Text.ToString(), Convert.ToInt32(Stock_Quantity.Text), Convert.ToInt32(Stock_Price.Text));
+						//	ClearData();
+						//}
+					}
+				}
+				catch (Exception ex)
+				{
+					//MessageBox.Show("Something went wrong Please try again later.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
 		}
 		private void ClearData()
 		{
 			Stock_Price.Text = "";
 			Stock_Quantity.Text = "";
-			product.FillCombo(Stock_Product);
+			//product.FillCombo(Stock_Product);
+			Stock_Product.SelectedIndex = 0;
 
 		}
 
@@ -91,25 +145,26 @@ namespace MeatShop
 		//{
 
 
+
 		//}
 
-		private void Stock_Product_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (Stock_Product.Text.Equals("System.Data.DataRowView"))
-			{
+		//private void Stock_Product_SelectedIndexChanged(object sender, EventArgs e)
+		//{
+		//	if (Stock_Product.Text.Equals("System.Data.DataRowView"))
+		//	{
 
-			}
-			else 
-			{
-				int price = product.GetDetails(Convert.ToInt32(Stock_Product.SelectedValue));
-				if (price > -1)
-				{
-					Stock_Price.Text = Convert.ToString(price);
-					oldPrice = price;
-				}
-				
-			}
-		}
+		//	}
+		//	else
+		//	{
+		//		int price = product.GetDetails(Convert.ToInt32(Stock_Product.SelectedValue));
+		//		if (price > -1)
+		//		{
+		//			Stock_Price.Text = Convert.ToString(price);
+		//			oldPrice = price;
+		//		}
+
+		//	}
+		//}
 
 		private void Stock_Price_KeyPress(object sender, KeyPressEventArgs e)
 		{
