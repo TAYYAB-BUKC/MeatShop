@@ -63,7 +63,25 @@ namespace MeatShop.Database
 					DataTable dt = new DataTable();
 					SQLiteDataAdapter da = new SQLiteDataAdapter(cmd);
 					da.Fill(dt);
+					if (dt.Rows.Count > 0)
+					{
+						foreach (DataRow row in dt.Rows)
+						{
+							int role = Convert.ToInt32(row["RoleID"]);
+							if (role == 0)
+							{
+								row["Role"] = "Admin";
+							}
+							else
+							{
+								row["Role"] = "Worker";
+							}
+
+						}
+					}
 					dataGrid.DataSource = dt;
+					dataGrid.Columns["RoleID"].Visible = false;
+					dataGrid.Columns["Id"].Visible = false;
 					sql.Close();
 				}
 			}
@@ -72,7 +90,6 @@ namespace MeatShop.Database
 				MessageBox.Show("Exception Occurs in datagridView Code.........." + ex.Message);
 			}
 		}
-
 
 		public bool AddUser(string name, string username, string password, int role)
 		{
@@ -126,7 +143,7 @@ namespace MeatShop.Database
 			}
 			else if (name.Length == 0)
 			{
-				GetData(dataGrid,"select * from Users");
+				GetData(dataGrid, "select Id,Name,Username,Password,Role as RoleID,Name as Role from Users");
 			}
 		}
 
@@ -135,7 +152,7 @@ namespace MeatShop.Database
 			using (SQLiteConnection sql = new SQLiteConnection(con))
 			{
 				sql.Open();
-				SQLiteDataAdapter da = new SQLiteDataAdapter("select * from Users where Name like '" + name + "%'", sql);
+				SQLiteDataAdapter da = new SQLiteDataAdapter("select Id,Name,Username,Password,Role as RoleID,Name as Role from Users where Name like '" + name + "%'", sql);
 				//da.SelectCommand.Parameters.AddWithValue("@Name", txt_search.Text);
 				DataTable dt = new DataTable();
 				if (da != null)
@@ -144,6 +161,19 @@ namespace MeatShop.Database
 				}
 				if (dt.Rows.Count > 0)
 				{
+					foreach (DataRow row in dt.Rows)
+					{
+						int role = Convert.ToInt32(row["RoleID"]);
+						if (role == 0)
+						{
+							row["Role"] = "Admin";
+						}
+						else
+						{
+							row["Role"] = "Worker";
+						}
+
+					}
 					dataGrid.DataSource = dt;
 					sql.Close();
 
@@ -157,6 +187,7 @@ namespace MeatShop.Database
 				}
 			}
 		}
+
 		public bool UpdateUser(int id,string name, string username, string password, int role)
 		{
 			if (id < 0 || name == "" || username == "" || password == "" || role == -1)
